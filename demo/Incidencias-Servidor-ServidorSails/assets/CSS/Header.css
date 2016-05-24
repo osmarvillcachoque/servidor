@@ -1,0 +1,46 @@
+.navbar-login
+{
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.navbar-login-session
+{
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.icon-size
+{
+    font-size: 50px;
+}
+
+.navbar a span  {
+	margin-right: 5px;
+	margin-left: 5px;
+	color: white;
+}
+
+.navbar .glyphicon {
+	color: white !important;
+}
+
+.navbar .dropdown-toggle span {
+	font-weight: bold;
+}
+
+.navbar {
+    color: #7C7C7C;
+    background-color: #363932;
+    border: none;
+    box-shadow: 0px 0px 2px black;
+}
+
+.dropdown-menu .navbar-login .row .glyphicon {
+    color: black !important;
+    margin-top: 2px;
+    margin-left: 5px;
+    float: left;
+}

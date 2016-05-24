@@ -1,0 +1,16 @@
+.page-footer {
+	 color: #7C7C7C;
+	 background-color: #363932;
+	 border: none;
+	 box-shadow: 0px 0px 2px black;
+	 height: 50px;
+	 text-align: center !important;
+	 font-size: 16px;
+	 margin: 0 auto;
+	 line-height: 50px;
+	 margin-top: 10px;
+}
+
+.page-footer .navbar-brand {
+	float: none;
+}

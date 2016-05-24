@@ -1,0 +1,52 @@
+.table {
+	table-layout: fixed;
+ 	word-wrap: break-word;
+}
+
+.table, table, th {
+	text-align: center;
+}
+
+.table tbody tr td {
+     vertical-align: middle;
+}
+
+.table tbody td:nth-child(1) {
+	font-weight: bold;
+}
+
+.table thead tr th:nth-child(1) {
+	width: 4%;
+}
+
+.table thead tr th:nth-child(2) {
+	width: 5%;
+}
+
+.table thead tr th:nth-child(3) {
+	width: 4%;
+}
+
+.table tbody tr td i {
+	margin-top: 4px;
+}
+
+#AddButton {
+	position: fixed;
+	left: 15px;
+	bottom: 16px;
+	padding: 10px 15px 10px 15px;
+}
+
+#AddButton i, EditButton i {
+	text-align: left;
+	font-size: 15px;
+}
+
+#EditButton {
+	padding: 5px 12px 5px 12px;
+}
+
+.glyphicon {
+	top: 0px !important;
+}
