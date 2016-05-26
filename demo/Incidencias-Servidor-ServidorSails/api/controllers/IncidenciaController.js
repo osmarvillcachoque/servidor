@@ -4,8 +4,7 @@ module.exports = {
 
 		if ( req.Rol == '1' ) {
 
-			//Incidencia.find().where({ or: [ { "Propietario": req.Usuario.id }, { "Comun": "Sí" } ] }).populateAll()
-			Incidencia.find().populateAll()
+			Incidencia.find().where({ or: [ { "Propietario": req.Usuario.id }, { "Comun": "Sí" } ] }).populateAll()
 
 				.then(function(Incidencias){
 					
@@ -16,11 +15,7 @@ module.exports = {
 					if (Incidencias){
 
 						Incidencias.forEach(function(Incidencia) {
-							var Operador = "Sin Asignar";
 
-							if ( Incidencia.Operador != null ) {
-								Operador = Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos;
-							}
 							IncidenciaJSON = { 
 								"id": Incidencia.id,
 								"Titulo": Incidencia.Titulo, 
@@ -28,7 +23,7 @@ module.exports = {
 								"Departamento": "", 
 								"Instalacion": Incidencia.Instalacion.Nombre,
 								"Tipo": Incidencia.Tipo, 
-								"Operador":Operador,
+								"Operador": Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos,
 								"Propietario":Incidencia.Propietario.Nombre + " " + Incidencia.Propietario.Apellidos,
 								"Estado": Incidencia.Estado,
 								"Prioridad":Incidencia.Prioridad,
@@ -242,18 +237,19 @@ module.exports = {
 
 		else if ( req.Rol == '3' ) {
 
+			var Operador = "Sin asignar";
 			Incidencia.create({
 							Titulo: req.body.Titulo,
 							Descripcion: req.body.Descripcion,
-							Tipo: req.body.Tipo,
-							Estado: req.body.Estado,
-							Prioridad: req.body.Prioridad,
-							Comun: req.body.Comun,
-							FechaInicio: req.body.FechaInicio,
-							FechaPrevista: req.body.FechaPrevista,
-							FechaFin: req.body.FechaFin,
+							//Tipo: req.body.Tipo,
+							//Estado: req.body.Estado,
+							//Prioridad: req.body.Prioridad,
+							//Comun: req.body.Comun,
+							FechaInicio: "",
+							FechaPrevista: "",
+							FechaFin: "",
 							Instalacion: req.body.Instalacion,
-							Operador: req.body.Operador,
+							Operador: Operador,
 							Propietario: req.Usuario
 						}
 			).exec(function (err, Incidencia) {
@@ -289,11 +285,7 @@ module.exports = {
 					var FindDepartamento;
 
 					if (Incidencia){
-							var Operador = "Sin Asignar";
 
-							if ( Incidencia.Operador != null ) {
-								Operador = Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos;
-							}
 							DatosIncidencia = { 
 								"id":Incidencia.id,
 								"Titulo": Incidencia.Titulo, 
@@ -301,7 +293,7 @@ module.exports = {
 								"Departamento": "", 
 								"Instalacion": { "id": Incidencia.Instalacion.id, "Nombre": Incidencia.Instalacion.Nombre },
 								"Tipo": Incidencia.Tipo, 
-								"Operador": Operador,
+								"Operador": Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos,
 								"Estado": Incidencia.Estado,
 								"Prioridad":Incidencia.Prioridad,
 								"FechaInicio": Incidencia.FechaInicio,
@@ -391,7 +383,7 @@ module.exports = {
 		if ( req.Rol == '1' ) {
 
 			Incidencia.update(
-						{ id:req.params.id }, 
+						{ id: Number(req.params.id) }, 		
 						{
 							Titulo: req.body.Titulo,
 							Descripcion: req.body.Descripcion,
@@ -422,11 +414,11 @@ module.exports = {
 		else if ( req.Rol == '2' ) {
 			
 			Incidencia.update(
-						{ id:req.params.id }, 
+ 						{ id: Number(req.params.id), Propietario: Number(req.Usuario.id) }, 		
 						{ 
 							Estado:req.body.Estado 
 						}
-			).exec(function (err, updated){
+			).where( { id: req.params.id }, { Operador: req.Usuario }).exec(function (err, updated){
 
 				if (err) {
 				 	return err;
@@ -441,10 +433,9 @@ module.exports = {
 		}
 
 		else if ( req.Rol == '3' ) {
-			console.log(req.Usuario);
 			Incidencia.update(
-							{ id: Number(req.params.id), Propietario: Number(req.Usuario.id) },
-							{
+ 							{ id: Number(req.params.id), Propietario: Number(req.Usuario.id) }, 		
+ 							{
 								Titulo: req.body.Titulo,
 								Descripcion: req.body.Descripcion,
 								Tipo: req.body.Tipo,
@@ -472,6 +463,14 @@ module.exports = {
 			res.json(200, { Tipos });	
 		}
 
+	},
+
+	estadosIncidencia: function (req, res) {
+		var Estados = Incidencia.attributes.Estado.enum;
+
+		if ( req.Rol == '2' || req.Rol == '3' ) {
+			res.json(200, { Estados });	
+		}
 	}
 
 

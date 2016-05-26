@@ -17,14 +17,8 @@ module.exports.policies = {
 		'create': ['isAuthorized', 'isSupervisor'],
 		'updatePassword':['isAuthorized', 'isSupervisor']
 	},
+
 	'IncidenciaController':{
-
-		//'find':['isAuthorized'],
-		//'create':['isAuthorized'],
-		'update':['isAuthorized']
-		//'findOne':['isAuthorized'],
-
-		//'informe':['isAuthorized'],
-		//'informeOperador':['isAuthorized']
-	}
+		'update': ['isAuthorized']
+	},
 }

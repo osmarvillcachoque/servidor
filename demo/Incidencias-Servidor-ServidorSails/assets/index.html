@@ -8,7 +8,6 @@
 		<link rel="stylesheet" href="CSS/Global.css"/>
 		<link rel="stylesheet" href="CSS/Login.css"/>
 		<link rel="stylesheet" href="CSS/Header.css"/>
-		<link rel="stylesheet" href="CSS/Footer.css"/>
 		<link rel="stylesheet" href="CSS/Incidencias.css"/>
 		<link rel="stylesheet" href="CSS/Formularios.css"/>
 		<script src="JavaScript/Bootstrap 3.3.6 Minified.js"></script>
@@ -27,7 +26,7 @@
 	</head>
 	<body>
 		<header ng-controller="HeaderController" ng-if="displayHeader" ng-include="'Vistas/Header.html'" class="page-header"></header>
-		<div ng-view class="container"></div>
-		<footer ng-if="displayFooter" ng-include="'Vistas/Footer.html'"  class="page-footer"></footer>
+		<div id="Content" class="container" ng-view></div>
+		<footer ng-if="displayFooter" ng-include="'Vistas/Footer.html'" class="page-footer"></footer>
 	</body>
 </html>

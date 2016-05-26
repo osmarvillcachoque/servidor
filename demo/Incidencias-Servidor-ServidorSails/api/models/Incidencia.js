@@ -31,7 +31,7 @@ module.exports = {
 		Prioridad: {
 			type: 		'string',
 			enum: 	['Baja', 'Media', 'Alta'],
-			defaultsTo: 	'Baja'
+			defaultsTo: 	'Media'
 		},
 
 		Comun: {
@@ -68,6 +68,11 @@ module.exports = {
 			model: 	'Usuario'
 		}
 
+	},
+
+	beforeUpdate: function(values, cb){
+		console.log(values);
+		cb();
 	}
 
 };
