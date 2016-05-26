@@ -72,7 +72,12 @@ module.exports = {
 
 	beforeUpdate: function(values, cb){
 		console.log(values);
-		cb();
+		if(values.Operador){
+			cb();
+		}
+		else if( values.Estado == 'Completada' ){
+			values.FechaFin = new Date();
+		}
 	}
 
 };

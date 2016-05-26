@@ -380,79 +380,89 @@ module.exports = {
 
 	update: function (req, res) {
 
-		if ( req.Rol == '1' ) {
+		Incidencia.findOne(req.params.id).populateAll().then(function(oldIncidencia){
+			if(oldIncidencia){
+				console.log(oldIncidencia.Operador+"||"+req.body.Operador);
+				if ( req.Rol == '1' && ( oldIncidencia.Operador != req.body.Operador) ) {
 
-			Incidencia.update(
-						{ id: Number(req.params.id) }, 		
-						{
-							Titulo: req.body.Titulo,
-							Descripcion: req.body.Descripcion,
-							Tipo: req.body.Tipo,
-							Estado: req.body.Estado,
-							Prioridad: req.body.Prioridad,
-							Comun: req.body.Comun,
-							FechaInicio: req.body.FechaInicio,
-							FechaPrevista: req.body.FechaPrevista,
-							FechaFin: req.body.FechaFin,
-							Instalacion: req.body.Instalacion,
-							Operador: req.body.Operador,
+					Incidencia.update(
+								{ id: Number(req.params.id) }, 		
+								{
+									Titulo: req.body.Titulo,
+									Descripcion: req.body.Descripcion,
+									Tipo: req.body.Tipo,
+									Estado: req.body.Estado,
+									Prioridad: req.body.Prioridad,
+									Comun: req.body.Comun,
+									FechaInicio: req.body.FechaInicio,
+									FechaPrevista: req.body.FechaPrevista,
+									FechaFin: req.body.FechaFin,
+									Instalacion: req.body.Instalacion,
+									Operador: req.body.Operador,
+								}
+					).exec(function (err, updated){
+
+						if (err) {
+							return err;
 						}
-			).exec(function (err, updated){
 
-				if (err) {
-					return err;
-				}
-
-				if (updated) {
-					res.json(200, { msg: 'La Incidencia ha sido actualizada satisfactoriamente.' });
-				}
-
-			});
-
-		}
-
-		else if ( req.Rol == '2' ) {
-			
-			Incidencia.update(
- 						{ id: Number(req.params.id), Propietario: Number(req.Usuario.id) }, 		
-						{ 
-							Estado:req.body.Estado 
+						if (updated) {
+							res.json(200, { msg: 'La Incidencia ha sido actualizada satisfactoriamente.' });
 						}
-			).where( { id: req.params.id }, { Operador: req.Usuario }).exec(function (err, updated){
 
-				if (err) {
-				 	return err;
+					});
+
 				}
 
-				if (updated) {
-					res.json(200, { msg: 'La Incidencia ha sido actualizada satisfactoriamente.' });
+				else if ( req.Rol == '2' && ( oldIncidencia.Estado != req.body.Estado) ) {
+					
+					Incidencia.update(
+		 						{ id: Number(req.params.id), Propietario: Number(req.Usuario.id) }, 		
+								{ 	
+									FechaFin:"",
+									Estado:req.body.Estado 
+								}
+					).where( { id: req.params.id }, { Operador: req.Usuario }).exec(function (err, updated){
+
+						if (err) {
+						 	return err;
+						}
+
+						if (updated) {
+							res.json(200, { msg: 'La Incidencia ha sido actualizada satisfactoriamente.' });
+						}
+
+					});
+
 				}
 
-			});
+				else if ( req.Rol == '3' ) {
+					Incidencia.update(
+		 							{ id: Number(req.params.id), Propietario: Number(req.Usuario.id) }, 		
+		 							{
+										Titulo: req.body.Titulo,
+										Descripcion: req.body.Descripcion,
+										Tipo: req.body.Tipo,
+										Instalacion: req.body.Instalacion,
+									}
+					).exec(function (err, updated){
 
-		}
+						if (err) {
+						 	return err;
+						}
 
-		else if ( req.Rol == '3' ) {
-			Incidencia.update(
- 							{ id: Number(req.params.id), Propietario: Number(req.Usuario.id) }, 		
- 							{
-								Titulo: req.body.Titulo,
-								Descripcion: req.body.Descripcion,
-								Tipo: req.body.Tipo,
-								Instalacion: req.body.Instalacion,
-							}
-			).exec(function (err, updated){
+						if (updated) {
+							res.json(200, { msg: 'La Incidencia ha sido actualizada satisfactoriamente.' });
+						}
 
-				if (err) {
-				 	return err;
+					});
 				}
 
-				if (updated) {
-					res.json(200, { msg: 'La Incidencia ha sido actualizada satisfactoriamente.' });
-				}
-
-			});
-		}
+			}
+			else {
+				return res.json(403, {err: 'JDT ha caido XD.'});
+			}
+		}).catch(function(error){ next(error); });
 		
 	},
 
