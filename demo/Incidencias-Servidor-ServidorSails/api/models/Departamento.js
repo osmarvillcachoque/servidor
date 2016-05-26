@@ -3,13 +3,13 @@ module.exports = {
 	attributes: {
 
 		Nombre: {
-			type: 		'string',
+			type: 	'string',
 			size: 		40,
 			required: 	true
 		},
 
-		Instalaciones: {
-			collection: 	'Instalacion',
+		Subdepartamentos: {
+			collection: 	'Subdepartamentos',
 			via: 		'Departamento'
 		}	
 

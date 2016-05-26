@@ -68,16 +68,6 @@ module.exports = {
 			model: 	'Usuario'
 		}
 
-	},
-
-	beforeUpdate: function(values, cb){
-		console.log(values);
-		if(values.Operador){
-			cb();
-		}
-		else if( values.Estado == 'Completada' ){
-			values.FechaFin = new Date();
-		}
 	}
 
 };

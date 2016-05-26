@@ -3,13 +3,13 @@ module.exports = {
 	attributes: {
 
 		Nombre: {
-			type: 		'string',
+			type: 	'string',
 			size: 		40,
 			required: 	true
 		},
 
-		Departamento: {
-			model:  	'Departamento'
+		Subdepartamento: {
+			model:  	'Subdepartamento'
 		},
 
 		Incidencias: {
