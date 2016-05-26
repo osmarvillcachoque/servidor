@@ -13,7 +13,7 @@
 				"Comun": 		"Sí",
 				"FechaInicio": 	"2016-05-03",
 				"FechaPrevista": 	"2016-05-05",
-				"FechaFin": 		"2016-05-05",
+				"FechaFin": 	"2016-05-05",
 				"Instalacion": 	1,
 				"Operador": 	2,
 				"Propietario": 	4
@@ -28,8 +28,8 @@
 				"Comun": 		"No",
 				"FechaInicio": 	"2016-05-03",
 				"FechaPrevista": 	"2016-05-05",
-				"FechaFin": 		"2016-05-05",
-				"Instalacion": 	2,
+				"FechaFin": 	"2016-05-05",
+				"Instalacion": 	32,
 				"Operador": 	3,
 				"Propietario": 	5
 			}

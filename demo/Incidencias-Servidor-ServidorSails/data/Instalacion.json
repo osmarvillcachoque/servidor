@@ -7,13 +7,17 @@
 				"id":			1,
 				"Nombre":		"Cocina",
 				"Subdepartamento": 1,
-				"Incidencias":	[]
+				"Incidencias":	[
+								
+							]
 			},
 			{
 				"id":			2,
 				"Nombre":		"Salón",
 				"Subdepartamento": 1,
-				"Incidencias":	[]
+				"Incidencias":	[
+
+							]
 			},
 			{
 				"id":			3,
@@ -31,7 +35,9 @@
 				"id":			5,
 				"Nombre":		"Salón",
 				"Subdepartamento": 2,
-				"Incidencias":	[]
+				"Incidencias":	[
+
+							]
 			},
 			{
 				"id":			6,
@@ -56,7 +62,7 @@
 				"Nombre":		"Aseos",
 				"Subdepartamento": 3,
 				"Incidencias":	[]
-			}
+			},
 			{
 				"id":			10,
 				"Nombre":		"Cocina",
@@ -74,7 +80,7 @@
 				"Nombre":		"Aseos",
 				"Subdepartamento": 4,
 				"Incidencias":	[]
-			}
+			},
 			{
 				"id":			13,
 				"Nombre":		"Cocina",
@@ -92,7 +98,7 @@
 				"Nombre":		"Aseos",
 				"Subdepartamento": 5,
 				"Incidencias":	[]
-			}
+			},
 			{
 				"id":			16,
 				"Nombre":		"Cocina",
@@ -110,7 +116,7 @@
 				"Nombre":		"Aseos",
 				"Subdepartamento": 6,
 				"Incidencias":	[]
-			}
+			},
 			{
 				"id":			19,
 				"Nombre":		"Cocina",
@@ -128,7 +134,7 @@
 				"Nombre":		"Aseos",
 				"Subdepartamento": 7,
 				"Incidencias":	[]
-			}
+			},
 			{
 				"id":			22,
 				"Nombre":		"Cocina",
@@ -146,7 +152,7 @@
 				"Nombre":		"Aseos",
 				"Subdepartamento": 8,
 				"Incidencias":	[]
-			}
+			},
 			{
 				"id":			25,
 				"Nombre":		"Cocina",
@@ -183,6 +189,68 @@
 				"id":			30,
 				"Nombre":		"Aparamento 3",
 				"Subdepartamento": 10,
+				"Incidencias":	[]
+			},
+
+
+			{
+				"id":			31,
+				"Nombre":		"Aparamento 1",
+				"Subdepartamento": 11,
+				"Incidencias":	[]
+			},
+			{
+				"id":			32,
+				"Nombre":		"Aparamento 1",
+				"Subdepartamento": 12,
+				"Incidencias":	[]
+			},
+			{
+				"id":			33,
+				"Nombre":		"Aparamento 1",
+				"Subdepartamento": 13,
+				"Incidencias":	[]
+			},
+			{
+				"id":			34,
+				"Nombre":		"Aparamento 1",
+				"Subdepartamento": 14,
+				"Incidencias":	[]
+			},
+			{
+				"id":			35,
+				"Nombre":		"Aparamento 1",
+				"Subdepartamento": 15,
+				"Incidencias":	[]
+			},
+			{
+				"id":			36,
+				"Nombre":		"Aparamento 1",
+				"Subdepartamento": 16,
+				"Incidencias":	[]
+			},
+			{
+				"id":			37,
+				"Nombre":		"Aparamento 1",
+				"Subdepartamento": 17,
+				"Incidencias":	[]
+			},
+			{
+				"id":			38,
+				"Nombre":		"Aparamento 1",
+				"Subdepartamento": 18,
+				"Incidencias":	[]
+			},
+			{
+				"id":			39,
+				"Nombre":		"Aparamento 1",
+				"Subdepartamento": 19,
+				"Incidencias":	[]
+			},
+			{
+				"id":			40,
+				"Nombre":		"Aparamento 1",
+				"Subdepartamento": 20,
 				"Incidencias":	[]
 			}
 

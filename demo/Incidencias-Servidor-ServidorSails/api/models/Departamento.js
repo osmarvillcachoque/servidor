@@ -9,7 +9,7 @@ module.exports = {
 		},
 
 		Subdepartamentos: {
-			collection: 	'Subdepartamentos',
+			collection: 	'Subdepartamento',
 			via: 		'Departamento'
 		}	
 

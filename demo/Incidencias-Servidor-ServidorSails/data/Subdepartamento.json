@@ -111,9 +111,7 @@
 				"Nombre":		"Fase II",
 				"Departamento":	2,
 				"Instalaciones":	[	
-								{ "id":  },
-								{ "id":  },
-								{ "id":  }
+								{ "id": 31  }
 							]
 			},
 			{
@@ -121,9 +119,7 @@
 				"Nombre":		"Fase III",
 				"Departamento":	2,
 				"Instalaciones":	[	
-								{ "id":  },
-								{ "id":  },
-								{ "id":  }
+								{ "id": 32 }
 							]
 			},
 			{
@@ -131,9 +127,7 @@
 				"Nombre":		"Paseo Driving Range",
 				"Departamento":	2,
 				"Instalaciones":	[	
-								{ "id":  },
-								{ "id":  },
-								{ "id":  }
+								{ "id": 33 }
 							]
 			},
 
@@ -143,7 +137,7 @@
 				"Nombre":		"Instalacion",
 				"Departamento":	3,
 				"Instalaciones":	[	
-								{ "id":  }
+								{ "id": 34 }
 							]
 			},
 			{
@@ -151,7 +145,7 @@
 				"Nombre":		"Habitacion",
 				"Departamento":	3,
 				"Instalaciones":	[	
-								{ "id":  }
+								{ "id": 35 }
 							]
 			},
 			{
@@ -159,7 +153,7 @@
 				"Nombre":		"Zona Comun Privada",
 				"Departamento":	3,
 				"Instalaciones":	[	
-								{ "id":  }
+								{ "id": 36 }
 							]
 			},
 			{
@@ -167,7 +161,7 @@
 				"Nombre":		"Zona Comun Publica",
 				"Departamento":	3,
 				"Instalaciones":	[	
-								{ "id":  }
+								{ "id":  37}
 							]
 			},
 			{
@@ -175,7 +169,7 @@
 				"Nombre":		"Spa",
 				"Departamento":	3,
 				"Instalaciones":	[	
-								{ "id":  }
+								{ "id":38  }
 							]
 			},
 			{
@@ -183,7 +177,7 @@
 				"Nombre":		"Piscina",
 				"Departamento":	3,
 				"Instalaciones":	[	
-								{ "id":  }
+								{ "id": 39 }
 							]
 			},
 			{
@@ -191,7 +185,7 @@
 				"Nombre":		"Fuente",
 				"Departamento":	3,
 				"Instalaciones":	[	
-								{ "id":  }
+								{ "id": 40 }
 							]
 			}
 
