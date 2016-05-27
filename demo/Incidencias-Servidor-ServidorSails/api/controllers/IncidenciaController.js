@@ -44,7 +44,6 @@ module.exports = {
 							FindSubdepartamento = Subdepartamento.findOne(Incidencia.Instalacion.Subdepartamento).populateAll()
 								
 								.then(function(Subdepartamento){
-									console.log(Incidencia.Instalacion.Nombre+"||"+Subdepartamento.Nombre+"||"+Subdepartamento.Departamento.Nombre);
 									return (Subdepartamentos.push(Subdepartamento.Nombre),Departamentos.push(Subdepartamento.Departamento.Nombre) );
 
 								});
@@ -83,8 +82,9 @@ module.exports = {
 				.then(function(Incidencias){
 					
 					var IncidenciasJSON = [];
+					var Subdepartamentos = [];
+					var FindSubdepartamento;
 					var Departamentos = [];
-					var FindDepartamento;
 
 					if (Incidencias){
 
@@ -95,6 +95,7 @@ module.exports = {
 								"Titulo": Incidencia.Titulo, 
 								"Descripcion": Incidencia.Descripcion, 
 								"Departamento": "", 
+								"Subdepartamento":"",
 								"Instalacion": Incidencia.Instalacion.Nombre,
 								"Tipo": Incidencia.Tipo, 
 								"Propietario":Incidencia.Propietario.Nombre + " " + Incidencia.Propietario.Apellidos,
@@ -104,18 +105,18 @@ module.exports = {
 								"Comun": Incidencia.Comun
 							}
 
-							FindDepartamento = Departamento.findOne(Incidencia.Instalacion.Departamento)
+							FindSubdepartamento = Subdepartamento.findOne(Incidencia.Instalacion.Subdepartamento).populateAll()
 
-								.then(function(Departamento){
+								.then(function(Subdepartamento){
 
-									return Departamentos.push(Departamento.Nombre);
+									return ( Subdepartamentos.push(Subdepartamento.Nombre),Departamentos.push(Subdepartamento.Departamento.Nombre) );
 
 								});
 
 							IncidenciasJSON.push(IncidenciaJSON);
 						})
 
-						return [IncidenciasJSON, FindDepartamento, Departamentos];
+						return [IncidenciasJSON, FindSubdepartamento, Subdepartamentos, Departamentos];
 
 
 					}
@@ -124,14 +125,15 @@ module.exports = {
 						res.json(404, {err: 'No se han encontrado Incidencias.'});
 					}
 
-					return [IncidenciasJSON, FindDepartamento, Departamentos];
+					return [IncidenciasJSON, FindSubdepartamento, Subdepartamentos, Departamentos];
 
 				})
 
-				.spread(function(IncidenciasJSON, FindDepartamento, Departamentos) {
+				.spread(function(IncidenciasJSON, FindSubdepartamento, Subdepartamentos, Departamentos) {
 
 					IncidenciasJSON.forEach(function(IncidenciaJSON, index) {
-						IncidenciaJSON.Departamento = Departamentos[index]
+						IncidenciaJSON.Departamento = Departamentos[index];
+						IncidenciaJSON.Departamento = Departamentos[index];
 					})
 					return res.json(IncidenciasJSON);
 				})
@@ -147,8 +149,9 @@ module.exports = {
 				.then(function(Incidencias){
 					
 					var IncidenciasJSON = [];
+					var Subdepartamentos = [];
+					var FindSubdepartamento;
 					var Departamentos = [];
-					var FindDepartamento;
 
 					if (Incidencias){
 
@@ -164,6 +167,7 @@ module.exports = {
 								"Titulo": Incidencia.Titulo, 
 								"Descripcion": Incidencia.Descripcion, 
 								"Departamento": "", 
+								"Subdepartamento":"",
 								"Instalacion": Incidencia.Instalacion.Nombre,
 								"Tipo": Incidencia.Tipo, 
 								"Operador": Operador,
@@ -172,18 +176,18 @@ module.exports = {
 								"Comun": Incidencia.Comun
 							}
 
-							FindDepartamento = Departamento.findOne(Incidencia.Instalacion.Departamento)
+							FindSubdepartamento = Subdepartamento.findOne(Incidencia.Instalacion.Subdepartamento).populateAll()
 
-								.then(function(Departamento){
+								.then(function(Subdepartamento){
 
-									return Departamentos.push(Departamento.Nombre);
+									return ( Subdepartamentos.push(Subdepartamento.Nombre),Departamentos.push(Subdepartamento.Departamento.Nombre) );
 
 								});
 
 							IncidenciasJSON.push(IncidenciaJSON);
 						})
 
-						return [IncidenciasJSON, FindDepartamento, Departamentos];
+						return [IncidenciasJSON, FindSubdepartamento, Subdepartamentos, Departamentos];
 
 
 					}
@@ -192,14 +196,15 @@ module.exports = {
 						res.json(404, {err: 'No se han encontrado Incidencias.'});
 					}
 
-					return [IncidenciasJSON, FindDepartamento, Departamentos];
+					return [IncidenciasJSON, FindSubdepartamento, Subdepartamentos, Departamentos];
 
 				})
 
-				.spread(function(IncidenciasJSON, FindDepartamento, Departamentos) {
+				.spread(function(IncidenciasJSON, FindSubdepartamento, Subdepartamentos, Departamentos) {
 
 					IncidenciasJSON.forEach(function(IncidenciaJSON, index) {
-						IncidenciaJSON.Departamento = Departamentos[index]
+						IncidenciaJSON.Departamento = Departamentos[index];
+						IncidenciaJSON.Departamento = Departamentos[index];
 					})
 					return res.json(IncidenciasJSON);
 				})
