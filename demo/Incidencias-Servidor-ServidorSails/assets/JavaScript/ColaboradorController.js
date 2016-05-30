@@ -3,6 +3,7 @@ angular.module("AppIncidencias")
 	.controller('ColaboradorController', function ($scope, $route, $routeParams, $http, $timeout, $uibModalInstance, IncidenciaID) {
 
 		$scope.DepartamentoSeleccionado;
+		$scope.SubdepartamentoSeleccionado;
 		$scope.InstalacionSeleccionada;
 		$scope.Departamentos = "";
 		$scope.TiposIncidencia = "";
@@ -11,10 +12,11 @@ angular.module("AppIncidencias")
 		$scope.getDepartamentos = function() {
 			$http.get('/Departamento')
 				.success(function(data) {
-					console.log("data");
+					console.log(data);
 					$scope.Departamentos = data;
 					$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
-					$scope.InstalacionSeleccionada = $scope.Departamentos[0].Instalaciones[0];
+					$scope.SubdepartamentoSeleccionado = $scope.Departamentos[0].Subdepartamentos[0];
+					$scope.InstalacionSeleccionada = $scope.Departamentos[0].Subdepartamentos[0].Instalaciones[0];
 				})
 				.error(function(error) {
 					console.log(error);
@@ -32,8 +34,16 @@ angular.module("AppIncidencias")
 				})
 		};
 
+		$scope.setSubdepartamento = function() {
+			console.log("DepartamentoSeleccionado");
+			console.log($scope.DepartamentoSeleccionado);
+			$scope.SubdepartamentoSeleccionado = $scope.Departamentos[$scope.DepartamentoSeleccionado.id-1].Subdepartamentos[0];
+			$scope.InstalacionSeleccionada =$scope.SubdepartamentoSeleccionado.Instalaciones[0];
+		};
 		$scope.setInstalacion = function() {
-			$scope.InstalacionSeleccionada = $scope.Departamentos[$scope.DepartamentoSeleccionado.id-1].Instalaciones[0];
+			console.log("SubdepartamentoSeleccionado");
+			console.log($scope.SubdepartamentoSeleccionado);
+			$scope.InstalacionSeleccionada =$scope.SubdepartamentoSeleccionado.Instalaciones[0];
 		};
 
 		$scope.setDepartamento = function(InstalacionID) {

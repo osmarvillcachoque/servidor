@@ -171,8 +171,6 @@
 				"Subdepartamento": 9,
 				"Incidencias":	[]
 			},
-
-
 			{
 				"id":			28,
 				"Nombre":		"Apartamento 1",
@@ -191,8 +189,6 @@
 				"Subdepartamento": 10,
 				"Incidencias":	[]
 			},
-
-
 			{
 				"id":			31,
 				"Nombre":		"Apartamento 1",
@@ -202,53 +198,114 @@
 			{
 				"id":			32,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 12,
+				"Subdepartamento": 11,
 				"Incidencias":	[]
 			},
 			{
 				"id":			33,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 13,
+				"Subdepartamento": 12,
 				"Incidencias":	[]
 			},
 			{
 				"id":			34,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 14,
+				"Subdepartamento": 12,
 				"Incidencias":	[]
 			},
 			{
 				"id":			35,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 15,
+				"Subdepartamento": 13,
 				"Incidencias":	[]
 			},
 			{
 				"id":			36,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 16,
+				"Subdepartamento": 13,
 				"Incidencias":	[]
 			},
 			{
 				"id":			37,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 17,
+				"Subdepartamento": 14,
 				"Incidencias":	[]
 			},
 			{
 				"id":			38,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 18,
+				"Subdepartamento": 14,
 				"Incidencias":	[]
 			},
 			{
 				"id":			39,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 19,
+				"Subdepartamento": 15,
 				"Incidencias":	[]
 			},
 			{
 				"id":			40,
+				"Nombre":		"Apartamento 1",
+				"Subdepartamento": 15,
+				"Incidencias":	[]
+			}
+			,
+			{
+				"id":			41,
+				"Nombre":		"Apartamento 1",
+				"Subdepartamento": 16,
+				"Incidencias":	[]
+			},
+			{
+				"id":			42,
+				"Nombre":		"Apartamento 1",
+				"Subdepartamento": 16,
+				"Incidencias":	[]
+			},
+			{
+				"id":			43,
+				"Nombre":		"Apartamento 1",
+				"Subdepartamento": 17,
+				"Incidencias":	[]
+			},
+			{
+				"id":			44,
+				"Nombre":		"Apartamento 1",
+				"Subdepartamento": 17,
+				"Incidencias":	[]
+			},
+			{
+				"id":			45,
+				"Nombre":		"Apartamento 1",
+				"Subdepartamento": 18,
+				"Incidencias":	[]
+			},
+			{
+				"id":			46,
+				"Nombre":		"Apartamento 1",
+				"Subdepartamento": 18,
+				"Incidencias":	[]
+			},
+			{
+				"id":			47,
+				"Nombre":		"Apartamento 1",
+				"Subdepartamento": 19,
+				"Incidencias":	[]
+			},
+			{
+				"id":			48,
+				"Nombre":		"Apartamento 1",
+				"Subdepartamento": 19,
+				"Incidencias":	[]
+			},
+			{
+				"id":			49,
+				"Nombre":		"Apartamento 1",
+				"Subdepartamento": 20,
+				"Incidencias":	[]
+			},
+			{
+				"id":			50,
 				"Nombre":		"Apartamento 1",
 				"Subdepartamento": 20,
 				"Incidencias":	[]
