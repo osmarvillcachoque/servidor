@@ -11,6 +11,7 @@ angular.module("AppIncidencias")
 		$scope.getDepartamentos = function() {
 			$http.get('/Departamento')
 				.success(function(data) {
+					console.log("data");
 					$scope.Departamentos = data;
 					$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
 					$scope.InstalacionSeleccionada = $scope.Departamentos[0].Instalaciones[0];
