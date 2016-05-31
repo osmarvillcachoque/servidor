@@ -133,7 +133,7 @@ module.exports = {
 
 					IncidenciasJSON.forEach(function(IncidenciaJSON, index) {
 						IncidenciaJSON.Departamento = Departamentos[index];
-						IncidenciaJSON.Departamento = Departamentos[index];
+						IncidenciaJSON.Subdepartamento = Subdepartamentos[index];
 					})
 					return res.json(IncidenciasJSON);
 				})
@@ -204,7 +204,7 @@ module.exports = {
 
 					IncidenciasJSON.forEach(function(IncidenciaJSON, index) {
 						IncidenciaJSON.Departamento = Departamentos[index];
-						IncidenciaJSON.Departamento = Departamentos[index];
+						IncidenciaJSON.Subdepartamento = Subdepartamentos[index];
 					})
 					return res.json(IncidenciasJSON);
 				})

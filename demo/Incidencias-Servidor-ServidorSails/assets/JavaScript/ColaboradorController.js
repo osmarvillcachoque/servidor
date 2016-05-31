@@ -12,7 +12,6 @@ angular.module("AppIncidencias")
 		$scope.getDepartamentos = function() {
 			$http.get('/Departamento')
 				.success(function(data) {
-					console.log(data);
 					$scope.Departamentos = data;
 					$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
 					$scope.SubdepartamentoSeleccionado = $scope.Departamentos[0].Subdepartamentos[0];
@@ -35,28 +34,35 @@ angular.module("AppIncidencias")
 		};
 
 		$scope.setSubdepartamento = function() {
-			console.log("DepartamentoSeleccionado");
-			console.log($scope.DepartamentoSeleccionado);
 			$scope.SubdepartamentoSeleccionado = $scope.Departamentos[$scope.DepartamentoSeleccionado.id-1].Subdepartamentos[0];
 			$scope.InstalacionSeleccionada =$scope.SubdepartamentoSeleccionado.Instalaciones[0];
 		};
 		$scope.setInstalacion = function() {
-			console.log("SubdepartamentoSeleccionado");
-			console.log($scope.SubdepartamentoSeleccionado);
 			$scope.InstalacionSeleccionada =$scope.SubdepartamentoSeleccionado.Instalaciones[0];
 		};
 
 		$scope.setDepartamento = function(InstalacionID) {
+			console.log("InstalacionID");
+			console.log(InstalacionID);
 			$timeout(function() {
 					for ( var i = 0 ; i < $scope.Departamentos.length ; i++ ) {
-						for ( var n = 0 ; n < $scope.Departamentos[i].Instalaciones.length ; n++ ) {
-							if ( $scope.Departamentos[i].Instalaciones[n].id == InstalacionID ) {
-								$scope.DepartamentoSeleccionado = $scope.Departamentos[i];	
-								$scope.InstalacionSeleccionada = $scope.Departamentos[i].Instalaciones[n];
+						for ( var n = 0 ; n < $scope.Departamentos[i].Subdepartamentos.length ; n++ ) {
+							for ( var o = 0 ; o < $scope.Departamentos[i].Subdepartamentos[n].Instalaciones.length ; o++ ){
+								if ( $scope.Departamentos[i].Subdepartamentos[n].Instalaciones[o].id == InstalacionID ) {
+									console.log("$scope.Departamentos[i].Subdepartamentos[n].Instalaciones[o].id");
+									console.log($scope.Departamentos[i].Subdepartamentos[n].Instalaciones[o].id);
+									console.log("Departamento");
+									$scope.DepartamentoSeleccionado = $scope.Departamentos[i];	
+									console.log("Subdepartamento");
+									$scope.SubdepartamentoSeleccionado = $scope.Departamentos[i].Subdepartamentos[n];
+									console.log("Instalacion");
+									$scope.InstalacionSeleccionada = $scope.Departamentos[i].Subdepartamentos[n].Instalaciones[o];
+								}
 							}						
 						}
 					}
-			}, 10 );
+			}, 5 );
+			console.log("fin");
 		}
 
 
@@ -67,16 +73,16 @@ angular.module("AppIncidencias")
 							$scope.TipoSeleccionado = $scope.TiposIncidencia[i];
 						}
 					}
-			}, 10 );
+			}, 5 );
 		}
 
 		$scope.getIncidencia = function () {
 			$http.get('/Incidencia/' + IncidenciaID)
 				.success(function(data) {
+					console.log("data");
+					console.log(data);
 					$scope.Titulo = data.Titulo;
 					$scope.Descripcion = data.Descripcion;
-					$scope.Instalacion = data.Instalacion;
-					$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
 					$scope.setDepartamento(data.Instalacion.id);
 					$scope.setTipoIncidencia(data.Tipo);
 				})
@@ -96,12 +102,14 @@ angular.module("AppIncidencias")
 
 			$timeout(function() {
 				$route.reload();
-			}, 10 );
+			}, 5 );
 
 			$uibModalInstance.close();
 		};
 
 		$scope.EditarIncidencia = function () {
+			console.log("tipo TipoSeleccionado");
+			console.log($scope.TipoSeleccionado);
 			$http.post('/Incidencia/' + IncidenciaID, { Titulo: $scope.Titulo, Descripcion: $scope.Descripcion, Tipo: $scope.TipoSeleccionado, Instalacion: $scope.InstalacionSeleccionada })
 				.success(function(data) {
 					$route.reload();
@@ -112,7 +120,7 @@ angular.module("AppIncidencias")
 
 			$timeout(function() {
 				$route.reload();
-			}, 10 );
+			}, 5 );
 
 			$uibModalInstance.close();
 		};
@@ -121,7 +129,7 @@ angular.module("AppIncidencias")
 			$uibModalInstance.dismiss('cancel');
 			$timeout(function() {
 				$route.reload();
-			}, 10 );
+			}, 5 );
 		};
 
 	});

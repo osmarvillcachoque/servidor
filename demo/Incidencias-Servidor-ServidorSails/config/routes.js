@@ -16,5 +16,4 @@ module.exports.routes = {
 		'SubdepartamentoController.load',
 		'DepartamentoController.find'
 	]
-
 };
