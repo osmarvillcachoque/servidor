@@ -88,7 +88,7 @@ module.exports = {
 
 	beforeUpdate: function (values, cb) {
 
-		console.log("values.Rol"+ values.Rol);
+		console.log("values.Rol "+ values.Rol);
 
 		if ( values.Rol == '1' ) {
 

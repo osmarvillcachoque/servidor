@@ -36,24 +36,72 @@ module.exports = {
 	create: function (req, res, next){
 
 		if( req.Rol == '1' ){
+			var id = 0;
+			Ubicacion.count().exec(function(err, cont){
+				id = cont + 1;
+				Ubicacion.create({
+								id: id,
+								Nombre: req.body.Nombre,
+								Departamento: req.body.Departamento,
+								Instalaciones: []
+							       }
+				).exec(function (err, Ubicacion) {
 
-			Ubicacion.create({
-							Nombre: req.body.Nombre,
-							Departamento: req.body.Departamento,
-							Instalaciones: []
-						       }
-			).exec(function (err, Ubicacion) {
+					if (err) {
+						return res.json(err.status, {err: err});
+					}
 
-				if (err) {
-					return res.json(err.status, {err: err});
-				}
-
-				if (Ubicacion) {
-					res.json(200, { msg: 'Ubicacion creada satisfactoriamente.' });
-				}
-			
+					if (Ubicacion) {
+						res.json(200, { msg: 'Ubicacion creada satisfactoriamente.' });
+					}
+				
+				});
 			});
 		}
+
+	},
+
+	update: function (req, res) {
+
+		Ubicacion.findOne(req.params.id).then(function(Ubicacion) {	
+
+		if ( Ubicacion ) {	
+
+			if ( req.Rol == '1' ) {
+
+				var DepartamentoID = Number(Ubicacion.Departamento.id);
+				
+				if( DepartamentoID != req.body.Departamento ){
+
+					DepartamentoID = req.body.Departamento;
+				}
+
+				Ubicacion.update(
+							{ id: Number(req.params.id) }, 		
+							{
+								Nombre: req.body.Nombre,
+								Departamento: DepartamentoID
+							}
+				).exec(function (err, updated){
+
+					if (err) {
+						return err;
+					}
+
+					if (updated) {
+						res.json(200, { msg: 'El nombre de la Ubicacion "'+ Ubicacion.Nombre +'" ha sido actualizada satisfactoriamente por : "'+updated.Nombre+'"' });
+					}
+
+				});
+
+			}
+			else {
+				return res.json(403, {err: 'No tiene Permiso.'});
+			}
+
+		}
+
+		}).catch(function(error){ next(error); });
 
 	}
 

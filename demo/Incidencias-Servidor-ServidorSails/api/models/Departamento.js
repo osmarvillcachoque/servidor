@@ -5,7 +5,8 @@ module.exports = {
 		Nombre: {
 			type: 	'string',
 			size: 		40,
-			required: 	true
+			required: 	true,
+			unique: 	true
 		},
 
 		Ubicaciones: {

@@ -5,7 +5,7 @@ angular.module("AppIncidencias")
 		$scope.DepartamentoSeleccionado;
 		$scope.UbicacionSeleccionado;
 		$scope.InstalacionSeleccionada;
-		$scope.Departamentos = "";
+		$scope.Departamentos = [];
 		$scope.TiposIncidencia = "";
 		$scope.TipoSeleccionado;
 
@@ -34,7 +34,7 @@ angular.module("AppIncidencias")
 		};
 
 		$scope.setUbicacion = function() {
-			$scope.UbicacionSeleccionado = $scope.Departamentos[$scope.DepartamentoSeleccionado.id-1].Ubicaciones[0];
+			$scope.UbicacionSeleccionado = $scope.Departamentos[$scope.DepartamentoSeleccionado.id - 1].Ubicaciones[0];
 			$scope.InstalacionSeleccionada =$scope.UbicacionSeleccionado.Instalaciones[0];
 		};
 		$scope.setInstalacion = function() {
@@ -44,7 +44,6 @@ angular.module("AppIncidencias")
 		$scope.setDepartamento = function(InstalacionID) {
 			$timeout(function() {
 				for ( var i = 0 ; i < $scope.Departamentos.length ; i++ ) {
-					console.log($scope.Departamentos+"||"+i);
 					for ( var n = 0 ; n < $scope.Departamentos[i].Ubicaciones.length ; n++ ) {
 						for ( var o = 0 ; o < $scope.Departamentos[i].Ubicaciones[n].Instalaciones.length ; o++ ){
 							if ( $scope.Departamentos[i].Ubicaciones[n].Instalaciones[o].id == InstalacionID ) {
