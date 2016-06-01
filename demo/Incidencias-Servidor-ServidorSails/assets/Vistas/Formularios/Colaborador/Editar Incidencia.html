@@ -13,16 +13,16 @@
 		</div>
 		<div class="form-group">
 			<p>Departamento</p>
-			<select id="Departamento" class="form-control" ng-model="DepartamentoSeleccionado" ng-change="setSubdepartamento()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+			<select id="Departamento" class="form-control" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
 		</div>
 		<div class="form-group">
-			<p>Subdepartamento</p>
-			<select id="Subdepartamento" class="form-control" ng-model="SubdepartamentoSeleccionado" ng-change="setInstalacion()" ng-options="Subdepartamento.Nombre for Subdepartamento in DepartamentoSeleccionado.Subdepartamentos track by Subdepartamento.id">
+			<p>Ubicacion</p>
+			<select id="Ubicacion" class="form-control" ng-model="UbicacionSeleccionado" ng-change="setInstalacion()" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicacions track by Ubicacion.id">
 			</select>
 		</div>
 		<div class="form-group">
 			<p>Instalación</p>
-			<select id="Instalacion" class="form-control" ng-model="InstalacionSeleccionada" ng-options="Instalacion.Nombre for Instalacion in SubdepartamentoSeleccionado.Instalaciones track by Instalacion.id"></select>
+			<select id="Instalacion" class="form-control" ng-model="InstalacionSeleccionada" ng-options="Instalacion.Nombre for Instalacion in UbicacionSeleccionado.Instalaciones track by Instalacion.id"></select>
 		</div>
 		<div class="form-group">
 			<p>Tipo</p>

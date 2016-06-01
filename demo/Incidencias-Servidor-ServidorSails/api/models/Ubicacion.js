@@ -14,7 +14,7 @@ module.exports = {
 
 	Instalaciones: {
 		collection: 	'Instalacion',
-		via: 		'Subdepartamento'
+		via: 		'Ubicacion'
 	}	
   }
 };

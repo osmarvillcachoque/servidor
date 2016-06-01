@@ -6,7 +6,7 @@
 			{
 				"id":			1,
 				"Nombre":		"Outlets",
-				"Subdepartamentos":	[
+				"Ubicaciones":	[
 								{ "id": 1 },
 								{ "id": 2 },
 								{ "id": 3 },
@@ -23,7 +23,7 @@
 			{
 				"id":			2,
 				"Nombre":		"Apartamentos turisticos",
-				"Subdepartamentos":	[
+				"Ubicaciones":	[
 								{ "id": 11 },
 								{ "id": 12 },
 								{ "id": 13 },
@@ -37,7 +37,7 @@
 			{
 				"id":			3,
 				"Nombre":		"Hotel",
-				"Subdepartamentos": 	[
+				"Ubicaciones": 	[
 								{ "id": 18  },
 								{ "id": 19  },
 								{ "id": 20  },

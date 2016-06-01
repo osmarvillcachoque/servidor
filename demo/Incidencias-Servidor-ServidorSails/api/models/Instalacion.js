@@ -8,8 +8,8 @@ module.exports = {
 			required: 	true
 		},
 
-		Subdepartamento: {
-			model:  	'Subdepartamento'
+		Ubicacion: {
+			model:  	'Ubicacion'
 		},
 
 		Incidencias: {

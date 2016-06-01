@@ -8,8 +8,8 @@ module.exports = {
 			required: 	true
 		},
 
-		Subdepartamentos: {
-			collection: 	'Subdepartamento',
+		Ubicaciones: {
+			collection: 	'Ubicacion',
 			via: 		'Departamento'
 		}	
 

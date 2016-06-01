@@ -6,7 +6,7 @@
 			{
 				"id":			1,
 				"Nombre":		"Cocina",
-				"Subdepartamento": 1,
+				"Ubicacion": 1,
 				"Incidencias":	[
 								
 							]
@@ -14,7 +14,7 @@
 			{
 				"id":			2,
 				"Nombre":		"Salón",
-				"Subdepartamento": 1,
+				"Ubicacion": 1,
 				"Incidencias":	[
 
 							]
@@ -22,19 +22,19 @@
 			{
 				"id":			3,
 				"Nombre":		"Aseos",
-				"Subdepartamento": 1,
+				"Ubicacion": 1,
 				"Incidencias":	[]
 			},
 			{
 				"id":			4,
 				"Nombre":		"Cocina",
-				"Subdepartamento": 2,
+				"Ubicacion": 2,
 				"Incidencias":	[]
 			},
 			{
 				"id":			5,
 				"Nombre":		"Salón",
-				"Subdepartamento": 2,
+				"Ubicacion": 2,
 				"Incidencias":	[
 
 							]
@@ -42,235 +42,235 @@
 			{
 				"id":			6,
 				"Nombre":		"Aseos",
-				"Subdepartamento": 2,
+				"Ubicacion": 2,
 				"Incidencias":	[]
 			},
 			{
 				"id":			7,
 				"Nombre":		"Cocina",
-				"Subdepartamento": 3,
+				"Ubicacion": 3,
 				"Incidencias":	[]
 			},
 			{
 				"id":			8,
 				"Nombre":		"Salón",
-				"Subdepartamento": 3,
+				"Ubicacion": 3,
 				"Incidencias":	[]
 			},
 			{
 				"id":			9,
 				"Nombre":		"Aseos",
-				"Subdepartamento": 3,
+				"Ubicacion": 3,
 				"Incidencias":	[]
 			},
 			{
 				"id":			10,
 				"Nombre":		"Cocina",
-				"Subdepartamento": 4,
+				"Ubicacion": 4,
 				"Incidencias":	[]
 			},
 			{
 				"id":			11,
 				"Nombre":		"Salón",
-				"Subdepartamento": 4,
+				"Ubicacion": 4,
 				"Incidencias":	[]
 			},
 			{
 				"id":			12,
 				"Nombre":		"Aseos",
-				"Subdepartamento": 4,
+				"Ubicacion": 4,
 				"Incidencias":	[]
 			},
 			{
 				"id":			13,
 				"Nombre":		"Cocina",
-				"Subdepartamento": 5,
+				"Ubicacion": 5,
 				"Incidencias":	[]
 			},
 			{
 				"id":			14,
 				"Nombre":		"Salón",
-				"Subdepartamento": 5,
+				"Ubicacion": 5,
 				"Incidencias":	[]
 			},
 			{
 				"id":			15,
 				"Nombre":		"Aseos",
-				"Subdepartamento": 5,
+				"Ubicacion": 5,
 				"Incidencias":	[]
 			},
 			{
 				"id":			16,
 				"Nombre":		"Cocina",
-				"Subdepartamento": 6,
+				"Ubicacion": 6,
 				"Incidencias":	[]
 			},
 			{
 				"id":			17,
 				"Nombre":		"Salón",
-				"Subdepartamento": 6,
+				"Ubicacion": 6,
 				"Incidencias":	[]
 			},
 			{
 				"id":			18,
 				"Nombre":		"Aseos",
-				"Subdepartamento": 6,
+				"Ubicacion": 6,
 				"Incidencias":	[]
 			},
 			{
 				"id":			19,
 				"Nombre":		"Cocina",
-				"Subdepartamento": 7,
+				"Ubicacion": 7,
 				"Incidencias":	[]
 			},
 			{
 				"id":			20,
 				"Nombre":		"Salón",
-				"Subdepartamento": 7,
+				"Ubicacion": 7,
 				"Incidencias":	[]
 			},
 			{
 				"id":			21,
 				"Nombre":		"Aseos",
-				"Subdepartamento": 7,
+				"Ubicacion": 7,
 				"Incidencias":	[]
 			},
 			{
 				"id":			22,
 				"Nombre":		"Cocina",
-				"Subdepartamento": 8,
+				"Ubicacion": 8,
 				"Incidencias":	[]
 			},
 			{
 				"id":			23,
 				"Nombre":		"Salón",
-				"Subdepartamento": 8,
+				"Ubicacion": 8,
 				"Incidencias":	[]
 			},
 			{
 				"id":			24,
 				"Nombre":		"Aseos",
-				"Subdepartamento": 8,
+				"Ubicacion": 8,
 				"Incidencias":	[]
 			},
 			{
 				"id":			25,
 				"Nombre":		"Cocina",
-				"Subdepartamento": 9,
+				"Ubicacion": 9,
 				"Incidencias":	[]
 			},
 			{
 				"id":			26,
 				"Nombre":		"Salón",
-				"Subdepartamento": 9,
+				"Ubicacion": 9,
 				"Incidencias":	[]
 			},
 			{
 				"id":			27,
 				"Nombre":		"Aseos",
-				"Subdepartamento": 9,
+				"Ubicacion": 9,
 				"Incidencias":	[]
 			},
 			{
 				"id":			28,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 10,
+				"Ubicacion": 10,
 				"Incidencias":	[]
 			},
 			{
 				"id":			29,
 				"Nombre":		"Apartamento 2",
-				"Subdepartamento": 10,
+				"Ubicacion": 10,
 				"Incidencias":	[]
 			},
 			{
 				"id":			30,
 				"Nombre":		"Apartamento 3",
-				"Subdepartamento": 10,
+				"Ubicacion": 10,
 				"Incidencias":	[]
 			},
 			{
 				"id":			31,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 11,
+				"Ubicacion": 11,
 				"Incidencias":	[]
 			},
 			{
 				"id":			32,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 11,
+				"Ubicacion": 11,
 				"Incidencias":	[]
 			},
 			{
 				"id":			33,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 12,
+				"Ubicacion": 12,
 				"Incidencias":	[]
 			},
 			{
 				"id":			34,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 12,
+				"Ubicacion": 12,
 				"Incidencias":	[]
 			},
 			{
 				"id":			35,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 13,
+				"Ubicacion": 13,
 				"Incidencias":	[]
 			},
 			{
 				"id":			36,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 13,
+				"Ubicacion": 13,
 				"Incidencias":	[]
 			},
 			{
 				"id":			37,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 14,
+				"Ubicacion": 14,
 				"Incidencias":	[]
 			},
 			{
 				"id":			38,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 15,
+				"Ubicacion": 15,
 				"Incidencias":	[]
 			},
 			{
 				"id":			38,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 16,
+				"Ubicacion": 16,
 				"Incidencias":	[]
 			},
 			{
 				"id":			38,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 17,
+				"Ubicacion": 17,
 				"Incidencias":	[]
 			},
 			{
 				"id":			38,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 18,
+				"Ubicacion": 18,
 				"Incidencias":	[]
 			},
 			{
 				"id":			38,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 19,
+				"Ubicacion": 19,
 				"Incidencias":	[]
 			},
 			{
 				"id":			38,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 20,
+				"Ubicacion": 20,
 				"Incidencias":	[]
 			},
 			{
 				"id":			38,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 21,
+				"Ubicacion": 21,
 				"Incidencias":	[]
 			}
 
