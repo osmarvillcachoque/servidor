@@ -100,6 +100,22 @@ module.exports = {
 
 		}).catch(function(error){ next(error); });
 
+	},
+
+	delete: function (req, res, next) {
+
+		if( req.Rol == '1' ) {
+
+			Departamento.destroy({ id:Number(req.params.id) }).exec(function(deleted){
+				if(deleted){
+					return res.negotiate(deleted);
+				}
+				else{
+					res.json(200,{deleted});
+				}
+			});
+
+		}
 	}
 
 };

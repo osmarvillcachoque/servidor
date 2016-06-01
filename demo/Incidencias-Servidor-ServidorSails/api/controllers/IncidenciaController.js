@@ -495,6 +495,22 @@ module.exports = {
 		if ( req.Rol == '2' || req.Rol == '3' ) {
 			res.json(200, { Estados });	
 		}
+	},
+
+	delete: function (req, res, next) {
+
+		if( req.Rol == '1' ) {
+
+			Incidencia.destroy({ id:Number(req.params.id) }).exec(function(deleted){
+				if(deleted){
+					return res.negotiate(deleted);
+				}
+				else{
+					res.json(200,{deleted});
+				}
+			});
+
+		}
 	}
 
 

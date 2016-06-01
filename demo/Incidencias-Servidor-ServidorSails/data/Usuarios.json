@@ -8,8 +8,8 @@
 				"NickName":	"Supervisor",
 				"Password": 	"12345",
 				"Rol":			1,
-    				"Nombre":		"Intercontinental",
-				"Apellidos":		"Intercontinental",
+    				"Nombre":		"NombreSupervisor",
+				"Apellidos":		"Apellidos",
 				"Email":		"Intercontinental1@gmail.com"
 			},
 			{
@@ -17,8 +17,8 @@
 				"NickName":	"Operador1",
 				"Password": 	"12345",
 				"Rol":			2,
-    				"Nombre":		"Intercontinental",
-				"Apellidos":		"Intercontinental",
+    				"Nombre":		"NombreO1",
+				"Apellidos":		"Apellidos",
 				"Email":		"Intercontinental2@gmail.com"
 			},
 			{
@@ -26,8 +26,8 @@
 				"NickName":	"Operador2",
 				"Password": 	"12345",
 				"Rol":			2,
-    				"Nombre":		"Intercontinental",
-				"Apellidos":		"Intercontinental",
+    				"Nombre":		"NombreO2",
+				"Apellidos":		"Apellidos",
 				"Email":		"Intercontinental3@gmail.com"
 			},
 			{
@@ -35,8 +35,8 @@
 				"NickName":	"Colaborador1",
 				"Password": 	"12345",
 				"Rol":			3,
-    				"Nombre":		"Intercontinental",
-				"Apellidos":		"Intercontinental",
+    				"Nombre":		"NombreC1",
+				"Apellidos":		"Apellidos",
 				"Email":		"Intercontinental4@gmail.com"
 			},
 			{
@@ -44,8 +44,8 @@
 				"NickName":	"Colaborador2",
 				"Password": 	"12345",
 				"Rol":			3,
-    				"Nombre":		"Intercontinental",
-				"Apellidos":		"Intercontinental",
+    				"Nombre":		"NombreC2",
+				"Apellidos":		"Apellidos",
 				"Email":		"Intercontinental5@gmail.com"
 			}		
 		]
