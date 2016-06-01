@@ -13,7 +13,7 @@ module.exports.routes = {
 	],
 
 	'GET r|^/Departamento': [
-		'SubdepartamentoController.load',
+		'UbicacionController.load',
 		'DepartamentoController.find'
 	]
 };
