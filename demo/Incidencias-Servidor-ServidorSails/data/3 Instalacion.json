@@ -234,82 +234,46 @@
 			{
 				"id":			38,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 14,
-				"Incidencias":	[]
-			},
-			{
-				"id":			39,
-				"Nombre":		"Apartamento 1",
 				"Subdepartamento": 15,
 				"Incidencias":	[]
 			},
 			{
-				"id":			40,
-				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 15,
-				"Incidencias":	[]
-			}
-			,
-			{
-				"id":			41,
+				"id":			38,
 				"Nombre":		"Apartamento 1",
 				"Subdepartamento": 16,
 				"Incidencias":	[]
 			},
 			{
-				"id":			42,
-				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 16,
-				"Incidencias":	[]
-			},
-			{
-				"id":			43,
+				"id":			38,
 				"Nombre":		"Apartamento 1",
 				"Subdepartamento": 17,
 				"Incidencias":	[]
 			},
 			{
-				"id":			44,
-				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 17,
-				"Incidencias":	[]
-			},
-			{
-				"id":			45,
+				"id":			38,
 				"Nombre":		"Apartamento 1",
 				"Subdepartamento": 18,
 				"Incidencias":	[]
 			},
 			{
-				"id":			46,
-				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 18,
-				"Incidencias":	[]
-			},
-			{
-				"id":			47,
+				"id":			38,
 				"Nombre":		"Apartamento 1",
 				"Subdepartamento": 19,
 				"Incidencias":	[]
 			},
 			{
-				"id":			48,
-				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 19,
-				"Incidencias":	[]
-			},
-			{
-				"id":			49,
+				"id":			38,
 				"Nombre":		"Apartamento 1",
 				"Subdepartamento": 20,
 				"Incidencias":	[]
 			},
 			{
-				"id":			50,
+				"id":			38,
 				"Nombre":		"Apartamento 1",
-				"Subdepartamento": 20,
+				"Subdepartamento": 21,
 				"Incidencias":	[]
 			}
+
 
 		]
 	}

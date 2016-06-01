@@ -218,6 +218,12 @@ module.exports = {
 
 		if ( req.Rol == '1' ) {
 
+			var Operador = "Sin Asignar";
+
+			if ( req.body.Operador != null ) {
+				Operador = req.body.Operador;
+			}
+
 			Incidencia.create({
 							Titulo: req.body.Titulo,
 							Descripcion: req.body.Descripcion,
@@ -229,7 +235,7 @@ module.exports = {
 							FechaPrevista: req.body.FechaPrevista,
 							FechaFin: req.body.FechaFin,
 							Instalacion: req.body.Instalacion,
-							Operador: req.body.Operador,
+							Operador: Operador,
 							Propietario: req.Usuario
 						}
 			).exec(function (err, Incidencia) {
@@ -252,13 +258,7 @@ module.exports = {
 			Incidencia.create({
 							Titulo: req.body.Titulo,
 							Descripcion: req.body.Descripcion,
-							//Tipo: req.body.Tipo,
-							//Estado: req.body.Estado,
-							//Prioridad: req.body.Prioridad,
-							//Comun: req.body.Comun,
-							FechaInicio: "",
-							FechaPrevista: "",
-							FechaFin: "",
+							Tipo: req.body.Tipo,
 							Instalacion: req.body.Instalacion,
 							Operador: Operador,
 							Propietario: req.Usuario
@@ -391,83 +391,91 @@ module.exports = {
 
 	update: function (req, res) {
 
-		if ( req.Rol == '1' ) {
+		Incidencia.findOne(req.params.id).populateAll().then(function(incidencia) {	
 
-			Incidencia.update(
-						{ id: Number(req.params.id) }, 		
-						{
-							Titulo: req.body.Titulo,
-							Descripcion: req.body.Descripcion,
-							Tipo: req.body.Tipo,
-							Estado: req.body.Estado,
-							Prioridad: req.body.Prioridad,
-							Comun: req.body.Comun,
-							FechaInicio: req.body.FechaInicio,
-							FechaPrevista: req.body.FechaPrevista,
-							FechaFin: req.body.FechaFin,
-							Instalacion: req.body.Instalacion,
-							Operador: req.body.Operador,
-						}
-			).exec(function (err, updated){
+		if ( incidencia ) {	
 
-				if (err) {
-					return err;
-				}
+			if ( req.Rol == '1' ) {
 
-				if (updated) {
-					res.json(200, { msg: 'La Incidencia ha sido actualizada satisfactoriamente.' });
-				}
-
-			});
-
-		}
-
-		else if ( req.Rol == '2' ) {
-			
-			Incidencia.update(
- 						{ id: Number(req.params.id), Propietario: Number(req.Usuario.id) }, 		
-						{ 	
-							FechaFin:"",
-							Estado:req.body.Estado 
-						}
-			).where( { id: req.params.id }, { Operador: req.Usuario }).exec(function (err, updated){
-
-				if (err) {
-				 	return err;
-				}
-
-				if (updated) {
-					res.json(200, { msg: 'La Incidencia ha sido actualizada satisfactoriamente.' });
-				}
-
-			});
-
-		}
-
-		else if ( req.Rol == '3' ) {
-			Incidencia.update(
- 							{ id: Number(req.params.id), Propietario: Number(req.Usuario.id) }, 		
- 							{
+				Incidencia.update(
+							{ id: Number(req.params.id) }, 		
+							{
 								Titulo: req.body.Titulo,
 								Descripcion: req.body.Descripcion,
 								Tipo: req.body.Tipo,
+								Estado: req.body.Estado,
+								Prioridad: req.body.Prioridad,
+								Comun: req.body.Comun,
+								FechaInicio: req.body.FechaInicio,
+								FechaPrevista: req.body.FechaPrevista,
+								FechaFin: req.body.FechaFin,
 								Instalacion: req.body.Instalacion,
+								Operador: req.body.Operador,
 							}
-			).exec(function (err, updated){
+				).exec(function (err, updated){
 
-				if (err) {
-				 	return err;
-				}
+					if (err) {
+						return err;
+					}
 
-				if (updated) {
-					res.json(200, { msg: 'La Incidencia ha sido actualizada satisfactoriamente.' });
-				}
+					if (updated) {
+						res.json(200, { msg: 'La Incidencia ha sido actualizada satisfactoriamente.' });
+					}
 
-			});
+				});
+
+			}
+
+			else if ( req.Rol == '2' ) {
+				
+				Incidencia.update(
+	 						{ id: Number(req.params.id), Propietario: Number(req.Usuario.id) }, 		
+							{ 	
+								FechaFin:"",
+								Estado:req.body.Estado 
+							}
+				).where( { id: req.params.id }, { Operador: req.Usuario }).exec(function (err, updated){
+
+					if (err) {
+					 	return err;
+					}
+
+					if (updated) {
+						res.json(200, { msg: 'La Incidencia ha sido actualizada satisfactoriamente.' });
+					}
+
+				});
+
+			}
+
+			else if ( req.Rol == '3' ) {
+				Incidencia.update(
+	 							{ id: Number(req.params.id), Propietario: Number(req.Usuario.id) }, 		
+	 							{
+									Titulo: req.body.Titulo,
+									Descripcion: req.body.Descripcion,
+									Tipo: req.body.Tipo,
+									Instalacion: req.body.Instalacion,
+								}
+				).exec(function (err, updated){
+
+					if (err) {
+					 	return err;
+					}
+
+					if (updated) {
+						res.json(200, { msg: 'La Incidencia ha sido actualizada satisfactoriamente.' });
+					}
+
+				});
+			}
+			else {
+					return res.json(403, {err: 'No tiene Permiso.'});
+			}
+
 		}
-		else {
-				return res.json(403, {err: 'No tiene Permiso.'});
-		}
+
+		}).catch(function(error){ next(error); });
 
 		
 	},

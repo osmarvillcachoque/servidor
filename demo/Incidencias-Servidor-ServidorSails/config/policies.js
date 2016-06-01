@@ -19,6 +19,14 @@ module.exports.policies = {
 	},
 
 	'IncidenciaController':{
-		'update': ['isAuthorized']
+		'find':['isAuthorized'],
+		'create':['isAuthorized'],
+		'update': ['isAuthorized'],
+		'tiposIncidencia':['isAuthorized'],
+		'estadosIncidencia':['isAuthorized']
 	},
+
+	'DepartamentoController':{
+		'find':['isAuthorized']
+	}
 }

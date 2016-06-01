@@ -3,14 +3,14 @@ module.exports = {
 	attributes: {
 
 		Titulo: {
-			type: 		'string',
+			type: 	'string',
 			size: 		150,
 			required: 	true	
 		},
 
 
 		Descripcion: {
-			type: 		'string',
+			type: 	'string',
 			size: 		255,
 			required: 	true
 		},
@@ -41,17 +41,20 @@ module.exports = {
 		},
 
 		FechaInicio: {
-			type: 		'date'
+			type: 		'date',
+			defaulsTo: null
 
 		},
 
 		FechaPrevista: {
-			type: 		'date'
+			type: 		'date',
+			defaulsTo: null
 
 		},		
 
 		FechaFin: {
-			type: 		'date'
+			type: 		'date',
+			defaulsTo: null
 
 		},
 
@@ -68,6 +71,54 @@ module.exports = {
 			model: 	'Usuario'
 		}
 
+	},
+
+	beforeCreate: function (values, cb){
+
+		if ( values.Operador ) {
+			values.FechaInicio = new Date();
+			cb();
+		}
+
+		else{ 
+			cb(); 
+		}
+
+	},
+
+	beforeUpdate: function (values, cb) {
+
+		console.log("values.Rol"+ values.Rol);
+
+		if ( values.Rol == '1' ) {
+
+			if ( values.Operador != 'Sin Asignar' ) {
+				values.FechaInicio = new Date();
+				cb();
+			}
+
+			else{ 
+				cb(); 
+			}
+			
+		}
+
+		else if ( values.Rol == '2' ) {
+
+			if ( values.Estado == 'Completada' ) {
+			    	values.FechaFin = new Date();
+			    	cb();
+		    	}
+
+		    	else{ 
+		    		cb(); 
+		    	}
+		}
+
+		else{
+	    		cb();
+	    	}
+	    
 	}
 
 };
