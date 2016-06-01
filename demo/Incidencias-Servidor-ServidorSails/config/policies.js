@@ -27,6 +27,15 @@ module.exports.policies = {
 	},
 
 	'DepartamentoController':{
-		'find':['isAuthorized']
+		'find':['isAuthorized'],
+		'create':['isAuthorized','isSupervisor']
+	},
+
+	'UbicacionController':{
+		'create':['isAuthorized','isSupervisor']
+	},
+
+	'InstalacionController':{
+		'create':['isAuthorized','isSupervisor']
 	}
 }

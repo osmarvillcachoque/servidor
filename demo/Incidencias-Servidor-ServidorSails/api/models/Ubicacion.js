@@ -9,7 +9,8 @@ module.exports = {
 	},
 
 	Departamento: {
-		model:  	'Departamento'
+		model:  	'Departamento',
+		required: 	true
 	},
 
 	Instalaciones: {

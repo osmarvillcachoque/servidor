@@ -32,6 +32,29 @@ module.exports = {
 			}
 		}).catch(function(error){next(error);});
 	
+	},
+
+	create: function (req, res, next){
+
+		if( req.Rol == '1' ){
+
+			Departamento.create({
+							Nombre: req.body.Nombre,
+							Ubicaciones: []
+						       }
+			).exec(function (err, Departamento) {
+
+				if (err) {
+					return res.json(err.status, {err: err});
+				}
+
+				if (Departamento) {
+					res.json(200, { msg: 'Departamento creado satisfactoriamente.' });
+				}
+			
+			});
+		}
+
 	}
 
 };

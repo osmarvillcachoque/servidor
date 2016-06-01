@@ -31,6 +31,30 @@ module.exports = {
 
 			}
 		}).catch(function(error){next(error);});
+	},
+
+	create: function (req, res, next){
+
+		if( req.Rol == '1' ){
+
+			Ubicacion.create({
+							Nombre: req.body.Nombre,
+							Departamento: req.body.Departamento,
+							Instalaciones: []
+						       }
+			).exec(function (err, Ubicacion) {
+
+				if (err) {
+					return res.json(err.status, {err: err});
+				}
+
+				if (Ubicacion) {
+					res.json(200, { msg: 'Ubicacion creada satisfactoriamente.' });
+				}
+			
+			});
+		}
+
 	}
 
 };

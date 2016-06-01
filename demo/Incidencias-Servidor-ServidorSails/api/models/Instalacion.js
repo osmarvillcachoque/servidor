@@ -9,7 +9,8 @@ module.exports = {
 		},
 
 		Ubicacion: {
-			model:  	'Ubicacion'
+			model:  	'Ubicacion',
+			required: 	true
 		},
 
 		Incidencias: {
