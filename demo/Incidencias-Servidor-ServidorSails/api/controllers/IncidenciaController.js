@@ -21,6 +21,10 @@ module.exports = {
 							if ( Incidencia.Operador != null ) {
 								Operador = Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos;
 							}
+							var Propietario = "Usuario eliminado";
+							if ( Incidencia.Propietario != null ) {
+								Operador = Incidencia.Propietario.Nombre + " " + Incidencia.Propietario.Apellidos;
+							}
 
 							IncidenciaJSON = { 
 								"id": Incidencia.id,
@@ -31,7 +35,7 @@ module.exports = {
 								"Instalacion": Incidencia.Instalacion.Nombre,
 								"Tipo": Incidencia.Tipo, 
 								"Operador": Operador,
-								"Propietario":Incidencia.Propietario.Nombre + " " + Incidencia.Propietario.Apellidos,
+								"Propietario":Propietario,
 								"Estado": Incidencia.Estado,
 								"Prioridad":Incidencia.Prioridad,
 								"FechaCreacion": Incidencia.createdAt,
@@ -90,6 +94,11 @@ module.exports = {
 
 						Incidencias.forEach(function(Incidencia) {
 
+							var Propietario = "Usuario eliminado";
+							if ( Incidencia.Propietario != null ) {
+								Operador = Incidencia.Propietario.Nombre + " " + Incidencia.Propietario.Apellidos;
+							}
+
 							IncidenciaJSON = {
 								"id": Incidencia.id,
 								"Titulo": Incidencia.Titulo, 
@@ -98,7 +107,7 @@ module.exports = {
 								"Ubicacion":"",
 								"Instalacion": Incidencia.Instalacion.Nombre,
 								"Tipo": Incidencia.Tipo, 
-								"Propietario":Incidencia.Propietario.Nombre + " " + Incidencia.Propietario.Apellidos,
+								"Propietario":Propietario,
 								"Estado": Incidencia.Estado,
 								"Prioridad":Incidencia.Prioridad,
 								"FechaPrevista":Incidencia.FechaPrevista,

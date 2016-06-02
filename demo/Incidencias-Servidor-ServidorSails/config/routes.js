@@ -15,5 +15,9 @@ module.exports.routes = {
 	'GET r|^/Departamento': [
 		'UbicacionController.load',
 		'DepartamentoController.find'
+	],
+
+	'POST r|^/ActualizarDatos':[
+		'UsuarioController.updateUsuario'
 	]
 };

@@ -8,18 +8,19 @@ module.exports = {
 			type: 		'string',
 			size: 		20,
 			required: 	true,
-			unique: 	true,			
+			unique: 	true		
 		},
 
 
 		Password: {
 			type: 		'string',
 			size: 		255,
-			required: 	true,
+			required: 	true
 		},
 
 		Rol: {
-			model: 	'Rol'
+			model: 	'Rol',
+			required: 	true
 		},
 
 		Nombre: {
