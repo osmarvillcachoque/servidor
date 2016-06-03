@@ -3,14 +3,13 @@ module.exports = {
 	create: function (req, res, next){
 
 		if( req.Rol == '1' ){
-			var id = 0;
-			Instalacion.count().exec(function(err, cont){
-				id = cont + 1;
+
+			Instalacion.count().exec(function(err, count){	
 				Instalacion.create({
-								id: id,
-								Nombre: req.body.Nombre,
-								Ubicacion: req.body.Ubicacion,
-								Incidencias: []
+								id: 			count + 1,
+								Nombre: 		req.body.Nombre,
+								Ubicacion: 		req.body.Ubicacion,
+								Incidencias: 	[]
 							       }
 				).exec(function (err, Instalacion) {
 
@@ -24,52 +23,57 @@ module.exports = {
 				
 				});	
 			});
-			
+	
+		}
+		else {
+
+			return res.json(403, {err: 'Permiso denegado.'});
 		}
 
 	},
 
 	update: function (req, res) {
 
-		Instalacion.findOne(req.params.id).then(function(Instalacion) {	
+		if ( req.Rol == '1' ) {
 
-		if ( Instalacion ) {	
+			Instalacion.findOne(req.params.id).then(function(Instalacion) {	
 
-			if ( req.Rol == '1' ) {
+			if ( Instalacion ) {	
 
-				var UbicacionID = Number(Instalacion.Ubicacion.id);
-				
-				if( UbicacionID != req.body.Ubicacion ){
+					var UbicacionID = Number(Instalacion.Ubicacion.id);
+					
+					if( UbicacionID != req.body.Ubicacion ){
 
-					UbicacionID = req.body.Ubicacion;
-				}
-
-				Instalacion.update(
-							{ id: Number(req.params.id) }, 		
-							{
-								Nombre: req.body.Nombre,
-								Ubicacion: UbicacionID
-							}
-				).exec(function (err, updated){
-
-					if (err) {
-						return err;
+						UbicacionID = req.body.Ubicacion;
 					}
 
-					if (updated) {
-						res.json(200, { msg: 'El nombre de la Instalacion "'+ Instalacion.Nombre +'" ha sido actualizada satisfactoriamente por : "'+updated.Nombre+'"' });
-					}
+					Instalacion.update(
+								{ 	id: Number(req.params.id) }, 		
+								{
+									Nombre: 	req.body.Nombre,
+									Ubicacion: 	UbicacionID
+								}
+					).exec(function (err, updated){
 
-				});
+						if (err) {
+							return err;
+						}
+
+						if (updated) {
+							res.json(200, { msg: 'La instalación ha sido actualizada satisfactoriamente.' });
+						}
+
+					});
 
 			}
-			else {
-				return res.json(403, {err: 'No tiene Permiso.'});
-			}
+
+			}).catch(function(error){ next(error); });
 
 		}
 
-		}).catch(function(error){ next(error); });
+		else {
+			return res.json(403, {err: 'No tiene Permiso.'});
+		}
 
 	},
 
@@ -78,15 +82,18 @@ module.exports = {
 		if( req.Rol == '1' ) {
 
 			Instalacion.destroy({ id:Number(req.params.id) }).exec(function(deleted){
-				if(deleted){
-					return res.negotiate(deleted);
+				if (deleted){
+					return res.json(200, {err: 'La instalación ha sido actualizada satisfactoriamente.'});
 				}
 				else{
-					res.json(200,{deleted});
+					return res.json(404, {err: 'Error al borrar la instalación.'});
 				}
 			});
 
 		}
+		else {
+			return res.json(403, {err: 'Permiso denegado.'});
+		}
 	}	
-};
 
+};

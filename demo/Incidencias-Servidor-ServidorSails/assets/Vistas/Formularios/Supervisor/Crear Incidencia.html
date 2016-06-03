@@ -1,4 +1,4 @@
-<div id="Formulario" ng-init="getDepartamentos(); getTiposIncidencia();">
+<div id="Formulario" ng-init="getDepartamentos(); getTiposIncidencia(); getPrioridadesIncidencia(); getEstadosIncidencia();">
 	<div class="modal-header">
 		<h3 class="modal-title text-center">Crear Incidencia</h3>
 	</div>
@@ -28,6 +28,14 @@
 			<p>Tipo</p>
 			<select id="Tipo" class="form-control" ng-model="TipoSeleccionado" ng-options="TipoIncidencia for TipoIncidencia in TiposIncidencia track by TipoIncidencia"></select>
 		</div>
+		<div class="form-group">
+			<p>Prioridad</p>
+			<select id="Prioridad" class="form-control" ng-model="PrioridadSeleccionada" ng-options="PrioridadIncidencia for PrioridadIncidencia in PrioridadesIncidencia track by PrioridadIncidencia"></select>
+		</div>
+		<div class="form-group">
+			<p>Estado</p>
+			<select id="Estado" class="form-control" ng-model="EstadoSeleccionado" ng-options="EstadoIncidencia for EstadoIncidencia in EstadosIncidencia track by EstadoIncidencia"></select>
+		</div>
 	</div>
 	  <div style="clear: both"></div>
 	<div class="modal-footer">
@@ -37,4 +45,6 @@
 </div>
 <script>
 	$('textarea.js-auto-size').textareaAutoSize();
+	$('.modal-body .form-group').css({ 'width': '45%', 'float': 'left' });
+	$('.modal-body .form-group:nth-child(2n+2)').css({ 'float': 'right', 'margin-right': '0px' });
 </script>

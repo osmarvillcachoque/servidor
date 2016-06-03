@@ -1,7 +1,9 @@
 module.exports = {
 	
 	load: function(req, res, next){
+
 		Ubicacion.find().populateAll().then(function(Ubicaciones){
+
 			if(Ubicaciones){
 
 				req.Ubicaciones;
@@ -10,15 +12,19 @@ module.exports = {
 				Ubicaciones.forEach(function(Ubicacion){
 
 					UbicacionJSON = {
-						"id":Ubicacion.id,
-						"Nombre":Ubicacion.Nombre,
-						"Departamento":Ubicacion.Departamento.id,
-						"Instalaciones":[]
+						"id": 			Ubicacion.id,
+						"Nombre": 		Ubicacion.Nombre,
+						"Departamento": Ubicacion.Departamento.id,
+						"Instalaciones": 	[]
 					};
 
 					Ubicacion.Instalaciones.forEach(function(instalacion){
 
-						UbicacionJSON.Instalaciones.push({ id:instalacion.id, Nombre:instalacion.Nombre, Ubicacion:instalacion.Ubicacion});
+						UbicacionJSON.Instalaciones.push({ 
+								id: 		instalacion.id, 
+								Nombre: 	instalacion.Nombre, 
+								Ubicacion: 	instalacion.Ubicacion
+						});
 
 					});
 
@@ -36,14 +42,13 @@ module.exports = {
 	create: function (req, res, next){
 
 		if( req.Rol == '1' ){
-			var id = 0;
-			Ubicacion.count().exec(function(err, cont){
-				id = cont + 1;
+
+			Ubicacion.count().exec(function(err, count){
 				Ubicacion.create({
-								id: id,
-								Nombre: req.body.Nombre,
-								Departamento: req.body.Departamento,
-								Instalaciones: []
+								id:  			count +1,
+								Nombre: 		req.body.Nombre,
+								Departamento: 	req.body.Departamento,
+								Instalaciones: 	[]
 							       }
 				).exec(function (err, Ubicacion) {
 
@@ -57,6 +62,9 @@ module.exports = {
 				
 				});
 			});
+		}
+		else {
+			return res.json(403, {err: 'Permiso denegado.'});
 		}
 
 	},
@@ -89,14 +97,14 @@ module.exports = {
 					}
 
 					if (updated) {
-						res.json(200, { msg: 'El nombre de la Ubicacion "'+ Ubicacion.Nombre +'" ha sido actualizada satisfactoriamente por : "'+updated.Nombre+'"' });
+						res.json(200, { msg: 'La ubicación ha sido actualizada satisfactoriamente.' });	
 					}
 
 				});
 
 			}
 			else {
-				return res.json(403, {err: 'No tiene Permiso.'});
+				return res.json(403, {err: 'Permiso denegado.'});
 			}
 
 		}
@@ -107,17 +115,21 @@ module.exports = {
 
 	delete: function (req, res, next) {
 
-		if( req.Rol == '1' ) {
+		if ( req.Rol == '1' ) {
 
 			Ubicacion.destroy({ id:Number(req.params.id) }).exec(function(deleted){
-				if(deleted){
-					return res.negotiate(deleted);
+				if (deleted){
+					return res.json(200, {err: 'La ubicación ha sido borrada satisfactoriamente.'});
 				}
 				else{
-					res.json(200,{deleted});
+					return res.json(404, {err: 'Error al borrar la ubicación.'});
 				}
 			});
 
+		}
+
+		else {
+			return res.json(403, {err: 'Permiso denegado.'});
 		}
 	}
 

@@ -87,38 +87,20 @@ module.exports = {
 	},
 
 	beforeUpdate: function (values, cb) {
-
-		console.log("values.Rol "+ values.Rol);
-
-		if ( values.Rol == '1' ) {
-
-			if ( values.Operador != 'Sin Asignar' ) {
-				values.FechaInicio = new Date();
-				cb();
-			}
-
-			else{ 
-				cb(); 
-			}
-			
+		
+		if ( values.Operador != 'Sin Asignar' ) {
+			values.FechaInicio = new Date();
+			cb();
 		}
-
-		else if ( values.Rol == '2' ) {
-
-			if ( values.Estado == 'Completada' ) {
-			    	values.FechaFin = new Date();
-			    	cb();
-		    	}
-
-		    	else{ 
-		    		cb(); 
-		    	}
-		}
-
-		else{
-	    		cb();
+		else if ( values.Estado == 'Completada' ) {
+		    	values.FechaFin = new Date();
+		    	cb();
 	    	}
-	    
+	    	else{ 
+	    		cb(); 
+	    	}
+		
+
 	}
 
 };

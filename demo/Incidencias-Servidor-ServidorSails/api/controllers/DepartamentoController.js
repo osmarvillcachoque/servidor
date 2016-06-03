@@ -28,7 +28,7 @@ module.exports = {
 
 					DepartamentosJSON.push(DepartamentoJSON);
 				});
-				res.json(DepartamentosJSON);
+				res.json(200, { DepartamentosJSON });
 			}
 		}).catch(function(error){next(error);});
 	
@@ -39,9 +39,9 @@ module.exports = {
 		if( req.Rol == '1' ){
 			var id = 0 ;
 			Departamento.count().exec(function(err, cont){
-				id = cont + 1;
+
 				Departamento.create({
-								id: id,
+								id: cont + 1,
 								Nombre: req.body.Nombre,
 								Ubicaciones: []
 							       }
@@ -68,37 +68,41 @@ module.exports = {
 
 	update: function (req, res) {
 
-		Departamento.findOne(req.params.id).then(function(Departamento) {	
+		if ( req.Rol == '1' ) {
 
-		if ( Departamento ) {	
+			Departamento.findOne(req.params.id).then(function(Departamento) {	
 
-			if ( req.Rol == '1' ) {
+			if ( Departamento ) {	
 
-				Departamento.update(
-							{ id: Number(req.params.id) }, 		
-							{
-								Nombre: req.body.Nombre
-							}
-				).exec(function (err, updated){
+					Departamento.update(
+								{ id: Number(req.params.id) }, 		
+								{
+									Nombre: req.body.Nombre
+								}
+					).exec(function (err, updated){
 
-					if (err) {
-						return err;
-					}
+						if (err) {
+							return err;
+						}
 
-					if (updated) {
-						res.json(200, { msg: 'El nombre del Departamento "'+ Departamento.Nombre +'" ha sido actualizado satisfactoriamente por : "'+updated.Nombre+'"' });
-					}
+						if (updated) {
+							res.json(200, { msg: 'El Departamento ha sido actualizado satisfactoriamente'});
+						}
 
-				});
+					});
+
+				
 
 			}
-			else {
-				return res.json(403, {err: 'No tiene Permiso.'});
-			}
+
+			}).catch(function(error){ next(error); });
 
 		}
+		else {
 
-		}).catch(function(error){ next(error); });
+			return res.json(403, {err: 'No tiene Permiso.'});
+
+		}
 
 	},
 
@@ -107,11 +111,15 @@ module.exports = {
 		if( req.Rol == '1' ) {
 
 			Departamento.destroy({ id:Number(req.params.id) }).exec(function(deleted){
-				if(deleted){
-					return res.negotiate(deleted);
+				if (deleted){
+
+					return res.json(200, {err: 'El departamento ha sido borrado satisfactoriamente.'});
+
 				}
 				else{
-					res.json(200,{deleted});
+
+					return res.json(404, {err: 'Error al borrar el departamento.'});
+					
 				}
 			});
 
