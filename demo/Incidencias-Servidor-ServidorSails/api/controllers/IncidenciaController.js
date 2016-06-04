@@ -613,6 +613,51 @@ module.exports = {
 
 		if( req.Rol == '1' ){
 
+			Incidencia.find().where({
+
+					FechaInicio: 	{ '>=': req.body.FechaInicio	},
+					FechaFin: 		{ '<=': req.body.FechaFin	},
+					Operador: 		  req.body.Operador	
+
+				}).then(function(Incidencias){
+
+					var total = 0;
+					var sistemas = 0; var mantenimiento = 0;
+					var estado1 = 0; var estado2 = 0; var estado3 = 0; var estado4 = 0;
+
+					Incidencias.forEach(function(incidencia){
+						console.log(incidencia);
+
+						if(incidencia.Estado == 'Sin Iniciar'){
+							estado1++;
+						}
+						else if(incidencia.Estado == 'En Proceso'){
+							estado2++;	
+						}
+						else if(incidencia.Estado == 'Pendiente'){
+							estado3++;
+						}
+						else if(incidencia.Estado == 'Completada'){
+							estado4++;
+						}
+
+
+					});
+
+					var estadisticaByOperador = {
+
+						Total: 			Incidencias.length,
+						SinIniciar: 			estado1,
+						EnProceso: 			estado2,
+						Pendiente: 			estado3,
+						Completadas: 		estado4
+
+					}
+
+					res.json(200, { estadisticaByOperador });
+
+			}).catch(function(error){ next(error); });
+
 		}
 		else {
 

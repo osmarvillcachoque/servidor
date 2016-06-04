@@ -10,7 +10,8 @@
 				"Rol":			1,
     				"Nombre":		"NombreSupervisor",
 				"Apellidos":		"Apellidos",
-				"Email":		"Intercontinental1@gmail.com"
+				"Email":		"Intercontinental1@gmail.com",
+				"Incidencias":	[]
 			},
 			{
 				"id":			2,
@@ -19,7 +20,8 @@
 				"Rol":			2,
     				"Nombre":		"NombreO1",
 				"Apellidos":		"Apellidos",
-				"Email":		"Intercontinental2@gmail.com"
+				"Email":		"Intercontinental2@gmail.com",
+				"Incidencias":	[{"id":1}]
 			},
 			{
 				"id":			3,
@@ -28,7 +30,8 @@
 				"Rol":			2,
     				"Nombre":		"NombreO2",
 				"Apellidos":		"Apellidos",
-				"Email":		"Intercontinental3@gmail.com"
+				"Email":		"Intercontinental3@gmail.com",
+				"Incidencias":	[{"id":2}]
 			},
 			{
 				"id":			4,
@@ -37,7 +40,8 @@
 				"Rol":			3,
     				"Nombre":		"NombreC1",
 				"Apellidos":		"Apellidos",
-				"Email":		"Intercontinental4@gmail.com"
+				"Email":		"Intercontinental4@gmail.com",
+				"Incidencias":	[]
 			},
 			{
 				"id":			5,
@@ -46,7 +50,8 @@
 				"Rol":			3,
     				"Nombre":		"NombreC2",
 				"Apellidos":		"Apellidos",
-				"Email":		"Intercontinental5@gmail.com"
+				"Email":		"Intercontinental5@gmail.com",
+				"Incidencias":	[]
 			}		
 		]
 	}

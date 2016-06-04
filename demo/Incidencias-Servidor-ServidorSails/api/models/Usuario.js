@@ -42,6 +42,11 @@ module.exports = {
 			unique: 	true,
 		},
 
+		/*Incidencias: {
+			collection: 'Incidencia',
+			via: 'Operador'
+		},*/
+
 		toJSON: function() {
 			var Usuario = this.toObject();
 			// Borramos la contraseña por motivos de seguridad ya que no nos interesa que se devuelva.

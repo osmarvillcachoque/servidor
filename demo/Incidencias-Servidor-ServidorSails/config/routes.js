@@ -28,6 +28,11 @@ module.exports.routes = {
 	'GET r|^/Estadistica':[
 		'IncidenciaController.estadistica'
 	],
+
+	'POST r|^/EstadisticaUsuario':[
+		'IncidenciaController.estadisticaByUsuario'
+	],
+	
 	'POST r|^/EstadisticaInstalacion':[
 		'IncidenciaController.estadisticaByInstalacion'
 	]
