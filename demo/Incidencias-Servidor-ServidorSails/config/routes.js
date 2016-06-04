@@ -23,5 +23,12 @@ module.exports.routes = {
 
 	'POST r|^/ActualizarDatos':[
 		'UsuarioController.updateUsuario'
+	],
+
+	'GET r|^/Estadistica':[
+		'IncidenciaController.estadistica'
+	],
+	'POST r|^/EstadisticaInstalacion':[
+		'IncidenciaController.estadisticaByInstalacion'
 	]
 };
