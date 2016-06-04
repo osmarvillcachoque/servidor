@@ -578,7 +578,7 @@ module.exports = {
 						else if(incidencia.Comun == 'No'){
 							comunNo++;
 						}
-						console.log(incidencia.Operador);
+
 						if( !incidencia.Operador ){
 							IncidenciaSinAsignar++;
 						} 
@@ -615,8 +615,8 @@ module.exports = {
 
 			Incidencia.find().where({
 
-					FechaInicio: 	{ '>=': req.body.FechaInicio	},
-					FechaFin: 		{ '<=': req.body.FechaFin	},
+					FechaInicio: 	{ '>=': req.body.Fecha1 	},
+					FechaInicio: 	{ '<=': req.body.Fecha2	},
 					Operador: 		  req.body.Operador	
 
 				}).then(function(Incidencias){
@@ -626,7 +626,7 @@ module.exports = {
 					var estado1 = 0; var estado2 = 0; var estado3 = 0; var estado4 = 0;
 
 					Incidencias.forEach(function(incidencia){
-						console.log(incidencia);
+
 
 						if(incidencia.Estado == 'Sin Iniciar'){
 							estado1++;
@@ -673,8 +673,8 @@ module.exports = {
 		
 			Incidencia.find().where({
 
-					FechaInicio: 	{ '>=': req.body.FechaInicio	},
-					FechaFin: 		{ '<=': req.body.FechaFin	},
+					FechaInicio: 	{ '>=': req.body.Fecha1 	},
+					FechaInicio: 	{ '<=': req.body.Fecha2	},
 					Instalacion: 		  req.body.Instalacion	
 
 				}).then(function(Incidencias){
@@ -685,7 +685,7 @@ module.exports = {
 					var IncidenciaSinAsignar = 0;
 
 					Incidencias.forEach(function(incidencia){
-						console.log(incidencia);
+
 						if(incidencia.Tipo == 'Sistemas'){
 							sistemas++;
 						}
@@ -735,7 +735,5 @@ module.exports = {
 		}
 
 	}	
-
-
 
 }
