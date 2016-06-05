@@ -4,6 +4,10 @@ module.exports.routes = {
 		'UsuarioController.currentUser'
 	],
 
+	'GET r|^/Operadores':[
+		'UsuarioController.findOperadores'
+	],
+
 	'GET r|^/TiposIncidencia': [
 		'IncidenciaController.tiposIncidencia'
 	],

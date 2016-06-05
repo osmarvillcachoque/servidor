@@ -1,5 +1,41 @@
 module.exports = {
 
+	findOperadores: function(req, res, next) { 
+
+		if( req.Rol =='1' ){
+
+			Usuario.find({
+				where:{ Rol:2 }
+			}).then(function(Operadores){
+
+				if(Operadores){
+					var Operadores = [];
+					Operadores.forEach(function(Operador){
+						OperadorJSON = {
+							"id":Operador.id,
+							"Nombre":Operador.Nombre,
+							"Apellidos":Operador.Apellidos
+						}
+						Operadores.push(OperadorJSON);
+					});
+
+					res.json(Operadores);
+				}
+				else { 
+					return null;
+					res.json(404, {err: 'No se han encontrado Incidencias.'});
+				}
+				
+
+			}).catch(function(error){ next(error); });
+
+		}
+		else {
+
+			return res.json(403, {err: 'Permiso denegado.'});
+		
+		}
+	},
 	create: function (req, res) {
 
 		/*Usuario.create(req.body).exec(function (err, user) {
