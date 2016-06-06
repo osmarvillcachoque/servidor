@@ -16,7 +16,7 @@ module.exports = {
 					if (Incidencias) {
 
 						Incidencias.forEach(function(Incidencia) {
-							console.log(Incidencia);
+
 							var Operador = "Sin Asignar";
 							if ( Incidencia.Operador != null ) {
 								Operador = Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos;
@@ -299,12 +299,11 @@ module.exports = {
 		Incidencia.findOne(req.params.id).populateAll()
 			.then(function(Incidencia){
 				if(Incidencia){
-					console.log(Incidencia);
+					
 					var Operador = "Sin Asignar";
 					if ( Incidencia.Operador != null ) {
-						Operador = {ID:Incidencia.Operador.id ,Nombre:Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos};
+							Operador = { ID: Incidencia.Operador.id ,Nombre: Incidencia.Operador.Nombre, Apellidos: Incidencia.Operador.Apellidos }
 					}
-
 					var Propietario = "Usuario eliminado";
 					if ( Incidencia.Propietario != null ) {
 						Propietario = Incidencia.Propietario.Nombre + " " + Incidencia.Propietario.Apellidos;
@@ -324,8 +323,7 @@ module.exports = {
 						"Comun": 			Incidencia.Comun,
 						"Propietario": 		Propietario
 					}
-					//console.log(IncidenciaJSON);
-					res.json(IncidenciaJSON);
+					res.json(200, { IncidenciaJSON });
 				}
 				else { 
 					res.json(404, {err: 'No se han encontrado Incidencias.'});
@@ -390,6 +388,7 @@ module.exports = {
 				Incidencia.update(
 							{ id: Number(req.params.id) }, 		
 							{
+								id: 			req.params.id,
 								Titulo: 		req.body.Titulo,
 								Descripcion: 	req.body.Descripcion,
 								Tipo: 			req.body.Tipo,
@@ -400,7 +399,7 @@ module.exports = {
 								FechaPrevista: 	req.body.FechaPrevista,
 								FechaFin: 		req.body.FechaFin,
 								Instalacion: 	req.body.Instalacion,
-								Operador: 		req.body.Operador,
+								Operador: 		req.body.Operador
 							}
 				).exec(function (err, updated){
 

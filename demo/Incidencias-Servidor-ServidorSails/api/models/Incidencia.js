@@ -74,31 +74,43 @@ module.exports = {
 	},
 
 	beforeCreate: function (values, cb){
-		if ( values.Operador && values.FechaInicio == null || values.FechaInicio == null ) {
+		
+		if( values.Operador ) {
 			values.FechaInicio = new Date();
 			cb();
 		}
-
-		else{ 
-			cb(); 
+		else {
+			values.FechaInicio = "";
+			cb();
 		}
 
 	},
 
 	beforeUpdate: function (values, cb) {
 
-		if ( values.Operador != 'Sin Asignar' ) {
-			values.FechaInicio = new Date();
-			cb();
-		}
-		else if ( values.Estado == 'Completada' ) {
-		    	values.FechaFin = new Date();
-		    	cb();
-	    	}
-	    	else{ 
-	    		cb(); 
-	    	}
-	    
+		console.log("id "+values.id);
+		Incidencia.findOne(values.id).populateAll().then(function(Incidencia){
+			if(Incidencia){
+				
+				if( !Incidencia.FechaInicio || (Incidencia.Operador.id != values.Operador) ) {
+					values.FechaInicio = new Date();
+				}
+				else {
+					values.FechaInicio = Incidencia.FechaInicio;
+				}
+				if( values.Estado == "Completada" ) {
+					values.FechaFin = new Date();
+				}
+				else {
+					values.FechaFin = "";
+				}
+
+				delete values.id;
+				cb();
+			}
+
+		});
+
 	}
 
 };

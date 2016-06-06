@@ -1,6 +1,6 @@
 angular.module("AppIncidencias")
 
-	.controller('SupervisorController', function ($scope, $route, $routeParams, $http, $timeout, $uibModalInstance, IncidenciaID) {
+	.controller('SupervisorController', function ($scope, $filter, $route, $routeParams, $http, $timeout, $uibModalInstance, IncidenciaID) {
 
 		$scope.DepartamentoSeleccionado;
 		$scope.UbicacionSeleccionada;
@@ -18,28 +18,13 @@ angular.module("AppIncidencias")
 		$scope.FechaPrevista;
 		$scope.FechaFin;
 
-		$scope.IDInstalacion;
-
 		$scope.getDepartamentos = function() {
 			$http.get('/Departamento')
 				.success(function(data) {
-					
 					$scope.Departamentos = data.DepartamentosJSON;
-
-					if( $scope.IDInstalacion ){
-						$scope.setDepartamento($scope.IDInstalacion)
-					}
-					else{
-
-						$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
-						console.log($scope.DepartamentoSeleccionado);
-						$scope.UbicacionSeleccionada = $scope.Departamentos[0].Ubicaciones[0];
-						console.log($scope.UbicacionSeleccionada);
-						$scope.InstalacionSeleccionada = $scope.Departamentos[0].Ubicaciones[0].Instalaciones[0];
-						console.log($scope.InstalacionSeleccionada);
-
-					}
-					
+					$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
+					$scope.UbicacionSeleccionada = $scope.Departamentos[0].Ubicaciones[0];
+					$scope.InstalacionSeleccionada = $scope.Departamentos[0].Ubicaciones[0].Instalaciones[0];
 				})
 				.error(function(error) {
 					console.log(error);
@@ -49,7 +34,6 @@ angular.module("AppIncidencias")
 		$scope.getTiposIncidencia = function() {
 			$http.get('/TiposIncidencia')
 				.success(function(data) {
-					
 					$scope.TiposIncidencia = data.Tipos;
 					$scope.TipoSeleccionado = $scope.TiposIncidencia[0];
 				})
@@ -62,7 +46,6 @@ angular.module("AppIncidencias")
 		$scope.getPrioridadesIncidencia = function() {
 			$http.get('/PrioridadesIncidencia')
 				.success(function(data) {
-					
 					$scope.PrioridadesIncidencia = data.Prioridades;
 					$scope.PrioridadSeleccionada = $scope.PrioridadesIncidencia[0];
 				})
@@ -74,7 +57,6 @@ angular.module("AppIncidencias")
 		$scope.getEstadosIncidencia = function() {
 			$http.get('/EstadosIncidencia')
 				.success(function(data) {
-					
 					$scope.EstadosIncidencia = data.Estados;
 					$scope.EstadoSeleccionado = $scope.EstadosIncidencia[0];
 				})
@@ -86,8 +68,6 @@ angular.module("AppIncidencias")
 		$scope.getOperadores = function() {
 			$http.get('/Operadores')
 				.success(function(data) {
-					console.log("getOperadores");
-					console.log(data);
 					$scope.Operadores = data.Operadores;
 					$scope.Operadores.unshift({"Nombre": "Sin ", "Apellidos": "Asignar"});
 					$scope.OperadorSeleccionado = $scope.Operadores[0];
@@ -97,22 +77,27 @@ angular.module("AppIncidencias")
 				})
 		};
 
-		/*$scope.getIncidencia = function () {
+		$scope.getIncidencia = function () {
 			$http.get('/Incidencia/' + IncidenciaID)
 				.success(function(data) {
-					console.log("dos Incidencia");
-					console.log(data);
-					$scope.Titulo = data.Titulo;
-					$scope.Descripcion = data.Descripcion;
-					$scope.Instalacion = data.Instalacion;
+					$scope.Titulo = data.IncidenciaJSON.Titulo;
+					$scope.Descripcion = data.IncidenciaJSON.Descripcion;
+					$scope.Instalacion = data.IncidenciaJSON.Instalacion;
 					$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
-					//$scope.setDepartamento(data.Instalacion.id);
-					$scope.setTipoIncidencia(data.Tipo);
+					$scope.setDepartamento(data.IncidenciaJSON.Instalacion.ID);
+					$scope.setTipoIncidencia(data.IncidenciaJSON.Tipo);
+					$scope.setPrioridadIncidencia(data.IncidenciaJSON.Prioridad);
+					$scope.setEstadoIncidencia(data.IncidenciaJSON.Estado);
+					$scope.setOperadorIncidencia(data.IncidenciaJSON.Operador);
+					$scope.FechaInicio = new Date(data.IncidenciaJSON.FechaInicio);
+					$scope.FechaPrevista = new Date(data.IncidenciaJSON.FechaInicio);
+					$scope.FechaFin = new Date(data.IncidenciaJSON.FechaInicio);
+
 				})
 				.error(function(error) {
 					console.log(error);
 				});
-		};*/
+		};
 
 		$scope.setUbicacion = function() {
 			$scope.UbicacionSeleccionada = $scope.Departamentos[$scope.DepartamentoSeleccionado.id - 1].Ubicaciones[0];
@@ -173,33 +158,12 @@ angular.module("AppIncidencias")
 		$scope.setOperadorIncidencia = function(Operador) {
 			$timeout(function() {
 					for ( var i = 0 ; i < $scope.Operadores.length ; i++ ) {
-						if ( $scope.Operadores[i].ID == Operador ) {
+						if ( $scope.Operadores[i].ID == Operador.ID ) {
 							$scope.OperadorSeleccionado = $scope.Operadores[i];
 						}
 					}
 			}, 50 );
 		}
-
-		$scope.getIncidencia = function () {
-			$http.get('/Incidencia/' + IncidenciaID)
-				.success(function(data) {
-					
-					console.log(data);
-					$scope.IDInstalacion = data.Instalacion.id ;
-					$scope.Titulo = data.Titulo;
-					$scope.Descripcion = data.Descripcion;
-					//$scope.Instalacion = data.Instalacion;
-					//$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
-					//$scope.setDepartamento(data.Instalacion.id);
-					$scope.setTipoIncidencia(data.Tipo);
-					$scope.setPrioridadIncidencia(data.Prioridad);
-					$scope.setEstadoIncidencia(data.Estado);
-					$scope.setOperadorIncidencia(data.Operador.ID);
-				})
-				.error(function(error) {
-					console.log(error);
-				});
-		};
 
 		$scope.CrearIncidencia = function () {
 			$http.post('/Incidencia', { 
@@ -231,17 +195,16 @@ angular.module("AppIncidencias")
 		};
 
 		$scope.EditarIncidencia = function () {
-			console.log($scope.OperadorSeleccionado);
+						console.log($scope.InstalacionSeleccionada);
+
 			$http.post('/Incidencia/' + IncidenciaID, { 
 								Titulo: $scope.Titulo, 
 						    		Descripcion: $scope.Descripcion, 
-					    			Departamento: $scope.DepartamentoSeleccionado, 
-					    			Ubicacion: $scope.UbicacionSeleccionada, 
 					    			Instalacion: $scope.InstalacionSeleccionada, 
 					    			Tipo: $scope.TipoSeleccionado, 
 					    			Prioridad: $scope.PrioridadSeleccionada, 
 					    			Estado: $scope.EstadoSeleccionado, 
-					    			Operador: $scope.OperadorSeleccionado, 
+					    			Operador: $scope.OperadorSeleccionado.ID, 
 					    			FechaInicio: $scope.FechaInicio, 
 					    			FechaPrevista: $scope.FechaPrevista, 
 					    			FechaFin: $scope.FechaFin
