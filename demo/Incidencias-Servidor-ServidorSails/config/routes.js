@@ -7,6 +7,11 @@ module.exports.routes = {
 	'GET r|^/Operadores':[
 		'UsuarioController.findOperadores'
 	],
+	
+	'GET r|^/Departamento': [
+		'UbicacionController.load',
+		'DepartamentoController.find'
+	],
 
 	'GET r|^/TiposIncidencia': [
 		'IncidenciaController.tiposIncidencia'
@@ -18,11 +23,6 @@ module.exports.routes = {
 
 	'GET r|^/PrioridadesIncidencia': [
 		'IncidenciaController.prioridadesIncidencia'
-	],
-
-	'GET r|^/Departamento': [
-		'UbicacionController.load',
-		'DepartamentoController.find'
 	],
 
 	'POST r|^/ActualizarDatos':[

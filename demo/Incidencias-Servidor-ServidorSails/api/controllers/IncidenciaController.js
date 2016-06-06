@@ -295,65 +295,42 @@ module.exports = {
 	findOne: function (req, res, next) {
 
 		if ( req.Rol == '1'){
-
+		
 		Incidencia.findOne(req.params.id).populateAll()
-
-				.then(function(Incidencia){
-					
-					var IncidenciaJSON = [];
-					var DepartamentoIncidencia;
-					var FindDepartamento;
-
-					if (Incidencia){
-
-							DatosIncidencia = { 
-								"id": 				Incidencia.id,
-								"Titulo":      		Incidencia.Titulo, 
-								"Descripcion": 		Incidencia.Descripcion, 
-								"Departamento": 	"", 
-								"Instalacion": 		{ "id": Incidencia.Instalacion.id, "Nombre": Incidencia.Instalacion.Nombre },
-								"Tipo": 			Incidencia.Tipo, 
-								"Operador": 		Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos,
-								"Estado": 			Incidencia.Estado,
-								"Prioridad": 		Incidencia.Prioridad,
-								"FechaInicio": 		Incidencia.FechaInicio,
-								"FechaPrevista": 		Incidencia.FechaPrevista,
-								"FechaFin": 		Incidencia.FechaFin,
-								"Comun": 			Incidencia.Comun,
-								"Propietario": 		Incidencia.Propietario.Nombre + " " + Incidencia.Propietario.Apellidos
-							}
-
-							FindDepartamento = Departamento.findOne(Incidencia.Instalacion.Departamento)
-
-								.then(function(Departamento){
-									console.log("Departamento");
-									console.log(Departamento);
-
-									DepartamentoIncidencia = Departamento.Nombre;
-									return DepartamentoIncidencia;
-
-								});
-
-							IncidenciaJSON.push(DatosIncidencia);
-
-						return [IncidenciaJSON, FindDepartamento];
-
-
-					}
-					else { 
-						res.json(404, {err: 'No se han encontrado Incidencias.'});
+			.then(function(Incidencia){
+				if(Incidencia){
+					var Operador = "Sin Asignar";
+					if ( Incidencia.Operador != null ) {
+						Operador = Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos;
 					}
 
-					return [IncidenciaJSON, FindDepartamento];
+					var Propietario = "Usuario eliminado";
+					if ( Incidencia.Propietario != null ) {
+						Propietario = Incidencia.Propietario.Nombre + " " + Incidencia.Propietario.Apellidos;
+					}
+					var IncidenciaJSON = {
+						"id": 				Incidencia.id,
+						"Titulo":      			Incidencia.Titulo, 
+						"Descripcion": 		Incidencia.Descripcion, 
+						"Instalacion": 		{ "id": Incidencia.Instalacion.id, "Nombre": Incidencia.Instalacion.Nombre },
+						"Tipo": 			Incidencia.Tipo, 
+						"Operador": 		Operador,
+						"Estado": 			Incidencia.Estado,
+						"Prioridad": 		Incidencia.Prioridad,
+						"FechaInicio": 		Incidencia.FechaInicio,
+						"FechaPrevista": 		Incidencia.FechaPrevista,
+						"FechaFin": 			Incidencia.FechaFin,
+						"Comun": 			Incidencia.Comun,
+						"Propietario": 		Propietario
+					}
+					console.log(IncidenciaJSON);
+					res.json(IncidenciaJSON);
+				}
+				else { 
+					res.json(404, {err: 'No se han encontrado Incidencias.'});
+				}
 
-				})
-
-				.spread(function(IncidenciaJSON, FindDepartamento) {
-
-					IncidenciaJSON.Departamento = FindDepartamento;
-					return res.json(IncidenciaJSON);
-
-				}).catch(function(error){ next(error); });
+			}).catch(function(error){ next(error); })
 
 		}
 		else if ( req.Rol == '2' ){
