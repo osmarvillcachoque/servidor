@@ -231,6 +231,7 @@ angular.module("AppIncidencias")
 		};
 
 		$scope.EditarIncidencia = function () {
+			console.log($scope.OperadorSeleccionado);
 			$http.post('/Incidencia/' + IncidenciaID, { 
 								Titulo: $scope.Titulo, 
 						    		Descripcion: $scope.Descripcion, 

@@ -96,7 +96,7 @@ module.exports = {
 
 							var Propietario = "Usuario eliminado";
 							if ( Incidencia.Propietario != null ) {
-								Operador = Incidencia.Propietario.Nombre + " " + Incidencia.Propietario.Apellidos;
+								Propietario = Incidencia.Propietario.Nombre + " " + Incidencia.Propietario.Apellidos;
 							}
 
 							IncidenciaJSON = {
@@ -299,6 +299,7 @@ module.exports = {
 		Incidencia.findOne(req.params.id).populateAll()
 			.then(function(Incidencia){
 				if(Incidencia){
+					console.log(Incidencia);
 					var Operador = "Sin Asignar";
 					if ( Incidencia.Operador != null ) {
 						Operador = {ID:Incidencia.Operador.id ,Nombre:Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos};
@@ -310,7 +311,7 @@ module.exports = {
 					}
 					var IncidenciaJSON = {
 						"id": 				Incidencia.id,
-						"Titulo":      			Incidencia.Titulo, 
+						"Titulo":      		Incidencia.Titulo, 
 						"Descripcion": 		Incidencia.Descripcion, 
 						"Instalacion": 		{ "id": Incidencia.Instalacion.id, "Nombre": Incidencia.Instalacion.Nombre },
 						"Tipo": 			Incidencia.Tipo, 
@@ -319,11 +320,11 @@ module.exports = {
 						"Prioridad": 		Incidencia.Prioridad,
 						"FechaInicio": 		Incidencia.FechaInicio,
 						"FechaPrevista": 		Incidencia.FechaPrevista,
-						"FechaFin": 			Incidencia.FechaFin,
+						"FechaFin": 		Incidencia.FechaFin,
 						"Comun": 			Incidencia.Comun,
 						"Propietario": 		Propietario
 					}
-					console.log(IncidenciaJSON);
+					//console.log(IncidenciaJSON);
 					res.json(IncidenciaJSON);
 				}
 				else { 
