@@ -74,8 +74,7 @@ module.exports = {
 	},
 
 	beforeCreate: function (values, cb){
-
-		if ( values.Operador ) {
+		if ( values.Operador && values.FechaInicio == null || values.FechaInicio == null ) {
 			values.FechaInicio = new Date();
 			cb();
 		}
@@ -87,7 +86,7 @@ module.exports = {
 	},
 
 	beforeUpdate: function (values, cb) {
-		
+
 		if ( values.Operador != 'Sin Asignar' ) {
 			values.FechaInicio = new Date();
 			cb();
@@ -99,8 +98,7 @@ module.exports = {
 	    	else{ 
 	    		cb(); 
 	    	}
-		
-
+	    
 	}
 
 };

@@ -301,7 +301,7 @@ module.exports = {
 				if(Incidencia){
 					var Operador = "Sin Asignar";
 					if ( Incidencia.Operador != null ) {
-						Operador = Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos;
+						Operador = {ID:Incidencia.Operador.id ,Nombre:Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos};
 					}
 
 					var Propietario = "Usuario eliminado";

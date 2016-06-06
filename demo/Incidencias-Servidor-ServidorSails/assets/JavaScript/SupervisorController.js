@@ -18,13 +18,28 @@ angular.module("AppIncidencias")
 		$scope.FechaPrevista;
 		$scope.FechaFin;
 
+		$scope.IDInstalacion;
+
 		$scope.getDepartamentos = function() {
 			$http.get('/Departamento')
 				.success(function(data) {
+					
 					$scope.Departamentos = data.DepartamentosJSON;
-					$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
-					$scope.UbicacionSeleccionada = $scope.Departamentos[0].Ubicaciones[0];
-					$scope.InstalacionSeleccionada = $scope.Departamentos[0].Ubicaciones[0].Instalaciones[0];
+
+					if( $scope.IDInstalacion ){
+						$scope.setDepartamento($scope.IDInstalacion)
+					}
+					else{
+
+						$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
+						console.log($scope.DepartamentoSeleccionado);
+						$scope.UbicacionSeleccionada = $scope.Departamentos[0].Ubicaciones[0];
+						console.log($scope.UbicacionSeleccionada);
+						$scope.InstalacionSeleccionada = $scope.Departamentos[0].Ubicaciones[0].Instalaciones[0];
+						console.log($scope.InstalacionSeleccionada);
+
+					}
+					
 				})
 				.error(function(error) {
 					console.log(error);
@@ -34,6 +49,7 @@ angular.module("AppIncidencias")
 		$scope.getTiposIncidencia = function() {
 			$http.get('/TiposIncidencia')
 				.success(function(data) {
+					
 					$scope.TiposIncidencia = data.Tipos;
 					$scope.TipoSeleccionado = $scope.TiposIncidencia[0];
 				})
@@ -46,6 +62,7 @@ angular.module("AppIncidencias")
 		$scope.getPrioridadesIncidencia = function() {
 			$http.get('/PrioridadesIncidencia')
 				.success(function(data) {
+					
 					$scope.PrioridadesIncidencia = data.Prioridades;
 					$scope.PrioridadSeleccionada = $scope.PrioridadesIncidencia[0];
 				})
@@ -57,6 +74,7 @@ angular.module("AppIncidencias")
 		$scope.getEstadosIncidencia = function() {
 			$http.get('/EstadosIncidencia')
 				.success(function(data) {
+					
 					$scope.EstadosIncidencia = data.Estados;
 					$scope.EstadoSeleccionado = $scope.EstadosIncidencia[0];
 				})
@@ -68,6 +86,8 @@ angular.module("AppIncidencias")
 		$scope.getOperadores = function() {
 			$http.get('/Operadores')
 				.success(function(data) {
+					console.log("getOperadores");
+					console.log(data);
 					$scope.Operadores = data.Operadores;
 					$scope.Operadores.unshift({"Nombre": "Sin ", "Apellidos": "Asignar"});
 					$scope.OperadorSeleccionado = $scope.Operadores[0];
@@ -77,20 +97,22 @@ angular.module("AppIncidencias")
 				})
 		};
 
-		$scope.getIncidencia = function () {
+		/*$scope.getIncidencia = function () {
 			$http.get('/Incidencia/' + IncidenciaID)
 				.success(function(data) {
+					console.log("dos Incidencia");
+					console.log(data);
 					$scope.Titulo = data.Titulo;
 					$scope.Descripcion = data.Descripcion;
 					$scope.Instalacion = data.Instalacion;
 					$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
-					$scope.setDepartamento(data.Instalacion.id);
+					//$scope.setDepartamento(data.Instalacion.id);
 					$scope.setTipoIncidencia(data.Tipo);
 				})
 				.error(function(error) {
 					console.log(error);
 				});
-		};
+		};*/
 
 		$scope.setUbicacion = function() {
 			$scope.UbicacionSeleccionada = $scope.Departamentos[$scope.DepartamentoSeleccionado.id - 1].Ubicaciones[0];
@@ -150,9 +172,9 @@ angular.module("AppIncidencias")
 
 		$scope.setOperadorIncidencia = function(Operador) {
 			$timeout(function() {
-					for ( var i = 0 ; i < $scope.OperadoresIncidencia.length ; i++ ) {
-						if ( $scope.OperadoresIncidencia[i] == Operador ) {
-							$scope.OperadorSeleccionado = $scope.OperadoresIncidencia[i];
+					for ( var i = 0 ; i < $scope.Operadores.length ; i++ ) {
+						if ( $scope.Operadores[i].ID == Operador ) {
+							$scope.OperadorSeleccionado = $scope.Operadores[i];
 						}
 					}
 			}, 50 );
@@ -161,15 +183,18 @@ angular.module("AppIncidencias")
 		$scope.getIncidencia = function () {
 			$http.get('/Incidencia/' + IncidenciaID)
 				.success(function(data) {
+					
+					console.log(data);
+					$scope.IDInstalacion = data.Instalacion.id ;
 					$scope.Titulo = data.Titulo;
 					$scope.Descripcion = data.Descripcion;
-					$scope.Instalacion = data.Instalacion;
-					$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
-					$scope.setDepartamento(data.Instalacion.id);
+					//$scope.Instalacion = data.Instalacion;
+					//$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
+					//$scope.setDepartamento(data.Instalacion.id);
 					$scope.setTipoIncidencia(data.Tipo);
 					$scope.setPrioridadIncidencia(data.Prioridad);
 					$scope.setEstadoIncidencia(data.Estado);
-					$scope.setOperadorIncidencia(data.Operador);
+					$scope.setOperadorIncidencia(data.Operador.ID);
 				})
 				.error(function(error) {
 					console.log(error);

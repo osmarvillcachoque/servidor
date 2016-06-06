@@ -9,17 +9,17 @@ module.exports = {
 			}).then(function(Operadores){
 
 				if(Operadores){
-					var Operadores = [];
+					var OperadoresJSON = [];
 					Operadores.forEach(function(Operador){
 						OperadorJSON = {
-							"id":Operador.id,
+							"ID":Operador.id,
 							"Nombre":Operador.Nombre,
 							"Apellidos":Operador.Apellidos
 						}
-						Operadores.push(OperadorJSON);
+						OperadoresJSON.push(OperadorJSON);
 					});
 
-					res.json(Operadores);
+					res.json(200, { Operadores: OperadoresJSON });
 				}
 				else { 
 					return null;
@@ -85,7 +85,7 @@ module.exports = {
 
 	currentUser: function(req, res) {
 
-		Usuario.findOne(Number(req.Usuario.id)).then(function(Usuario){
+		Usuario.findOne(Number(req.Usuario.id)).then(function(Usuario) {
 	
 			if (Usuario) {
 
@@ -97,15 +97,15 @@ module.exports = {
 	
 			}
 	
-		}).catch(function(error){ next(error); });
+		}).catch(function(error) { next(error); });
 
 	},
 
-	updateUsuario: function (req, res){
+	updateUsuario: function (req, res) {
 
-		if( req.Rol == '1' ){
+		if( req.Rol == '1' ) {
 
-			if( req.body.UsuarioID ){
+			if( req.body.UsuarioID ) {
 
 				Usuario.update(
 							{ id: req.body.UsuarioID },
@@ -118,7 +118,7 @@ module.exports = {
 								Email: 	req.body.Email
 
 							}
-				).exec(function(err, updated){
+				).exec(function(err, updated) {
 					if (err) {
 						return err;
 					}
