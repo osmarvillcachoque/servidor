@@ -16,7 +16,7 @@ module.exports = {
 					if (Incidencias) {
 
 						Incidencias.forEach(function(Incidencia) {
-							
+							console.log(Incidencia);
 							var Operador = "Sin Asignar";
 							if ( Incidencia.Operador != null ) {
 								Operador = Incidencia.Operador.Nombre + " " + Incidencia.Operador.Apellidos;
