@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "DIN Medium";
+    src: url("../Fuentes/DIN Medium.ttf");
+}
+
+* {
+	font-family: "DIN Medium", 'Trebuchet MS', Arial;
+	font-size: 12px;
+}
+
+html {
+	height: 100%;
+}

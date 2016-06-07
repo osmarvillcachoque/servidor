@@ -1,0 +1,53 @@
+[
+	{
+		"model":	"Usuario",
+		"items":
+		[
+			{
+				"id":			1,
+				"NickName":	"Supervisor",
+				"Password": 	"12345",
+				"Rol":			1,
+    				"Nombre":		"Intercontinental",
+				"Apellidos":		"Intercontinental",
+				"Email":		"Intercontinental1@gmail.com"
+			},
+			{
+				"id":			2,
+				"NickName":	"Operador1",
+				"Password": 	"12345",
+				"Rol":			2,
+    				"Nombre":		"Intercontinental",
+				"Apellidos":		"Intercontinental",
+				"Email":		"Intercontinental2@gmail.com"
+			},
+			{
+				"id":			3,
+				"NickName":	"Operador2",
+				"Password": 	"12345",
+				"Rol":			2,
+    				"Nombre":		"Intercontinental",
+				"Apellidos":		"Intercontinental",
+				"Email":		"Intercontinental3@gmail.com"
+			},
+			{
+				"id":			4,
+				"NickName":	"Colaborador1",
+				"Password": 	"12345",
+				"Rol":			3,
+    				"Nombre":		"Intercontinental",
+				"Apellidos":		"Intercontinental",
+				"Email":		"Intercontinental4@gmail.com"
+			},
+			{
+				"id":			5,
+				"NickName":	"Colaborador2",
+				"Password": 	"12345",
+				"Rol":			3,
+    				"Nombre":		"Intercontinental",
+				"Apellidos":		"Intercontinental",
+				"Email":		"Intercontinental5@gmail.com"
+			}		
+		]
+	}
+]
