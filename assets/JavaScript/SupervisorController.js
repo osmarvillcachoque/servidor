@@ -1,4 +1,4 @@
-angular.module("AppIncidencias", ["googlechart", "googlechart-docs"])
+angular.module("AppIncidencias")
 
 	.controller('SupervisorController', function ($scope, $filter, $route, $routeParams, $http, $timeout, $uibModalInstance, IncidenciaID) {
 
@@ -23,7 +23,7 @@ angular.module("AppIncidencias", ["googlechart", "googlechart-docs"])
 		$scope.getDepartamentos = function() {
 			$http.get('/Departamento')
 				.success(function(data) {
-					//console.log("Departamentos");
+					console.log("getDepartamentos");
 					//console.log("if depa"+$scope.IDInstalacion);
 					$scope.Departamentos = data.DepartamentosJSON;
 
@@ -50,7 +50,7 @@ angular.module("AppIncidencias", ["googlechart", "googlechart-docs"])
 		$scope.getTiposIncidencia = function() {
 			$http.get('/TiposIncidencia')
 				.success(function(data) {
-					//console.log("TiposIncidencia");
+					console.log("getTiposIncidencia");
 					$scope.TiposIncidencia = data.Tipos;
 					$scope.TipoSeleccionado = $scope.TiposIncidencia[0];
 				})
@@ -63,7 +63,7 @@ angular.module("AppIncidencias", ["googlechart", "googlechart-docs"])
 		$scope.getPrioridadesIncidencia = function() {
 			$http.get('/PrioridadesIncidencia')
 				.success(function(data) {
-					//console.log("PrioridadesIncidencia");
+					console.log("getPrioridadesIncidencia");
 					$scope.PrioridadesIncidencia = data.Prioridades;
 					$scope.PrioridadSeleccionada = $scope.PrioridadesIncidencia[0];
 				})
@@ -75,7 +75,7 @@ angular.module("AppIncidencias", ["googlechart", "googlechart-docs"])
 		$scope.getEstadosIncidencia = function() {
 			$http.get('/EstadosIncidencia')
 				.success(function(data) {
-					//console.log("EstadosIncidencia");
+					console.log("getEstadosIncidencia");
 					$scope.EstadosIncidencia = data.Estados;
 					$scope.EstadoSeleccionado = $scope.EstadosIncidencia[0];
 				})
@@ -87,7 +87,7 @@ angular.module("AppIncidencias", ["googlechart", "googlechart-docs"])
 		$scope.getOperadores = function() {
 			$http.get('/Operadores')
 				.success(function(data) {
-					//console.log("Operadores");
+					console.log("getOperadores");
 					$scope.Operadores = data.Operadores;
 					$scope.Operadores.unshift({"Nombre": "Sin ", "Apellidos": "Asignar", "ID": 0});
 					$scope.OperadorSeleccionado = $scope.Operadores[0];
@@ -100,7 +100,7 @@ angular.module("AppIncidencias", ["googlechart", "googlechart-docs"])
 		$scope.getIncidencia = function () {
 			$http.get('/Incidencia/' + IncidenciaID)
 				.success(function(data) {
-					//console.log("Incidencia");
+					console.log("getIncidencia");
 					$scope.IDInstalacion = data.IncidenciaJSON.Instalacion.ID ;
 					//console.log("$scope.IDInstalacion "+$scope.IDInstalacion);
 					$scope.Titulo = data.IncidenciaJSON.Titulo;
@@ -250,42 +250,5 @@ angular.module("AppIncidencias", ["googlechart", "googlechart-docs"])
 				$route.reload();
 			}, 100 );
 		};
-
-		$scope.myChartObject = {};
-    
-    $scope.myChartObject.type = "PieChart";
-    
-    $scope.onions = [
-        {v: "Onions"},
-        {v: 3},
-    ];
-
-    $scope.myChartObject.data = {"cols": [
-        {id: "t", label: "Topping", type: "string"},
-        {id: "s", label: "Slices", type: "number"}
-    ], "rows": [
-        {c: [
-            {v: "Mushrooms"},
-            {v: 3},
-        ]},
-        {c: $scope.onions},
-        {c: [
-            {v: "Olives"},
-            {v: 31}
-        ]},
-        {c: [
-            {v: "Zucchini"},
-            {v: 1},
-        ]},
-        {c: [
-            {v: "Pepperoni"},
-            {v: 2},
-        ]}
-    ]};
-
-    $scope.myChartObject.options = {
-        'title': 'How Much Pizza I Ate Last Night'
-    };
-
 
 	});
