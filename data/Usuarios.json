@@ -7,8 +7,9 @@
 				"id":			1,
 				"NickName":	"Supervisor",
 				"Password": 	"12345",
+				"tipoOperador":	"Supervisor",
 				"Rol":			1,
-    				"Nombre":		"Intercontinental",
+    				"Nombre":		"Kike Supervisor",
 				"Apellidos":		"Intercontinental",
 				"Email":		"Intercontinental1@gmail.com"
 			},
@@ -16,37 +17,59 @@
 				"id":			2,
 				"NickName":	"Operador1",
 				"Password": 	"12345",
+				"tipoOperador":	"Mantenimiento",
 				"Rol":			2,
-    				"Nombre":		"Intercontinental",
-				"Apellidos":		"Intercontinental",
+    				"Nombre":		"Chema Operador1",
+				"Apellidos":		"De Mantenimiento",
 				"Email":		"Intercontinental2@gmail.com"
 			},
 			{
 				"id":			3,
 				"NickName":	"Operador2",
 				"Password": 	"12345",
+				"tipoOperador":	"Mantenimiento",
 				"Rol":			2,
-    				"Nombre":		"Intercontinental",
-				"Apellidos":		"Intercontinental",
+    				"Nombre":		"otroChema Operador2",
+				"Apellidos":		"De Mantenimiento",
 				"Email":		"Intercontinental3@gmail.com"
 			},
 			{
 				"id":			4,
-				"NickName":	"Colaborador1",
+				"NickName":	"Operador3",
 				"Password": 	"12345",
-				"Rol":			3,
-    				"Nombre":		"Intercontinental",
-				"Apellidos":		"Intercontinental",
+				"tipoOperador":	"Sistemas",
+				"Rol":			2,
+    				"Nombre":		"Juanjo Operador3",
+				"Apellidos":		"De Sistemas",
 				"Email":		"Intercontinental4@gmail.com"
 			},
 			{
 				"id":			5,
+				"NickName":	"Operador4",
+				"Password": 	"12345",
+				"tipoOperador":	"Sistemas",
+				"Rol":			2,
+    				"Nombre":		"otroJuanjo Operador4",
+				"Apellidos":		"De Sistemas",
+				"Email":		"Intercontinental5@gmail.com"
+			},
+			{
+				"id":			6,
+				"NickName":	"Colaborador1",
+				"Password": 	"12345",
+				"Rol":			3,
+    				"Nombre":		"Colaborador1",
+				"Apellidos":		"Intercontinental",
+				"Email":		"Intercontinental6@gmail.com"
+			},
+			{
+				"id":			7,
 				"NickName":	"Colaborador2",
 				"Password": 	"12345",
 				"Rol":			3,
-    				"Nombre":		"Intercontinental",
+    				"Nombre":		"Colaborador2",
 				"Apellidos":		"Intercontinental",
-				"Email":		"Intercontinental5@gmail.com"
+				"Email":		"Intercontinental7@gmail.com"
 			}		
 		]
 	}

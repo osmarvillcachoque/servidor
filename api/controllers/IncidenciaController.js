@@ -83,9 +83,11 @@ module.exports = {
 
 		else if ( req.Rol == '2' ) {
 
-			Incidencia.find().where({ or: [ { "Operador": req.Usuario.id }, { "Comun": "Sí" } ] }).populateAll()
+			Incidencia.find().where({ or: [ { "Operador": req.Usuario.id }, { "Comun": "Sí" }] }).populateAll()
 
 				.then(function(Incidencias) {
+
+					var IncidenciasFiltro = [];
 					
 					var IncidenciasJSON = [];
 					var Ubicaciones = [];
@@ -94,7 +96,17 @@ module.exports = {
 
 					if (Incidencias) {
 
-						Incidencias.forEach(function(Incidencia) {
+						Incidencias.forEach(function(Inc){
+
+							if( Inc.Tipo == req.tipoOperador ) {
+
+								IncidenciasFiltro.push(Inc);
+
+							}
+
+						});
+
+						IncidenciasFiltro.forEach(function(Incidencia) {
 
 							var Propietario = "Usuario Eliminado";
 
@@ -106,7 +118,7 @@ module.exports = {
 								"id": 			Incidencia.id,
 								"Titulo": 		Incidencia.Titulo, 
 								"Descripcion": 	Incidencia.Descripcion, 
-								"Departamento": 	"", 
+								"Departamento": "", 
 								"Ubicacion": 	"",
 								"Instalacion": 	Incidencia.Instalacion.Nombre,
 								"Tipo": 		Incidencia.Tipo, 

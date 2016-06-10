@@ -6,8 +6,8 @@
 			{
 				"id":			1,
 				"Titulo": 		"Falla Wi-Fi",
-				"Descripcion": 	"Contraseña Errónea.",
-				"Tipo": 		"Sistemas",
+				"Descripcion": 	"Contraseña Errónea.PD:esta incidencia solamente la pueden ver los Operadores de Mantenimiento",
+				"Tipo": 		"Mantenimiento",
 				"Estado": 		"Sin Iniciar",
 				"Prioridad": 	"Alta",
 				"Comun": 		"Sí",
@@ -16,22 +16,22 @@
 				"FechaFin": 		"2016-05-05",
 				"Instalacion": 	1,
 				"Operador": 	2,
-				"Propietario": 	4
+				"Propietario": 	6
 			},
 			{
 				"id":			2,
 				"Titulo": 		"Cafetera Rota",
-				"Descripcion": 	"No enciende.",
-				"Tipo": 		"Mantenimiento",
+				"Descripcion": 	"No enciende.PD:esta incidencia solamente la pueden ver los Operadores de Sistemas",
+				"Tipo": 		"Sistemas",
 				"Estado": 		"Sin Iniciar",
 				"Prioridad": 	"Media",
-				"Comun": 		"No",
+				"Comun": 		"Sí",
 				"FechaInicio": 	"2016-05-03",
 				"FechaPrevista": 	"2016-05-05",
 				"FechaFin": 		"2016-05-05",
 				"Instalacion": 	2,
-				"Operador": 	3,
-				"Propietario": 	5
+				"Operador": 	4,
+				"Propietario": 	7
 			}
 		]
 	}

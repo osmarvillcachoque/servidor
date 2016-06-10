@@ -18,6 +18,12 @@ module.exports = {
 			required: 	true,
 		},
 
+		tipoOperador: {
+			type: 		'string',
+			enum: 	['Supervisor', 'Mantenimiento','Sistemas'],
+			defaultsTo: 	'Mantenimiento'
+		},
+
 		Rol: {
 			model: 	'Rol',
 			required: true
