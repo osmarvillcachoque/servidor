@@ -168,7 +168,7 @@ module.exports = {
 
 		else if ( req.Rol == '3' ) {
 
-			Incidencia.find().where({ or: [ { "Propietario": req.Usuario.id }, { "Comun": "Sí" } ] }).populateAll()
+			Incidencia.find().where({"Propietario": req.Usuario.id }).populateAll()
 
 				.then(function(Incidencias) {
 					
