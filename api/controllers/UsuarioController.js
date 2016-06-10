@@ -42,12 +42,13 @@ module.exports = {
 
 			Usuario.create({
 
-						NickName: 	req.body.NickName,
-						Password: 	req.body.Password,
-						Rol: 		req.body.Rol,
-						Nombre: 	req.body.Nombre,
-						Apellidos: 	req.body.Apellidos,
-						Email: 	req.body.Email
+						NickName: 		req.body.NickName,
+						Password: 		req.body.Password,
+						tipoOperador: 	req,body.tipoOperador,
+						Rol: 			req.body.Rol,
+						Nombre: 		req.body.Nombre,
+						Apellidos: 		req.body.Apellidos,
+						Email: 		req.body.Email
 
 
 			}).exec(function (err, user) {
@@ -98,12 +99,13 @@ module.exports = {
 				Usuario.update(
 							{ id: req.body.UsuarioID },
 							{ 
-								NickName: 	req.body.NickName,
-								Password: 	req.body.Password,
-								Rol: 		req.body.Rol,
-								Nombre: 	req.body.Nombre,
-								Apellidos: 	req.body.Apellidos,
-								Email: 	req.body.Email
+								NickName: 		req.body.NickName,
+								Password: 		req.body.Password,
+								tipoOperador: 	req.body.tipoOperador,
+								Rol: 			req.body.Rol,
+								Nombre: 		req.body.Nombre,
+								Apellidos: 		req.body.Apellidos,
+								Email: 		req.body.Email
 
 							}
 				).exec(function(err, updated) {
@@ -121,12 +123,13 @@ module.exports = {
 				Usuario.update(
 							{ id: req.Usuario.id },
 							{ 
-								NickName: 	req.body.NickName,
-								Password: 	req.body.Password,
-								Rol: 		req.body.Rol,
-								Nombre: 	req.body.Nombre,
-								Apellidos: 	req.body.Apellidos,
-								Email: 	req.body.Email
+								NickName: 		req.body.NickName,
+								Password: 		req.body.Password,
+								tipoOperador: 	req.body.tipoOperador,
+								Rol: 			req.body.Rol,
+								Nombre: 		req.body.Nombre,
+								Apellidos: 		req.body.Apellidos,
+								Email: 		req.body.Email
 							 }
 
 				).exec(function(err,updated) {
