@@ -44,7 +44,7 @@ module.exports = {
 
 						NickName: 		req.body.NickName,
 						Password: 		req.body.Password,
-						tipoOperador: 	req,body.tipoOperador,
+						tipoOperador: 	req.body.tipoOperador,
 						Rol: 			req.body.Rol,
 						Nombre: 		req.body.Nombre,
 						Apellidos: 		req.body.Apellidos,
