@@ -642,7 +642,7 @@ module.exports = {
 		}
 	},
 	
-	estadisticaByUsuario: function(req, res, next) {
+	estadisticaByOperador: function(req, res, next) {
 
 		if( req.Rol == '1' ){
 
@@ -650,7 +650,7 @@ module.exports = {
 
 					FechaInicio: 	{ '>=': req.body.FechaInicio	},
 					FechaFin: 		{ '<=': req.body.FechaFin	},
-					Operador: 		  req.body.Operador	
+					Operador: 		  req.body.Operador.id	
 
 				}).then(function(Incidencias){
 
@@ -680,7 +680,7 @@ module.exports = {
 
 						Total: 			Incidencias.length,
 						SinIniciar: 			estado1,
-						EnProceso: 			estado2,
+						EnProceso: 		estado2,
 						Pendiente: 			estado3,
 						Completadas: 		estado4
 
@@ -707,7 +707,7 @@ module.exports = {
 
 					FechaInicio: 	{ '>=': req.body.FechaInicio	},
 					FechaFin: 		{ '<=': req.body.FechaFin	},
-					Instalacion: 		  req.body.Instalacion	
+					Instalacion: 		  req.body.Instalacion.id	
 
 				}).then(function(Incidencias){
 
@@ -749,7 +749,7 @@ module.exports = {
 						DeSistemas: 		sistemas,
 						DeMantenimiento: 	mantenimiento,
 						SinIniciar: 			estado1,
-						EnProceso: 			estado2,
+						EnProceso: 		estado2,
 						Pendiente: 			estado3,
 						Completadas: 		estado4
 
