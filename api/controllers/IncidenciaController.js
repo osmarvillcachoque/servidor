@@ -649,7 +649,7 @@ module.exports = {
 			Incidencia.find().where({
 
 					FechaInicio: 	{ '>=': req.body.FechaInicio	},
-					FechaFin: 		{ '<=': req.body.FechaFin	},
+					FechaInicio: 	{ '<=': req.body.FechaInicio	},
 					Operador: 		  req.body.Operador.id	
 
 				}).then(function(Incidencias){
@@ -699,6 +699,39 @@ module.exports = {
 			
 	},
 
+	estadisticaByColaborador: function(req, res, next) {
+
+		if( req.Rol == '1' ){
+
+			Incidencia.find().where({
+
+					FechaInicio: 	{ '>=': req.body.FechaInicio	},
+					FechaInicio: 	{ '<=': req.body.FechaInicio	},
+					Operador: 		  req.body.Colaborador.id	
+
+				}).then(function(Incidencias){
+
+					var total = Incidencias.count();
+
+					var estadisticaByColaborador = {
+
+						Total: 	total
+
+					}
+
+					res.json(200, { estadisticaByColaborador });
+
+			}).catch(function(error){ next(error); });
+
+		}
+		else {
+
+			return res.json(403, {err: 'Permiso denegado.'});
+
+		}
+			
+	},
+
 	estadisticaByInstalacion: function(req, res, next){
 
 		if( req.Rol == '1' ){
@@ -706,8 +739,8 @@ module.exports = {
 			Incidencia.find().where({
 
 					FechaInicio: 	{ '>=': req.body.FechaInicio	},
-					FechaFin: 		{ '<=': req.body.FechaFin	},
-					Instalacion: 		  req.body.Instalacion.id	
+					FechaInicio: 	{ '<=': req.body.FechaInicio	},
+					Instalacion: 	  req.body.Instalacion.id	
 
 				}).then(function(Incidencias){
 
