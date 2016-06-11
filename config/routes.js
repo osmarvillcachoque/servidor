@@ -33,15 +33,15 @@ module.exports.routes = {
 		'IncidenciaController.estadistica'
 	],
 
-	'GET r|^/EstadisticaUsuario':[
-		'IncidenciaController.estadisticaByUsuario'
+	'POST r|^/EstadisticaOperador':[
+		'IncidenciaController.estadisticaByOperador'
 	],
 
-	'GET r|^/EstadisticaColaborador':[
+	'POST r|^/EstadisticaColaborador':[
 		'IncidenciaController.estadisticaByColaborador'
 	],
 
-	'GET r|^/EstadisticaInstalacion':[
+	'POST r|^/EstadisticaInstalacion':[
 		'IncidenciaController.estadisticaByInstalacion'
 	],
 

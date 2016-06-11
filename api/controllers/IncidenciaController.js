@@ -648,9 +648,9 @@ module.exports = {
 
 			Incidencia.find().where({
 
-					FechaInicio: 	{ '>=': req.body.FechaInicio	},
-					FechaInicio: 	{ '<=': req.body.FechaInicio	},
-					Operador: 		  req.body.Operador.id	
+					createdAt: 	{ '>=': req.body.FechaUno	},
+					createdAt: 	{ '<=': req.body.FechaDos	},
+					Operador: 		  req.body.Operador
 
 				}).then(function(Incidencias){
 
@@ -705,13 +705,13 @@ module.exports = {
 
 			Incidencia.find().where({
 
-					FechaInicio: 	{ '>=': req.body.FechaInicio	},
-					FechaInicio: 	{ '<=': req.body.FechaInicio	},
-					Operador: 		  req.body.Colaborador.id	
+					createdAt: 		{ '>=': req.body.FechaUno	},
+					createdAt: 		{ '<=': req.body.FechaDos	},
+					Propietario: 	req.body.Colaborador	
 
 				}).then(function(Incidencias){
 
-					var total = Incidencias.count();
+					var total = Incidencias.length;
 
 					var estadisticaByColaborador = {
 
@@ -738,9 +738,9 @@ module.exports = {
 		
 			Incidencia.find().where({
 
-					FechaInicio: 	{ '>=': req.body.FechaInicio	},
-					FechaInicio: 	{ '<=': req.body.FechaInicio	},
-					Instalacion: 	  req.body.Instalacion.id	
+					createdAt: 	{ '>=': req.body.FechaUno	},
+					createdAt: 	{ '<=': req.body.FechaDos	},
+					Instalacion: 	  req.body.Instalacion	
 
 				}).then(function(Incidencias){
 
