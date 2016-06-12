@@ -645,8 +645,8 @@ module.exports = {
 	totalIncidenciasFiltro: function (req, res, next) {
 		Incidencia.find().where({
 
-					createdAt: 	{ '>=': req.body.FechaUno	},
-					createdAt: 	{ '<=': req.body.FechaDos	}
+					createdAt: 	{ '>=': req.body.FechaInicio	},
+					createdAt: 	{ '<=': req.body.FechaFin	}
 
 				}).then(function(Incidencias){
 
@@ -655,6 +655,7 @@ module.exports = {
 				if(Incidencias){
 
 					req.IncidenciasCreadas = Incidencias.length;
+					console.log("next "+req.IncidenciasCreadas);
 					next();
 				}
 					
@@ -669,8 +670,8 @@ module.exports = {
 
 			Incidencia.find().where({
 
-					createdAt: 	{ '>=': req.body.FechaUno	},
-					createdAt: 	{ '<=': req.body.FechaDos	},
+					createdAt: 	{ '>=': req.body.FechaInicio	},
+					createdAt: 	{ '<=': req.body.FechaFin	},
 					Operador: 		  req.body.Operador
 
 				}).then(function(Incidencias){
@@ -724,24 +725,26 @@ module.exports = {
 	estadisticaByColaborador: function(req, res, next) {
 
 		if( req.Rol == '1' ){
-
+			console.log(req.body.FechaInicio);
+			console.log(req.body.FechaFin);
+			console.log(req.body.Colaborador);
 			Incidencia.find().where({
 
-					createdAt: 		{ '>=': req.body.FechaUno	},
-					createdAt: 		{ '<=': req.body.FechaDos	},
+					createdAt: 	{ '>=': req.body.FechaInicio	},
+					createdAt: 	{ '<=': req.body.FechaFin	},
 					Propietario: 	req.body.Colaborador	
 
 				}).then(function(Incidencias){
-
+					console.log(Incidencias);
 					var total = Incidencias.length;
 
 					var estadisticaByColaborador = {
 
-						IncidenciasCreadas: 	req.IncidenciasCreadas,
-						Total: 	total
+						TotalTodos: 	req.IncidenciasCreadas,
+						TotalColaborador: 	total
 
 					}
-
+					console.log(estadisticaByColaborador);
 					res.json(200, { Estadisticas: estadisticaByColaborador });
 
 			}).catch(function(error){ next(error); });
@@ -761,8 +764,8 @@ module.exports = {
 		
 			Incidencia.find().where({
 
-					createdAt: 	{ '>=': req.body.FechaUno	},
-					createdAt: 	{ '<=': req.body.FechaDos	},
+					createdAt: 	{ '>=': req.body.FechaInicio	},
+					createdAt: 	{ '<=': req.body.FechaFin	},
 					Instalacion: 	  req.body.Instalacion	
 
 				}).then(function(Incidencias){
