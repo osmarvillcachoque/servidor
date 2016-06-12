@@ -642,6 +642,27 @@ module.exports = {
 		}
 	},
 	
+	totalIncidenciasFiltro: function (req, res, next) {
+		Incidencia.find().where({
+
+					createdAt: 	{ '>=': req.body.FechaUno	},
+					createdAt: 	{ '<=': req.body.FechaDos	}
+
+				}).then(function(Incidencias){
+
+				req.IncidenciaCreadas;
+
+				if(Incidencias){
+
+					req.IncidenciasCreadas = Incidencias.length;
+					next();
+				}
+					
+
+			}).catch(function(error){ next(error); });
+				
+	},
+
 	estadisticaByOperador: function(req, res, next) {
 
 		if( req.Rol == '1' ){
@@ -678,6 +699,7 @@ module.exports = {
 
 					var estadisticaByOperador = {
 
+						IncidenciasCreadas: 	req.IncidenciasCreadas,
 						Total: 			Incidencias.length,
 						SinIniciar: 			estado1,
 						EnProceso: 		estado2,
@@ -715,6 +737,7 @@ module.exports = {
 
 					var estadisticaByColaborador = {
 
+						IncidenciasCreadas: 	req.IncidenciasCreadas,
 						Total: 	total
 
 					}
