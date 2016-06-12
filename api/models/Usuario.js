@@ -20,7 +20,7 @@ module.exports = {
 
 		tipoOperador: {
 			type: 		'string',
-			enum: 	['Supervisor', 'Mantenimiento','Sistemas'],
+			enum: 	['Mantenimiento','Sistemas'],
 			defaultsTo: 	'Mantenimiento'
 		},
 

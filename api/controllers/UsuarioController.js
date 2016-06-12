@@ -5,7 +5,7 @@ module.exports = {
 		if ( req.Rol =='1' ) {
 
 			Usuario.find({
-				where:{ Rol:2 }
+				where:{ Rol: 2 }
 			}).then(function(Operadores) {
 
 				if (Operadores) {
@@ -36,6 +36,44 @@ module.exports = {
 		
 		}
 	},
+
+	findColaboradores: function(req, res, next) { 
+
+		if ( req.Rol =='1' ) {
+
+			Usuario.find({
+				where:{ Rol: 3 }
+			}).then(function(Colaboradores) {
+
+				if (Colaboradores) {
+					var ColaboradoresJSON = [];
+					Colaboradores.forEach(function(Colaborador) {
+						ColaboradorJSON = {
+							"ID":Colaborador.id,
+							"Nombre":Colaborador.Nombre,
+							"Apellidos":Colaborador.Apellidos
+						}
+						ColaboradoresJSON.push(ColaboradorJSON);
+					});
+
+					res.json(200, { Colaboradores: ColaboradoresJSON });
+				}
+				else { 
+					return null;
+					res.json(404, {err: 'No se han encontrado Incidencias.'});
+				}
+				
+
+			}).catch(function(error) { next(error); });
+
+		}
+		else {
+
+			return res.json(403, {err: 'Permiso denegado.'});
+		
+		}
+	},
+
 	create: function (req, res) {
 
 		if ( req.Rol == '1' ) {

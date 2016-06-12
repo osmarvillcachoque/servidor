@@ -631,7 +631,7 @@ module.exports = {
 
 					}
 
-					res.json(200, { informe });
+					res.json(200, { Estadisticas: informe });
 				}
 
 			}).catch(function(error){ next(error); });
@@ -708,7 +708,7 @@ module.exports = {
 
 					}
 
-					res.json(200, { estadisticaByOperador });
+					res.json(200, { Estadisticas: estadisticaByOperador });
 
 			}).catch(function(error){ next(error); });
 
@@ -742,7 +742,7 @@ module.exports = {
 
 					}
 
-					res.json(200, { estadisticaByColaborador });
+					res.json(200, { Estadisticas: estadisticaByColaborador });
 
 			}).catch(function(error){ next(error); });
 
@@ -811,7 +811,7 @@ module.exports = {
 
 					}
 
-					res.json(200, { estadisticaByInstalacion });
+					res.json(200, { Estadisticas: estadisticaByInstalacion });
 
 			}).catch(function(error){ next(error); });
 

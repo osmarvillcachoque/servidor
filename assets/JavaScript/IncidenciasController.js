@@ -13,7 +13,7 @@ angular.module("AppIncidencias")
 				.error(function (error) {
 					$scope.Error = error;
 				});
-		};
+		}
 
 		$scope.setIncidenciaSeleccionada = function(Incidencia) {
 
@@ -34,7 +34,7 @@ angular.module("AppIncidencias")
 			else {
 				for ( var i = 0 ; i < $scope.Incidencias.length ; i++ ) {
 					if ( $scope.Incidencias[i].id == Incidencia ) {
-						if ( $scope.Incidencias[i].Comun == 'No' ) {
+						if ( $scope.Incidencias[i].Comun == 'No' || $scope.Incidencias[i].ComunEditable == 'Sí' ) {
 							if ( Incidencia != $scope.IncidenciaSeleccionada) {
 								$scope.IncidenciaSeleccionada = Incidencia;
 							}
@@ -48,7 +48,7 @@ angular.module("AppIncidencias")
 					}
 				}
 			}
-		};
+		}
 
 		$scope.CrearIncidencia = function () {
 
@@ -150,7 +150,7 @@ angular.module("AppIncidencias")
 				}
 			}
 			else {
-					$window.alert('No se ha seleccionado ninguna incidencia.');
+				$window.alert('No se ha seleccionado ninguna incidencia.');
 			}
 		};
 
@@ -158,29 +158,29 @@ angular.module("AppIncidencias")
 			if ( $rootScope.Rol == '1' ) {
 				if ( $scope.IncidenciaSeleccionada != null ) {
 					if ( $scope.Comun == 'Sí' ) {
- 						$scope.Comun = 'No';
- 					}
- 					else {
- 						$scope.Comun = 'Sí';
- 					}
- 
- 					$http.post('/Incidencia/' + $scope.IncidenciaSeleccionada + '/setUnsetComun', {Comun: $scope.Comun})
- 						.success(function(data) {
- 							$route.reload();
- 						})
- 						.error(function(error) {
- 							console.log(error);
- 						});	
- 
- 					$timeout(function() {
- 						$route.reload();
- 					}, 50 );
+						$scope.Comun = 'No';
+					}
+					else {
+						$scope.Comun = 'Sí';
+					}
+
+					$http.post('/Incidencia/' + $scope.IncidenciaSeleccionada + '/setUnsetComun', {Comun: $scope.Comun})
+						.success(function(data) {
+							$route.reload();
+						})
+						.error(function(error) {
+							console.log(error);
+						});	
+
+					$timeout(function() {
+						$route.reload();
+					}, 50 );
 				}
 				else {
 					$window.alert('No se ha seleccionado ninguna incidencia.');
 				}
 			}
-		};
+		}
 
 		$scope.BorrarIncidencia = function () {
 			if ( $rootScope.Rol == '1' ) {
@@ -198,20 +198,6 @@ angular.module("AppIncidencias")
 				}, 10 );
 			}
 
-		};
-
-		$scope.Estadistica = function () {
-			
-			if ( $rootScope.Rol == '1' ) {
-				$uibModal.open({
-					templateUrl: "Vistas/Formularios/Supervisor/Estadistica.html",
-					controller: 'SupervisorController',
-					size: 'lg',
-					resolve: {
-						IncidenciaID: null
-					}
-				});
-			}
 		};
 
 	});

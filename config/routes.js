@@ -25,6 +25,11 @@ module.exports.routes = {
 		'UsuarioController.findOperadores'
 	],
 
+	'GET r|^/Colaboradores': [
+		'UsuarioController.findColaboradores'
+	],
+
+
 	'POST r|^/ActualizarDatos':[
 		'UsuarioController.updateUsuario'
 	],

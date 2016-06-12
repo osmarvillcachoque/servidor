@@ -7,7 +7,6 @@
 				"id":			1,
 				"NickName":	"Supervisor",
 				"Password": 	"12345",
-				"tipoOperador":	"Supervisor",
 				"Rol":			1,
     				"Nombre":		"Kike Supervisor",
 				"Apellidos":		"Intercontinental",
