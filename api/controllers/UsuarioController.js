@@ -78,28 +78,85 @@ module.exports = {
 
 		if ( req.Rol == '1' ) {
 
-			Usuario.create({
+			if ( req.body.Rol == '1' && req.body.tipoOperador == null ) {
+				//SUPERVISOR CREA A UN SUPERVISOR
+				Usuario.create({
 
-						NickName: 		req.body.NickName,
-						Password: 		req.body.Password,
-						tipoOperador: 	req.body.tipoOperador,
-						Rol: 			req.body.Rol,
-						Nombre: 		req.body.Nombre,
-						Apellidos: 		req.body.Apellidos,
-						Email: 		req.body.Email
+					NickName: 		req.body.NickName,
+					Password: 		req.body.Password,
+					Rol: 			req.body.Rol,
+					Nombre: 		req.body.Nombre,
+					Apellidos: 		req.body.Apellidos,
+					Email: 		req.body.Email
 
 
-			}).exec(function (err, user) {
-				if (err) {
-					console.log(err);
-					return res.json(err.status, {err: err});
-				}
+				}).exec(function (err, user) {
+					if (err) {
+						console.log(err);
+						return res.json(err.status, {err: err});
+					}
 
-				// Si el usuario se crea correctamente enviamos el usuario y un token.
-				if (user) {
-					res.json(200, { user: user, token: JWToken.issue({ id: Usuario.id }) });
-				}
-			});
+					// Si el usuario se crea correctamente enviamos el usuario y un token.
+					if (user) {
+						res.json(200, { user: user, token: JWToken.issue({ id: Usuario.id }) });
+					}
+				});
+			}
+			else if ( req.body.Rol == '2' && req.body.tipoOperador != null ) {
+				//SUPERVISOR CREA A UN OPERADOR
+				Usuario.create({
+
+					NickName: 		req.body.NickName,
+					Password: 		req.body.Password,
+					tipoOperador: 	req.body.tipoOperador,
+					Rol: 			req.body.Rol,
+					Nombre: 		req.body.Nombre,
+					Apellidos: 		req.body.Apellidos,
+					Email: 		req.body.Email
+
+
+				}).exec(function (err, user) {
+					if (err) {
+						console.log(err);
+						return res.json(err.status, {err: err});
+					}
+
+					// Si el usuario se crea correctamente enviamos el usuario y un token.
+					if (user) {
+						res.json(200, { user: user, token: JWToken.issue({ id: Usuario.id }) });
+					}
+				});
+			}
+			else if ( req.body.Rol == '3' && req.body.tipoOperador == null ) {
+				//SUPERVISOR CREA A UN COLABORADOR
+				Usuario.create({
+
+					NickName: 		req.body.NickName,
+					Password: 		req.body.Password,
+					Rol: 			req.body.Rol,
+					Nombre: 		req.body.Nombre,
+					Apellidos: 		req.body.Apellidos,
+					Email: 		req.body.Email
+
+
+				}).exec(function (err, user) {
+					if (err) {
+						console.log(err);
+						return res.json(err.status, {err: err});
+					}
+
+					// Si el usuario se crea correctamente enviamos el usuario y un token.
+					if (user) {
+						res.json(200, { user: user, token: JWToken.issue({ id: Usuario.id }) });
+					}
+				});
+
+			}
+			else {
+
+				return res.json(403, {err: 'Error al crear un Usuairo. Esto es posible por haber introducido un atributo invalido.'});
+		
+			}
 
 		}
 		else {
@@ -132,10 +189,37 @@ module.exports = {
 
 		if ( req.Rol == '1' ) {
 
-			if ( req.body.UsuarioID ) {
-
+			if ( req.body.Rol == '1' && req.body.tipoOperador == null && req.body.Usuario == null ) {
+				//SUPERVISOR ACTUALIZA SUS DATOS
+				console.log("Super actualiza sus datos");
 				Usuario.update(
-							{ id: req.body.UsuarioID },
+							{ id: req.Usuario.id },
+							{ 
+								NickName: 		req.body.NickName,
+								Password: 		req.body.Password,
+								Rol: 			req.body.Rol,
+								Nombre: 		req.body.Nombre,
+								Apellidos: 		req.body.Apellidos,
+								Email: 		req.body.Email
+							 }
+
+				).exec(function(err,updated) {
+
+					if (err) {
+						return err;
+					}
+					else {
+						res.json(200, {msg: 'Sus datos han sido actualizados satisfactoriamente.'});
+					}
+
+				});
+
+			}
+			else if ( req.body.Rol == '2' && req.body.tipoOperador != null ) {
+				//SUPERVISOR ACTUALIZA DATOS DE UN OPERADOR
+				console.log("Super actualiza el dato de un Operador");
+				Usuario.update(
+							{ id: req.body.Usuario },
 							{ 
 								NickName: 		req.body.NickName,
 								Password: 		req.body.Password,
@@ -156,36 +240,35 @@ module.exports = {
 				});
 
 			}
-			else {
-
+			else if ( req.body.Rol == '3' && req.body.tipoOperador == null ) {
+				//SUPERVISOR ACTUALIZA DATOS DE UN COLABORADOR
+				console.log("Super actualiza el dato de un Colaborador");
 				Usuario.update(
-							{ id: req.Usuario.id },
+							{ id: req.body.Usuario },
 							{ 
 								NickName: 		req.body.NickName,
 								Password: 		req.body.Password,
-								tipoOperador: 	req.body.tipoOperador,
 								Rol: 			req.body.Rol,
 								Nombre: 		req.body.Nombre,
 								Apellidos: 		req.body.Apellidos,
 								Email: 		req.body.Email
-							 }
 
-				).exec(function(err,updated) {
-
+							}
+				).exec(function(err, updated) {
 					if (err) {
 						return err;
 					}
 					else {
-						res.json(200, {msg: 'Sus datos han sido actualizados satisfactoriamente.'});
+						res.json(200, {msg: 'Los datos del Usuario han sido actualizados satisfactoriamente.'});
 					}
-
 				});
 
 			}
 
 		}
 		else if ( req.Rol == '2' || req.Rol == '3' ) {
-
+			//OPERADOR O COLABORADOR ACTUALIZA SUS PROPIOS DATOS
+			console.log("el rol "+req.Rol+" actualiza sus datos");
 			Usuario.update(
 						{ id: req.Usuario.id },
 						{ 
@@ -236,52 +319,6 @@ module.exports = {
 			return res.json(403, {err: 'Permiso denegado.'});
 		
 		}
-	}/*,
-
-	updatePassword: function(req, res) {
-
-		if ( req.Rol == '1' ) {
-			Usuario.update(
-						{ id: req.body.UsuarioId },
-						{ Password: req.body.newPassword }
-
-			).exec(function(err,updated) {
-
-				if (err) {
-					return err;
-				}
-				else {
-					res.json(200, {msg: 'La contraseña se ha cambiado satisfactoriamente.'});
-				}
-
-			});
-
-		}
-		else {
-
-			return res.json(403, {err: 'Permiso denegado.'});
-		
-		}
-
-	},
-
-	updateOwnPassword: function(req, res) {
-
-		Usuario.update(
-					{ id: req.Usuario.id },
-					{ Password: req.body.newPassword }
-
-		).exec(function(err,updated) {
-
-			if (err) {
-				return err;
-			}
-			else {
-				res.json(200, {msg: 'La contraseña se ha cambiado satisfactoriamente.'});
-			}
-
-		});
-
-	}*/
+	}
 
 }
