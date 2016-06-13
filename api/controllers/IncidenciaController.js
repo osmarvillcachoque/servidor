@@ -700,7 +700,6 @@ module.exports = {
 
 					var estadisticaByOperador = {
 
-						TotalTodos: 		req.IncidenciasCreadas,
 						TotalOperador: 		Incidencias.length,
 						SinIniciar: 			estado1,
 						EnProceso: 		estado2,
@@ -801,7 +800,6 @@ module.exports = {
 
 					var estadisticaByInstalacion = {
 
-						TotalTodos: 		req.IncidenciasCreadas,
 						TotalInstalacion: 		Incidencias.length,
 						SinAsignar: 		IncidenciaSinAsignar,
 						DeSistemas: 		sistemas,
