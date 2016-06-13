@@ -39,6 +39,7 @@ module.exports.routes = {
 	],
 
 	'POST r|^/EstadisticaOperador':[
+		'IncidenciaController.totalIncidenciasFiltro',
 		'IncidenciaController.estadisticaByOperador'
 	],
 

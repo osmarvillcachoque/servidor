@@ -655,7 +655,7 @@ module.exports = {
 				if(Incidencias){
 
 					req.IncidenciasCreadas = Incidencias.length;
-					console.log("next "+req.IncidenciasCreadas);
+					//console.log("next "+req.IncidenciasCreadas);
 					next();
 				}
 					
@@ -666,7 +666,7 @@ module.exports = {
 
 	estadisticaByOperador: function(req, res, next) {
 
-		if( req.Rol == '1' ){
+		if( req.Rol == '1' && req.body.Operador != null ){
 
 			Incidencia.find().where({
 
@@ -700,8 +700,8 @@ module.exports = {
 
 					var estadisticaByOperador = {
 
-						IncidenciasCreadas: 	req.IncidenciasCreadas,
-						Total: 			Incidencias.length,
+						TotalTodos: 		req.IncidenciasCreadas,
+						TotalOperador: 		Incidencias.length,
 						SinIniciar: 			estado1,
 						EnProceso: 		estado2,
 						Pendiente: 			estado3,
@@ -724,10 +724,8 @@ module.exports = {
 
 	estadisticaByColaborador: function(req, res, next) {
 
-		if( req.Rol == '1' ){
-			console.log(req.body.FechaInicio);
-			console.log(req.body.FechaFin);
-			console.log(req.body.Colaborador);
+		if( req.Rol == '1' && req.body.Colaborador != null ){
+
 			Incidencia.find().where({
 
 					createdAt: 	{ '>=': req.body.FechaInicio	},
@@ -735,7 +733,7 @@ module.exports = {
 					Propietario: 	req.body.Colaborador	
 
 				}).then(function(Incidencias){
-					console.log(Incidencias);
+
 					var total = Incidencias.length;
 
 					var estadisticaByColaborador = {
@@ -744,7 +742,7 @@ module.exports = {
 						TotalColaborador: 	total
 
 					}
-					console.log(estadisticaByColaborador);
+
 					res.json(200, { Estadisticas: estadisticaByColaborador });
 
 			}).catch(function(error){ next(error); });
@@ -760,7 +758,7 @@ module.exports = {
 
 	estadisticaByInstalacion: function(req, res, next){
 
-		if( req.Rol == '1' ){
+		if( req.Rol == '1' && req.body.Instalacion != null ){
 		
 			Incidencia.find().where({
 
@@ -769,14 +767,14 @@ module.exports = {
 					Instalacion: 	  req.body.Instalacion	
 
 				}).then(function(Incidencias){
-
+					console.log(Incidencias);
 					var total = 0;
 					var sistemas = 0; var mantenimiento = 0;
 					var estado1 = 0; var estado2 = 0; var estado3 = 0; var estado4 = 0;
 					var IncidenciaSinAsignar = 0;
 
 					Incidencias.forEach(function(incidencia){
-						console.log(incidencia);
+
 						if(incidencia.Tipo == 'Sistemas'){
 							sistemas++;
 						}
@@ -803,7 +801,8 @@ module.exports = {
 
 					var estadisticaByInstalacion = {
 
-						Total: 			Incidencias.length,
+						TotalTodos: 		req.IncidenciasCreadas,
+						TotalInstalacion: 		Incidencias.length,
 						SinAsignar: 		IncidenciaSinAsignar,
 						DeSistemas: 		sistemas,
 						DeMantenimiento: 	mantenimiento,
