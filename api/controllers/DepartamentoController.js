@@ -51,7 +51,7 @@ module.exports = {
 			Departamento.count().exec(function(err, count){
 				Departamento.create({
 								id: count + 1,
-								Nombre: req.body.Nombre,
+								Nombre: req.body.NombreDepartamento,
 								Ubicaciones: []
 							       }
 				).exec(function (err, Departamento) {

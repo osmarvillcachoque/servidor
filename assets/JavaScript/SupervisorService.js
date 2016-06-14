@@ -85,6 +85,19 @@ angular.module("AppIncidencias")
 						    		FechaFin: $scope.Fechas.Fin, 
 					    			Instalacion: $scope.Instalacion.Seleccionada.id
 					    		});
+			},
+
+			/*ADMIN*/
+			CrearDepartamento: function($scope) {
+			
+			},
+
+			CrearUbicacion: function($scope) {
+				
+			},
+
+			CrearInstalacion: function($scope) {
+				
 			}
 
 		}

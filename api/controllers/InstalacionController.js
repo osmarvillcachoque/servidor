@@ -7,7 +7,7 @@ module.exports = {
 			Instalacion.count().exec(function(err, count){	
 				Instalacion.create({
 								id: 			count + 1,
-								Nombre: 		req.body.Nombre,
+								Nombre: 		req.body.NombreInstalacion,
 								Ubicacion: 		req.body.Ubicacion,
 								Incidencias: 	[]
 							       }

@@ -1,6 +1,18 @@
-<div ng-if="Rol == '1'">
-	<div id="Admin" >
-		<div id="DatosZona" class="panel panel-default panel-table col col-xs-6">
+<div id="Admin" ng-init="cargarDatos(); Admin();" ng-show="DatosCargados">
+	<div class="modal-header">
+		<h3 class="modal-title text-center">Administrador</h3>
+	</div>
+	<div class="div-center">
+	<select ng-model="selection" ng-options="item for item in items">
+	</select>
+	</div>
+	<hr/>
+	<div class="animate-switch-container" ng-switch on="selection">
+
+	   <div class="animate-switch" ng-switch-when="Crear">
+	   	
+
+		<div class="DatosZona panel panel-default panel-table col col-xs-6">
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col col-xs-12">
@@ -15,8 +27,10 @@
 							<ng-form name="CrearDepartamento">
 								<div class="form-group">
 									<p>Nombre Departamento:</p>
-									<input type="text" id="Nombre" class="form-control" ng-model="Nombre"/>
-									<button id="CrearDepartamento" class="btn btn-primary" type="button" ng-click="CrearDepartamento()">Crear Departamento</button>
+									<input type="text" class="form-control Nombre" ng-model="NombreDepartamento"/>
+									<div class="modal-footer">
+									<button class="btn btn-primary CrearDepartamento" type="button" ng-click="CrearDepartamento()">Crear Departamento</button>
+									</div>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -24,10 +38,12 @@
 							<ng-form name="CrearUbicacion">
 								<div class="form-group">
 									<p>Asignar Departamento</p>
-									<select id="Departamento" ></select>
+									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
 									<p>Nombre Ubicacion:</p>
-									<input type="text" id="Nombre" class="form-control" ng-model="Nombre"/>
-									<button id="CrearUbicacion" class="btn btn-primary" type="button" ng-click="CrearUbicacion()">Crear Ubicacion</button>
+									<input type="text" class="form-control Nombre" ng-model="NombreUbicacion"/>
+									<div class="modal-footer">
+									<button class="btn btn-primary CrearUbicacion" type="button" ng-click="CrearUbicacion()">Crear Ubicacion</button>
+									</div>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -35,12 +51,15 @@
 							<ng-form name="CrearInstalacion">
 								<div class="form-group">
 									<p>Asignar Departamento</p>
-									<select id="Departamento" ></select>
+									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
 									<p>Asignar Ubicacion</p>
-									<select id="Ubicacion" ></select>
+									<select  class="form-control Ubicacion" ng-model="UbicacionSeleccionada" ng-change="setInstalacion()" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+									</select>
 									<p>Nombre Instalación:</p>
-									<input type="text" id="Nombre" class="form-control" ng-model="Nombre"/>
-									<button id="CrearInstalacion" class="btn btn-primary" type="button" ng-click="CrearInstalacion()">Crear Instalacion</button>
+									<input type="text" class="form-control Nombre" ng-model="NombreInstalacion"/>
+									<div class="modal-footer">
+									<button class="btn btn-primary CrearInstalacion" type="button" ng-click="CrearInstalacion()">Crear Instalacion</button>
+									</div>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -48,7 +67,7 @@
 				</form>
 			</div>
 		</div>
-		<div id="DatosUsuario" class="panel panel-default panel-table col col-xs-5">
+		<div class="DatosUsuario panel panel-default panel-table col col-xs-5">
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col col-xs-12">
@@ -63,16 +82,16 @@
 							<ng-form name="CrearSupervisor">
 								<div class="form-group">
 									<p>NickName:</p>
-									<input type="text" id="NickName" class="form-control" ng-model="NickName"/>
+									<input type="text" class="form-control NickName" ng-model="NickName"/>
 									<p>Password:</p>
-									<input type="password" id="Password" class="form-control" ng-model="Password"/>
+									<input type="password" class="form-control Password" ng-model="Password"/>
 									<p>Nombre:</p>
-									<input type="text" id="Nombre" class="form-control" ng-model="Nombre"/>
+									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
 									<p>Apellidos:</p>
-									<input type="text" id="Apellidos" class="form-control" ng-model="Apellidos"/>
+									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
 									<p>Email:</p>
-									<input type="text" id="Email" class="form-control" ng-model="Email"/>
-									<button id="CrearSupervisor" class="btn btn-primary" type="button" ng-click="CrearSupervisor()">Crear Supervisor</button>
+									<input type="text" class="form-control Email" ng-model="Email"/>
+									<button class="btn btn-primary CrearSupervisor" type="button" ng-click="CrearSupervisor()">Crear Supervisor</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -80,18 +99,18 @@
 							<ng-form name="CrearOperador">
 								<div class="form-group">
 									<p>NickName:</p>
-									<input type="text" id="NickName" class="form-control" ng-model="NickName"/>
+									<input type="text" class="form-control NickName" ng-model="NickName"/>
 									<p>Password:</p>
-									<input type="password" id="Password" class="form-control" ng-model="Password"/>
+									<input type="password" class="form-control Password" ng-model="Password"/>
 									<p>Tipo Operador:</p>
-									<select id="tipoOperador"></select>
+									<select class="tipoOperador"></select>
 									<p>Nombre:</p>
-									<input type="text" id="Nombre" class="form-control" ng-model="Nombre"/>
+									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
 									<p>Apellidos:</p>
-									<input type="text" id="Apellidos" class="form-control" ng-model="Apellidos"/>
+									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
 									<p>Email:</p>
-									<input type="text" id="Email" class="form-control" ng-model="Email"/>
-									<button id="CrearOperador" class="btn btn-primary" type="button" ng-click="CrearOperador()">Crear Operador</button>
+									<input type="text" class="form-control Email" ng-model="Email"/>
+									<button class="btn btn-primary CrearOperador" type="button" ng-click="CrearOperador()">Crear Operador</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -99,16 +118,16 @@
 							<ng-form name="CrearColaborador">
 								<div class="form-group">
 									<p>NickName:</p>
-									<input type="text" id="NickName" class="form-control" ng-model="NickName"/>
+									<input type="text" class="form-control NickName" ng-model="NickName"/>
 									<p>Password:</p>
-									<input type="password" id="Password" class="form-control" ng-model="Password"/>
+									<input type="password" class="form-control Password" ng-model="Password"/>
 									<p>Nombre:</p>
-									<input type="text" id="Nombre" class="form-control" ng-model="Nombre"/>
+									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
 									<p>Apellidos:</p>
-									<input type="text" id="Apellidos" class="form-control" ng-model="Apellidos"/>
+									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
 									<p>Email:</p>
-									<input type="text" id="Email" class="form-control" ng-model="Email"/>
-									<button id="CrearColaborador" class="btn btn-primary" type="button" ng-click="CrearColaborador()">Crear Colaborador</button>
+									<input type="text" class="form-control Email" ng-model="Email"/>
+									<button class="btn btn-primary CrearColaborador" type="button" ng-click="CrearColaborador()">Crear Colaborador</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -116,8 +135,273 @@
 				</form>
 			</div>
 		</div>
+
+
+	   </div>
+	   <div class="animate-switch" ng-switch-when="Editar">
+
+
+
+	   	<div class="DatosZona panel panel-default panel-table col col-xs-6">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col col-xs-12">
+						<h1 class="panel-title">Editar Zona</h1>
+					</div>
+				</div>
+	  		</div>
+		 	<div class="panel-body">
+				<form class="tab-form-demo">
+					<uib-tabset active="activeForm3">
+						<uib-tab index="0" heading="Departamento">
+							<ng-form name="EditarDepartamento">
+								<div class="form-group">
+									<p>Nombre Departamento:</p>
+									<input type="text" class="form-control Nombre" ng-model="NombreDepartamento"/>
+									<div class="modal-footer">
+									<button class="btn btn-primary EditarDepartamento" type="button" ng-click="EditarDepartamento()">Editar Departamento</button>
+									</div>
+								</div>
+							</ng-form>
+						</uib-tab>
+						<uib-tab index="1" heading="Ubicacion">
+							<ng-form name="EditarUbicacion">
+								<div class="form-group">
+									<p>Asignar Departamento</p>
+									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+									<p>Nombre Ubicacion:</p>
+									<input type="text" class="form-control Nombre" ng-model="NombreUbicacion"/>
+									<div class="modal-footer">
+									<button class="btn btn-primary EditarUbicacion" type="button" ng-click="EditarUbicacion()">Editar Ubicacion</button>
+									</div>
+								</div>
+							</ng-form>
+						</uib-tab>
+						<uib-tab index="2" heading="Instalacion">
+							<ng-form name="EditarInstalacion">
+								<div class="form-group">
+									<p>Asignar Departamento</p>
+									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+									<p>Asignar Ubicacion</p>
+									<select  class="form-control Ubicacion" ng-model="UbicacionSeleccionada" ng-change="setInstalacion()" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+									</select>
+									<p>Nombre Instalación:</p>
+									<input type="text" class="form-control Nombre" ng-model="NombreInstalacion"/>
+									<div class="modal-footer">
+									<button class="btn btn-primary EditarInstalacion" type="button" ng-click="EditarInstalacion()">Editar Instalacion</button>
+									</div>
+								</div>
+							</ng-form>
+						</uib-tab>
+					</uib-tabset>
+				</form>
+			</div>
+		</div>
+		<div class="DatosUsuario panel panel-default panel-table col col-xs-5">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col col-xs-12">
+						<h1 class="panel-title">Editar Usuario</h1>
+					</div>
+				</div>
+	  		</div>
+		 	<div class="panel-body">
+				<form class="tab-form-demo">
+					<uib-tabset active="activeForm4">
+						<uib-tab index="0" heading="Supervisor">
+							<ng-form name="EditarSupervisor">
+								<div class="form-group">
+									<p>NickName:</p>
+									<input type="text" class="form-control NickName" ng-model="NickName"/>
+									<p>Password:</p>
+									<input type="password" class="form-control Password" ng-model="Password"/>
+									<p>Nombre:</p>
+									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
+									<p>Apellidos:</p>
+									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
+									<p>Email:</p>
+									<input type="text" class="form-control Email" ng-model="Email"/>
+									<button class="btn btn-primary EditarSupervisor" type="button" ng-click="EditarSupervisor()">Editar Supervisor</button>
+								</div>
+							</ng-form>
+						</uib-tab>
+						<uib-tab index="1" heading="Operador">
+							<ng-form name="EditarOperador">
+								<div class="form-group">
+									<p>NickName:</p>
+									<input type="text" class="form-control NickName" ng-model="NickName"/>
+									<p>Password:</p>
+									<input type="password" class="form-control Password" ng-model="Password"/>
+									<p>Tipo Operador:</p>
+									<select class="tipoOperador"></select>
+									<p>Nombre:</p>
+									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
+									<p>Apellidos:</p>
+									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
+									<p>Email:</p>
+									<input type="text" class="form-control Email" ng-model="Email"/>
+									<button class="btn btn-primary EditarOperador" type="button" ng-click="EditarOperador()">Editar Operador</button>
+								</div>
+							</ng-form>
+						</uib-tab>
+						<uib-tab index="2" heading="Colaborador">
+							<ng-form name="EditarColaborador">
+								<div class="form-group">
+									<p>NickName:</p>
+									<input type="text" class="form-control NickName" ng-model="NickName"/>
+									<p>Password:</p>
+									<input type="password" class="form-control Password" ng-model="Password"/>
+									<p>Nombre:</p>
+									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
+									<p>Apellidos:</p>
+									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
+									<p>Email:</p>
+									<input type="text" class="form-control Email" ng-model="Email"/>
+									<button class="btn btn-primary EditarColaborador" type="button" ng-click="EditarColaborador()">Editar Colaborador</button>
+								</div>
+							</ng-form>
+						</uib-tab>
+					</uib-tabset>
+				</form>
+			</div>
+		</div>
+
+
+
+	   </div>
+	   <div class="animate-switch" ng-switch-when="Eliminar">
+
+
+	   	<div class="DatosZona panel panel-default panel-table col col-xs-6">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col col-xs-12">
+						<h1 class="panel-title">Eliminar Zona</h1>
+					</div>
+				</div>
+	  		</div>
+		 	<div class="panel-body">
+				<form class="tab-form-demo">
+					<uib-tabset active="activeForm3">
+						<uib-tab index="0" heading="Departamento">
+							<ng-form name="EliminarDepartamento">
+								<div class="form-group">
+									<p>Nombre Departamento:</p>
+									<input type="text" class="form-control Nombre" ng-model="NombreDepartamento"/>
+									<div class="modal-footer">
+									<button class="btn btn-primary EliminarDepartamento" type="button" ng-click="EliminarDepartamento()">Eliminar Departamento</button>
+									</div>
+								</div>
+							</ng-form>
+						</uib-tab>
+						<uib-tab index="1" heading="Ubicacion">
+							<ng-form name="EliminarUbicacion">
+								<div class="form-group">
+									<p>Asignar Departamento</p>
+									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+									<p>Nombre Ubicacion:</p>
+									<input type="text" class="form-control Nombre" ng-model="NombreUbicacion"/>
+									<div class="modal-footer">
+									<button class="btn btn-primary EliminarUbicacion" type="button" ng-click="EliminarUbicacion()">Eliminar Ubicacion</button>
+									</div>
+								</div>
+							</ng-form>
+						</uib-tab>
+						<uib-tab index="2" heading="Instalacion">
+							<ng-form name="EliminarInstalacion">
+								<div class="form-group">
+									<p>Asignar Departamento</p>
+									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+									<p>Asignar Ubicacion</p>
+									<select  class="form-control Ubicacion" ng-model="UbicacionSeleccionada" ng-change="setInstalacion()" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+									</select>
+									<p>Nombre Instalación:</p>
+									<input type="text" class="form-control Nombre" ng-model="NombreInstalacion"/>
+									<div class="modal-footer">
+									<button class="btn btn-primary EliminarInstalacion" type="button" ng-click="EliminarInstalacion()">Eliminar Instalacion</button>
+									</div>
+								</div>
+							</ng-form>
+						</uib-tab>
+					</uib-tabset>
+				</form>
+			</div>
+		</div>
+		<div class="DatosUsuario panel panel-default panel-table col col-xs-5">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col col-xs-12">
+						<h1 class="panel-title">Eliminar Usuario</h1>
+					</div>
+				</div>
+	  		</div>
+		 	<div class="panel-body">
+				<form class="tab-form-demo">
+					<uib-tabset active="activeForm4">
+						<uib-tab index="0" heading="Supervisor">
+							<ng-form name="EliminarSupervisor">
+								<div class="form-group">
+									<p>NickName:</p>
+									<input type="text" class="form-control NickName" ng-model="NickName"/>
+									<p>Password:</p>
+									<input type="password" class="form-control Password" ng-model="Password"/>
+									<p>Nombre:</p>
+									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
+									<p>Apellidos:</p>
+									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
+									<p>Email:</p>
+									<input type="text" class="form-control Email" ng-model="Email"/>
+									<button class="btn btn-primary EliminarSupervisor" type="button" ng-click="EliminarSupervisor()">Eliminar Supervisor</button>
+								</div>
+							</ng-form>
+						</uib-tab>
+						<uib-tab index="1" heading="Operador">
+							<ng-form name="EliminarOperador">
+								<div class="form-group">
+									<p>NickName:</p>
+									<input type="text" class="form-control NickName" ng-model="NickName"/>
+									<p>Password:</p>
+									<input type="password" class="form-control Password" ng-model="Password"/>
+									<p>Tipo Operador:</p>
+									<select class="tipoOperador"></select>
+									<p>Nombre:</p>
+									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
+									<p>Apellidos:</p>
+									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
+									<p>Email:</p>
+									<input type="text" class="form-control Email" ng-model="Email"/>
+									<button class="btn btn-primary EliminarOperador" type="button" ng-click="EliminarOperador()">Eliminar Operador</button>
+								</div>
+							</ng-form>
+						</uib-tab>
+						<uib-tab index="2" heading="Colaborador">
+							<ng-form name="EliminarColaborador">
+								<div class="form-group">
+									<p>NickName:</p>
+									<input type="text" class="form-control NickName" ng-model="NickName"/>
+									<p>Password:</p>
+									<input type="password" class="form-control Password" ng-model="Password"/>
+									<p>Nombre:</p>
+									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
+									<p>Apellidos:</p>
+									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
+									<p>Email:</p>
+									<input type="text" class="form-control Email" ng-model="Email"/>
+									<button class="btn btn-primary EliminarColaborador" type="button" ng-click="EliminarColaborador()">Eliminar Colaborador</button>
+								</div>
+							</ng-form>
+						</uib-tab>
+					</uib-tabset>
+				</form>
+			</div>
+		</div>
+
+
+	   </div>
 	</div>
 </div>
 <script>
-$
+	$('textarea.js-auto-size').textareaAutoSize();
+	$('.modal-body .form-group').css({ 'width': '45%', 'float': 'left' });
+	$('.modal-body .form-group:nth-child(2n+2)').css({ 'float': 'right', 'margin-right': '0px' });
 </script>

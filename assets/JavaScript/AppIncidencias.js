@@ -17,11 +17,6 @@
 			 	templateUrl: "Vistas/Estadísticas.html",
 	 	            	access: { requiredLogin: true }
 			})
-			.when("/administrar", {
-			 	//controller: "SupervisorController",
-			 	templateUrl: "Vistas/Admin.html",
-	 	            	access: { requiredLogin: true }
-			})
 			.otherwise({
             			redirectTo: "/"
 			});

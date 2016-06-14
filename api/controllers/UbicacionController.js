@@ -46,7 +46,7 @@ module.exports = {
 			Ubicacion.count().exec(function(err, count){
 				Ubicacion.create({
 								id:  			count +1,
-								Nombre: 		req.body.Nombre,
+								Nombre: 		req.body.NombreUbicacion,
 								Departamento: 	req.body.Departamento,
 								Instalaciones: 	[]
 							       }
