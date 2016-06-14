@@ -700,7 +700,7 @@ module.exports = {
 
 					var estadisticaByOperador = {
 
-						TotalOperador: 		Incidencias.length,
+						TotalAsignadas: 		Incidencias.length,
 						SinIniciar: 			estado1,
 						EnProceso: 		estado2,
 						Pendiente: 			estado3,
@@ -757,7 +757,7 @@ module.exports = {
 
 	estadisticaByInstalacion: function(req, res, next){
 
-		if( req.Rol == '1' && req.body.Instalacion != null ){
+		if( req.Rol == '1' ){
 		
 			Incidencia.find().where({
 
@@ -766,7 +766,7 @@ module.exports = {
 					Instalacion: 	  req.body.Instalacion	
 
 				}).then(function(Incidencias){
-					console.log(Incidencias);
+					
 					var total = 0;
 					var sistemas = 0; var mantenimiento = 0;
 					var estado1 = 0; var estado2 = 0; var estado3 = 0; var estado4 = 0;
