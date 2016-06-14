@@ -211,7 +211,7 @@ angular.module("AppIncidencias")
 		  					$scope.Secciones[5] = "Incidencias En Proceso";
 		  					$scope.Secciones[6] = "Incidencias Pendientes";
 		  					$scope.Secciones[7] = "Incidencias Completadas";
-							$scope.Datos[0] = $scope.Estadisticas.TotalInstalacion;
+							$scope.Datos[0] = $scope.Estadisticas.Total;
 							$scope.Datos[1] = $scope.Estadisticas.SinAsignar;
 							$scope.Datos[2] = $scope.Estadisticas.DeSistemas;
 							$scope.Datos[3] = $scope.Estadisticas.DeMantenimiento;

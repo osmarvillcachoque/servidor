@@ -800,7 +800,7 @@ module.exports = {
 
 					var estadisticaByInstalacion = {
 
-						TotalInstalacion: 		Incidencias.length,
+						Total: 		Incidencias.length,
 						SinAsignar: 		IncidenciaSinAsignar,
 						DeSistemas: 		sistemas,
 						DeMantenimiento: 	mantenimiento,
