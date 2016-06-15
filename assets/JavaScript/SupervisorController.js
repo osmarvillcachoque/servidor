@@ -188,23 +188,4 @@ angular.module("AppIncidencias")
 		$scope.Cancelar = function () {
 			$uibModalInstance.dismiss('cancel');
 		};
-		/*ADMIN*/
-		$scope.Admin = function () {
-			$scope.items = ['Crear', 'Editar','Eliminar'];
-  			$scope.selection = $scope.items[0];
-		};
-
-		
-		$scope.CrearDepartamento = function () {
-
-		};
-
-		$scope.CrearUbicacion = function () {
-
-		};
-
-		$scope.CrearInstalacion = function () {
-			
-		};
-
 	});

@@ -7,6 +7,10 @@ angular.module("AppIncidencias")
 				return $http.get('/Departamento');
 			},
 
+			getSupervisores: function() {
+				return $http.get('/Supervisores');
+			},
+
 			getOperadores: function() {
 				return $http.get('/Operadores');
 			},

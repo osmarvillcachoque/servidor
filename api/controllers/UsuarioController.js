@@ -1,5 +1,41 @@
 module.exports = {
 
+	findSupervisores: function(req, res, next) {
+		if ( req.Rol =='1' ) {
+
+			Usuario.find({
+				where:{ Rol: 1 }
+			}).then(function(Supervisores) {
+
+				if (Supervisores) {
+					var SupervisoresJSON = [];
+					Supervisores.forEach(function(Supervisor) {
+						SupervisorJSON = {
+							"ID":Supervisor.id,
+							"Nombre":Supervisor.Nombre,
+							"Apellidos":Supervisor.Apellidos
+						}
+						SupervisoresJSON.push(SupervisorJSON);
+					});
+
+					res.json(200, { Supervisores: SupervisoresJSON });
+				}
+				else { 
+					return null;
+					res.json(404, {err: 'No se han encontrado Incidencias.'});
+				}
+				
+
+			}).catch(function(error) { next(error); });
+
+		}
+		else {
+
+			return res.json(403, {err: 'Permiso denegado.'});
+		
+		}
+	},
+
 	findOperadores: function(req, res, next) { 
 
 		if ( req.Rol =='1' ) {

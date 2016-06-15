@@ -21,6 +21,10 @@ module.exports.routes = {
  		'DepartamentoController.find'
 	],
 
+	'GET r|^/Supervisores': [
+		'UsuarioController.findSupervisores'
+	],
+
 	'GET r|^/Operadores': [
 		'UsuarioController.findOperadores'
 	],
@@ -28,7 +32,6 @@ module.exports.routes = {
 	'GET r|^/Colaboradores': [
 		'UsuarioController.findColaboradores'
 	],
-
 
 	'POST r|^/ActualizarDatos':[
 		'UsuarioController.updateUsuario'

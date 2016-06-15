@@ -67,7 +67,7 @@
 				</form>
 			</div>
 		</div>
-		<div class="DatosUsuario panel panel-default panel-table col col-xs-5">
+		<div class="DatosUsuario panel panel-default panel-table col col-xs-6">
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col col-xs-12">
@@ -82,15 +82,15 @@
 							<ng-form name="CrearSupervisor">
 								<div class="form-group">
 									<p>NickName:</p>
-									<input type="text" class="form-control NickName" ng-model="NickName"/>
+									<input type="text" class="form-control NickName" ng-model="NickNameUsuario"/>
 									<p>Password:</p>
-									<input type="password" class="form-control Password" ng-model="Password"/>
+									<input type="password" class="form-control Password" ng-model="PasswordUsuario"/>
 									<p>Nombre:</p>
-									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
+									<input type="text" class="form-control Nombre" ng-model="NombreUsuario"/>
 									<p>Apellidos:</p>
-									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
+									<input type="text" class="form-control Apellidos" ng-model="ApellidosUsuario"/>
 									<p>Email:</p>
-									<input type="text" class="form-control Email" ng-model="Email"/>
+									<input type="text" class="form-control Email" ng-model="EmailUsuario"/>
 									<button class="btn btn-primary CrearSupervisor" type="button" ng-click="CrearSupervisor()">Crear Supervisor</button>
 								</div>
 							</ng-form>
@@ -99,17 +99,17 @@
 							<ng-form name="CrearOperador">
 								<div class="form-group">
 									<p>NickName:</p>
-									<input type="text" class="form-control NickName" ng-model="NickName"/>
+									<input type="text" class="form-control NickName" ng-model="NickNameUsuario"/>
 									<p>Password:</p>
-									<input type="password" class="form-control Password" ng-model="Password"/>
+									<input type="password" class="form-control Password" ng-model="PasswordUsuario"/>
 									<p>Tipo Operador:</p>
 									<select class="tipoOperador"></select>
 									<p>Nombre:</p>
-									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
+									<input type="text" class="form-control Nombre" ng-model="newNombreUsuario"/>
 									<p>Apellidos:</p>
-									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
+									<input type="text" class="form-control Apellidos" ng-model="ApellidosUsuario"/>
 									<p>Email:</p>
-									<input type="text" class="form-control Email" ng-model="Email"/>
+									<input type="text" class="form-control Email" ng-model="EmailUsuario"/>
 									<button class="btn btn-primary CrearOperador" type="button" ng-click="CrearOperador()">Crear Operador</button>
 								</div>
 							</ng-form>
@@ -118,15 +118,15 @@
 							<ng-form name="CrearColaborador">
 								<div class="form-group">
 									<p>NickName:</p>
-									<input type="text" class="form-control NickName" ng-model="NickName"/>
+									<input type="text" class="form-control NickName" ng-model="NickNameUsuario"/>
 									<p>Password:</p>
-									<input type="password" class="form-control Password" ng-model="Password"/>
+									<input type="password" class="form-control Password" ng-model="PasswordUsuario"/>
 									<p>Nombre:</p>
-									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
+									<input type="text" class="form-control Nombre" ng-model="newNombreUsuario"/>
 									<p>Apellidos:</p>
-									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
+									<input type="text" class="form-control Apellidos" ng-model="ApellidosUsuario"/>
 									<p>Email:</p>
-									<input type="text" class="form-control Email" ng-model="Email"/>
+									<input type="text" class="form-control Email" ng-model="EmailUsuario"/>
 									<button class="btn btn-primary CrearColaborador" type="button" ng-click="CrearColaborador()">Crear Colaborador</button>
 								</div>
 							</ng-form>
@@ -155,41 +155,56 @@
 					<uib-tabset active="activeForm3">
 						<uib-tab index="0" heading="Departamento">
 							<ng-form name="EditarDepartamento">
-								<div class="form-group">
-									<p>Nombre Departamento:</p>
-									<input type="text" class="form-control Nombre" ng-model="NombreDepartamento"/>
-									<div class="modal-footer">
+								<div class="panel-body">
+									<table class="table table-bordered table-list">
+									<tbody ng-hide="Departamentos.length < 0">
+									<tr ng-repeat="Departamento in Departamentos">
+										<td>{{ Departamento.Nombre }}</td>	
+									</tr>
+									</tbody>
+									<td class="modal-footer">
 									<button class="btn btn-primary EditarDepartamento" type="button" ng-click="EditarDepartamento()">Editar Departamento</button>
-									</div>
+									</td>
+									</table>
 								</div>
 							</ng-form>
 						</uib-tab>
 						<uib-tab index="1" heading="Ubicacion">
 							<ng-form name="EditarUbicacion">
-								<div class="form-group">
-									<p>Asignar Departamento</p>
+								<div class="panel-body">
+									<table class="table table-bordered table-list">
+									<tbody ng-hide="Departamentos.length < 0">
+									<p>Seleccionar Departamento</p>
 									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
-									<p>Nombre Ubicacion:</p>
-									<input type="text" class="form-control Nombre" ng-model="NombreUbicacion"/>
-									<div class="modal-footer">
+									<tr ng-repeat="Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+										<td>{{ Ubicacion.Nombre }}</td>	
+									</tr>
+									</tbody>
+									<td class="modal-footer">
 									<button class="btn btn-primary EditarUbicacion" type="button" ng-click="EditarUbicacion()">Editar Ubicacion</button>
-									</div>
+									</td>
+									</table>
 								</div>
 							</ng-form>
 						</uib-tab>
 						<uib-tab index="2" heading="Instalacion">
 							<ng-form name="EditarInstalacion">
-								<div class="form-group">
-									<p>Asignar Departamento</p>
-									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
-									<p>Asignar Ubicacion</p>
-									<select  class="form-control Ubicacion" ng-model="UbicacionSeleccionada" ng-change="setInstalacion()" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
-									</select>
-									<p>Nombre Instalación:</p>
-									<input type="text" class="form-control Nombre" ng-model="NombreInstalacion"/>
-									<div class="modal-footer">
-									<button class="btn btn-primary EditarInstalacion" type="button" ng-click="EditarInstalacion()">Editar Instalacion</button>
-									</div>
+								<div class="panel-body">
+								<p>Seleccionar Departamento</p>
+								<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+								<p>Seleccionar Ubicacion</p>
+								<select  class="form-control Ubicacion" ng-model="UbicacionSeleccionada" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+								</select>
+
+								<input ng-model="filtro" id="search" class="form-control" placeholder="Filtrar Instalaciones">
+								<div class="listado">
+									<table class="table table-bordered table-list">
+									<tr ng-repeat="Instalacion in UbicacionSeleccionada.Instalaciones | filter:filtro">
+										<td>{{Instalacion.Nombre}}</td>
+									</tr>
+									</table>
+								</div>
+								<button class="btn btn-primary EditarInstalacion" type="button" ng-click="EditarInstalacion()">Editar Instalacion</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -197,7 +212,7 @@
 				</form>
 			</div>
 		</div>
-		<div class="DatosUsuario panel panel-default panel-table col col-xs-5">
+		<div class="DatosUsuario panel panel-default panel-table col col-xs-6">
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col col-xs-12">
@@ -211,16 +226,14 @@
 						<uib-tab index="0" heading="Supervisor">
 							<ng-form name="EditarSupervisor">
 								<div class="form-group">
-									<p>NickName:</p>
-									<input type="text" class="form-control NickName" ng-model="NickName"/>
-									<p>Password:</p>
-									<input type="password" class="form-control Password" ng-model="Password"/>
-									<p>Nombre:</p>
-									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
-									<p>Apellidos:</p>
-									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
-									<p>Email:</p>
-									<input type="text" class="form-control Email" ng-model="Email"/>
+									<input ng-model="filtroUser" id="search" class="form-control" placeholder="Filtrar Supervisores">
+									<div class="listado">
+									<table class="table table-bordered table-list">
+									<tr ng-repeat="Supervisor in Supervisores | filter:filtroUser">
+										<td>{{Supervisor.Nombre}}</td>
+									</tr>
+									</table>
+									</div>
 									<button class="btn btn-primary EditarSupervisor" type="button" ng-click="EditarSupervisor()">Editar Supervisor</button>
 								</div>
 							</ng-form>
@@ -228,18 +241,14 @@
 						<uib-tab index="1" heading="Operador">
 							<ng-form name="EditarOperador">
 								<div class="form-group">
-									<p>NickName:</p>
-									<input type="text" class="form-control NickName" ng-model="NickName"/>
-									<p>Password:</p>
-									<input type="password" class="form-control Password" ng-model="Password"/>
-									<p>Tipo Operador:</p>
-									<select class="tipoOperador"></select>
-									<p>Nombre:</p>
-									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
-									<p>Apellidos:</p>
-									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
-									<p>Email:</p>
-									<input type="text" class="form-control Email" ng-model="Email"/>
+									<input ng-model="filtroUser" id="search" class="form-control" placeholder="Filtrar Operadores">
+									<div class="listado">
+									<table class="table table-bordered table-list">
+									<tr ng-repeat="Operador in Operadores | filter:filtroUser">
+										<td>{{Operador.Nombre}}</td>
+									</tr>
+									</table>
+									</div>
 									<button class="btn btn-primary EditarOperador" type="button" ng-click="EditarOperador()">Editar Operador</button>
 								</div>
 							</ng-form>
@@ -247,16 +256,14 @@
 						<uib-tab index="2" heading="Colaborador">
 							<ng-form name="EditarColaborador">
 								<div class="form-group">
-									<p>NickName:</p>
-									<input type="text" class="form-control NickName" ng-model="NickName"/>
-									<p>Password:</p>
-									<input type="password" class="form-control Password" ng-model="Password"/>
-									<p>Nombre:</p>
-									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
-									<p>Apellidos:</p>
-									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
-									<p>Email:</p>
-									<input type="text" class="form-control Email" ng-model="Email"/>
+									<input ng-model="filtroUser" id="search" class="form-control" placeholder="Filtrar Colaboradores">
+									<div class="listado">
+									<table class="table table-bordered table-list">
+									<tr ng-repeat="Colaborador in Colaboradores | filter:filtroUser">
+										<td>{{Colaborador.Nombre}}</td>
+									</tr>
+									</table>
+									</div>
 									<button class="btn btn-primary EditarColaborador" type="button" ng-click="EditarColaborador()">Editar Colaborador</button>
 								</div>
 							</ng-form>
@@ -282,44 +289,56 @@
 	  		</div>
 		 	<div class="panel-body">
 				<form class="tab-form-demo">
-					<uib-tabset active="activeForm3">
+					<uib-tabset active="activeForm5">
 						<uib-tab index="0" heading="Departamento">
 							<ng-form name="EliminarDepartamento">
-								<div class="form-group">
-									<p>Nombre Departamento:</p>
-									<input type="text" class="form-control Nombre" ng-model="NombreDepartamento"/>
-									<div class="modal-footer">
-									<button class="btn btn-primary EliminarDepartamento" type="button" ng-click="EliminarDepartamento()">Eliminar Departamento</button>
-									</div>
+								<div class="panel-body">
+									<table class="table table-bordered table-list">
+									<tr ng-repeat="Departamento in Departamentos">
+										<td>{{ Departamento.Nombre }}</td>	
+									</tr>
+									<td class="modal-footer">
+									<button class="btn btn-primary EliminarDepartamento" type="button" ng-click="EditarDepartamento()">Eliminar Departamento</button>
+									</td>
+									</table>
 								</div>
 							</ng-form>
 						</uib-tab>
 						<uib-tab index="1" heading="Ubicacion">
 							<ng-form name="EliminarUbicacion">
-								<div class="form-group">
-									<p>Asignar Departamento</p>
+								<div class="panel-body">
+									<table class="table table-bordered table-list">
+									<tbody ng-hide="Departamentos.length < 0">
+									<p>Seleccionar Departamento</p>
 									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
-									<p>Nombre Ubicacion:</p>
-									<input type="text" class="form-control Nombre" ng-model="NombreUbicacion"/>
-									<div class="modal-footer">
+									<tr ng-repeat="Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+										<td>{{ Ubicacion.Nombre }}</td>	
+									</tr>
+									</tbody>
+									<td class="modal-footer">
 									<button class="btn btn-primary EliminarUbicacion" type="button" ng-click="EliminarUbicacion()">Eliminar Ubicacion</button>
-									</div>
+									</td>
+									</table>
 								</div>
 							</ng-form>
 						</uib-tab>
 						<uib-tab index="2" heading="Instalacion">
 							<ng-form name="EliminarInstalacion">
-								<div class="form-group">
-									<p>Asignar Departamento</p>
-									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
-									<p>Asignar Ubicacion</p>
-									<select  class="form-control Ubicacion" ng-model="UbicacionSeleccionada" ng-change="setInstalacion()" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
-									</select>
-									<p>Nombre Instalación:</p>
-									<input type="text" class="form-control Nombre" ng-model="NombreInstalacion"/>
-									<div class="modal-footer">
-									<button class="btn btn-primary EliminarInstalacion" type="button" ng-click="EliminarInstalacion()">Eliminar Instalacion</button>
-									</div>
+								<div class="panel-body">
+								<p>Seleccionar Departamento</p>
+								<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+								<p>Seleccionar Ubicacion</p>
+								<select  class="form-control Ubicacion" ng-model="UbicacionSeleccionada" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+								</select>
+								<input ng-model="filtro" id="search" class="form-control" placeholder="Filtrar Instalaciones">
+								<div class="listado">
+									<table class="table table-bordered table-list">
+									<tr ng-repeat="Instalacion in UbicacionSeleccionada.Instalaciones | filter:filtro">
+										<td>{{Instalacion.Nombre}}</td>
+									</tr>
+									</table>
+								</div>
+								<button class="btn btn-primary EliminarInstalacion" type="button" ng-click="EliminarInstalacion()">Eliminar Instalacion</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -327,7 +346,7 @@
 				</form>
 			</div>
 		</div>
-		<div class="DatosUsuario panel panel-default panel-table col col-xs-5">
+		<div class="DatosUsuario panel panel-default panel-table col col-xs-6">
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col col-xs-12">
@@ -337,57 +356,49 @@
 	  		</div>
 		 	<div class="panel-body">
 				<form class="tab-form-demo">
-					<uib-tabset active="activeForm4">
+					<uib-tabset active="activeForm6">
 						<uib-tab index="0" heading="Supervisor">
 							<ng-form name="EliminarSupervisor">
 								<div class="form-group">
-									<p>NickName:</p>
-									<input type="text" class="form-control NickName" ng-model="NickName"/>
-									<p>Password:</p>
-									<input type="password" class="form-control Password" ng-model="Password"/>
-									<p>Nombre:</p>
-									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
-									<p>Apellidos:</p>
-									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
-									<p>Email:</p>
-									<input type="text" class="form-control Email" ng-model="Email"/>
-									<button class="btn btn-primary EliminarSupervisor" type="button" ng-click="EliminarSupervisor()">Eliminar Supervisor</button>
+									<input ng-model="filtroUser" id="search" class="form-control" placeholder="Filtrar Supervisores">
+									<div class="listado">
+									<table class="table table-bordered table-list">
+									<tr ng-repeat="Supervisor in Supervisores | filter:filtroUser">
+										<td>{{Supervisor.Nombre}}</td>
+									</tr>
+									</table>
+									</div>
+									<button class="btn btn-primary EliminarSupervisor" type="button" ng-click="EliminarUsuario()">Eliminar Supervisor</button>
 								</div>
 							</ng-form>
 						</uib-tab>
 						<uib-tab index="1" heading="Operador">
 							<ng-form name="EliminarOperador">
 								<div class="form-group">
-									<p>NickName:</p>
-									<input type="text" class="form-control NickName" ng-model="NickName"/>
-									<p>Password:</p>
-									<input type="password" class="form-control Password" ng-model="Password"/>
-									<p>Tipo Operador:</p>
-									<select class="tipoOperador"></select>
-									<p>Nombre:</p>
-									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
-									<p>Apellidos:</p>
-									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
-									<p>Email:</p>
-									<input type="text" class="form-control Email" ng-model="Email"/>
-									<button class="btn btn-primary EliminarOperador" type="button" ng-click="EliminarOperador()">Eliminar Operador</button>
+									<input ng-model="filtroUser" id="search" class="form-control" placeholder="Filtrar Instalaciones">
+									<div class="listado">
+									<table class="table table-bordered table-list">
+									<tr ng-repeat="Operadores in Operadores | filter:filtroUser">
+										<td>{{Operadores.Nombre}}</td>
+									</tr>
+									</table>
+									</div>
+									<button class="btn btn-primary EliminarOperador" type="button" ng-click="EliminarUsuario()">Eliminar Operador</button>
 								</div>
 							</ng-form>
 						</uib-tab>
 						<uib-tab index="2" heading="Colaborador">
 							<ng-form name="EliminarColaborador">
 								<div class="form-group">
-									<p>NickName:</p>
-									<input type="text" class="form-control NickName" ng-model="NickName"/>
-									<p>Password:</p>
-									<input type="password" class="form-control Password" ng-model="Password"/>
-									<p>Nombre:</p>
-									<input type="text" class="form-control Nombre" ng-model="newNombre"/>
-									<p>Apellidos:</p>
-									<input type="text" class="form-control Apellidos" ng-model="Apellidos"/>
-									<p>Email:</p>
-									<input type="text" class="form-control Email" ng-model="Email"/>
-									<button class="btn btn-primary EliminarColaborador" type="button" ng-click="EliminarColaborador()">Eliminar Colaborador</button>
+									<input ng-model="filtroUser" id="search" class="form-control" placeholder="Filtrar Colaboradores">
+									<div class="listado">
+									<table class="table table-bordered table-list">
+									<tr ng-repeat="Colaborador in Colaboradores | filter:filtroUser">
+										<td>{{Colaborador.Nombre}}</td>
+									</tr>
+									</table>
+									</div>
+									<button class="btn btn-primary EliminarColaborador" type="button" ng-click="EliminarUsuario()">Eliminar Colaborador</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -405,3 +416,9 @@
 	$('.modal-body .form-group').css({ 'width': '45%', 'float': 'left' });
 	$('.modal-body .form-group:nth-child(2n+2)').css({ 'float': 'right', 'margin-right': '0px' });
 </script>
+<style>
+.listado{
+	height: 250px;
+	overflow-y: scroll;
+}
+</style>
