@@ -188,4 +188,5 @@ angular.module("AppIncidencias")
 		$scope.Cancelar = function () {
 			$uibModalInstance.dismiss('cancel');
 		};
+
 	});

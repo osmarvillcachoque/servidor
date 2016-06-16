@@ -200,18 +200,4 @@ angular.module("AppIncidencias")
 
 		};
 
-		$scope.Admin = function () {
-
-			if ( $rootScope.Rol == '1' ) {
-				$uibModal.open({
-					templateUrl: "Vistas/Admin.html",
-					controller: 'AdminController',
-					size: 'lg',
-					resolve: {
-						IncidenciaID: null
-					}
-				});
-			}
-		};
-
 	});

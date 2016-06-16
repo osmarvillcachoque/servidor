@@ -7,10 +7,6 @@ angular.module("AppIncidencias")
 				return $http.get('/Departamento');
 			},
 
-			getSupervisores: function() {
-				return $http.get('/Supervisores');
-			},
-
 			getOperadores: function() {
 				return $http.get('/Operadores');
 			},
@@ -29,10 +25,6 @@ angular.module("AppIncidencias")
 
 			getTiposIncidencia: function() {
 				return $http.get('/TiposIncidencia');
-			},
-
-			getTiposOperador: function() {
-				return $http.get('/TiposOperador');
 			},
 
 			getIncidencia: function(IncidenciaID) {
@@ -71,8 +63,11 @@ angular.module("AppIncidencias")
 					    		});
 			},
 
+			EstadisticasGlobales: function($scope) {
+				return $http.post('/Estadistica');
+			},
+
 			EstadisticasColaborador: function($scope) {
-				console.log($scope);
 				return $http.post('/EstadisticaColaborador', { 
 								FechaInicio: $scope.Fechas.Inicio, 
 						    		FechaFin: $scope.Fechas.Fin, 
@@ -94,23 +89,6 @@ angular.module("AppIncidencias")
 						    		FechaFin: $scope.Fechas.Fin, 
 					    			Instalacion: $scope.Instalacion.Seleccionada.id
 					    		});
-			},
-
-			/*ADMIN*/
-			CrearDepartamento: function($scope) {
-				console.log($scope.NombreDepartamento);
-				return $http.post('/Departamento', { 
-								Nombre: $scope.NombreDepartamento, 
-								Ubicaciones: []
-					    		});
-			},
-
-			CrearUbicacion: function($scope) {
-				
-			},
-
-			CrearInstalacion: function($scope) {
-				
 			}
 
 		}
