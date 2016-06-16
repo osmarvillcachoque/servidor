@@ -31,6 +31,10 @@ angular.module("AppIncidencias")
 				return $http.get('/TiposIncidencia');
 			},
 
+			getTiposOperador: function() {
+				return $http.get('/TiposOperador');
+			},
+
 			getIncidencia: function(IncidenciaID) {
 				return $http.get('/Incidencia/' + IncidenciaID);
 			},
@@ -68,6 +72,7 @@ angular.module("AppIncidencias")
 			},
 
 			EstadisticasColaborador: function($scope) {
+				console.log($scope);
 				return $http.post('/EstadisticaColaborador', { 
 								FechaInicio: $scope.Fechas.Inicio, 
 						    		FechaFin: $scope.Fechas.Fin, 
@@ -93,7 +98,11 @@ angular.module("AppIncidencias")
 
 			/*ADMIN*/
 			CrearDepartamento: function($scope) {
-			
+				console.log($scope.NombreDepartamento);
+				return $http.post('/Departamento', { 
+								Nombre: $scope.NombreDepartamento, 
+								Ubicaciones: []
+					    		});
 			},
 
 			CrearUbicacion: function($scope) {

@@ -20,17 +20,17 @@
 					</div>
 				</div>
 	  		</div>
-		 	<div class="panel-body">
+		 	<div class="form-group">
 				<form class="tab-form-demo">
 					<uib-tabset active="activeForm">
 						<uib-tab index="0" heading="Departamento">
-							<ng-form name="CrearDepartamento">
+							<ng-form name="CrearDepartamentoForm">
 								<div class="form-group">
 									<p>Nombre Departamento:</p>
-									<input type="text" class="form-control Nombre" ng-model="NombreDepartamento"/>
-									<div class="modal-footer">
-									<button class="btn btn-primary CrearDepartamento" type="button" ng-click="CrearDepartamento()">Crear Departamento</button>
-									</div>
+									<input type="text" class="form-control" ng-model="NombreDepartamento"/>
+
+									<button id="unno" class="btn btn-primary" type="button" ng-click="CrearDepartamento()">Crear Departamento</button>
+								
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -75,7 +75,7 @@
 					</div>
 				</div>
 	  		</div>
-		 	<div class="panel-body">
+		 	<div class="form-group">
 				<form class="tab-form-demo">
 					<uib-tabset active="activeForm2">
 						<uib-tab index="0" heading="Supervisor">
@@ -103,7 +103,7 @@
 									<p>Password:</p>
 									<input type="password" class="form-control Password" ng-model="PasswordUsuario"/>
 									<p>Tipo Operador:</p>
-									<select class="tipoOperador"></select>
+									<select class="tipoOperador" ng-model="tipoOperadorSeleccionado" ng-options="tipoOperador for tipoOperador in tiposOperador track by tipoOperador"></select>
 									<p>Nombre:</p>
 									<input type="text" class="form-control Nombre" ng-model="newNombreUsuario"/>
 									<p>Apellidos:</p>
@@ -150,20 +150,22 @@
 					</div>
 				</div>
 	  		</div>
-		 	<div class="panel-body">
+		 	<div class="form-group">
 				<form class="tab-form-demo">
 					<uib-tabset active="activeForm3">
 						<uib-tab index="0" heading="Departamento">
 							<ng-form name="EditarDepartamento">
-								<div class="panel-body">
+								<div class="form-group">
 									<table class="table table-bordered table-list">
-									<tbody ng-hide="Departamentos.length < 0">
-									<tr ng-repeat="Departamento in Departamentos">
+									
+									<tr 	ng-click="setDepartamentoSeleccionado(Departamento.id);"
+										ng-class="{Seleccionado: DepartamentoSeleccionado === Departamento.id}" 
+										ng-repeat="Departamento in Departamentos">
 										<td>{{ Departamento.Nombre }}</td>	
 									</tr>
-									</tbody>
+									
 									<td class="modal-footer">
-									<button class="btn btn-primary EditarDepartamento" type="button" ng-click="EditarDepartamento()">Editar Departamento</button>
+									<button class="btn btn-primary EditarDepartamento" type="button" ng-click="EditarDepartamento(null)">Editar Departamento</button>
 									</td>
 									</table>
 								</div>
@@ -171,15 +173,15 @@
 						</uib-tab>
 						<uib-tab index="1" heading="Ubicacion">
 							<ng-form name="EditarUbicacion">
-								<div class="panel-body">
-									<table class="table table-bordered table-list">
-									<tbody ng-hide="Departamentos.length < 0">
+								<div class="form-group">
 									<p>Seleccionar Departamento</p>
-									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
-									<tr ng-repeat="Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+									<table class="table table-bordered table-list">
+									<tr 	ng-click="setUbicacionSeleccionada(Ubicacion.id);"
+										ng-class="{Seleccionado: UbicacionSeleccionada === Ubicacion.id}" 
+										ng-repeat="Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
 										<td>{{ Ubicacion.Nombre }}</td>	
 									</tr>
-									</tbody>
 									<td class="modal-footer">
 									<button class="btn btn-primary EditarUbicacion" type="button" ng-click="EditarUbicacion()">Editar Ubicacion</button>
 									</td>
@@ -189,17 +191,19 @@
 						</uib-tab>
 						<uib-tab index="2" heading="Instalacion">
 							<ng-form name="EditarInstalacion">
-								<div class="panel-body">
+								<div class="form-group">
 								<p>Seleccionar Departamento</p>
 								<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
 								<p>Seleccionar Ubicacion</p>
-								<select  class="form-control Ubicacion" ng-model="UbicacionSeleccionada" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+								<select class="form-control" ng-model="UbicacionSeleccionada" ng-change="setInstalacion()" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
 								</select>
-
+								<p>Instalaciones:</p>
 								<input ng-model="filtro" id="search" class="form-control" placeholder="Filtrar Instalaciones">
 								<div class="listado">
 									<table class="table table-bordered table-list">
-									<tr ng-repeat="Instalacion in UbicacionSeleccionada.Instalaciones | filter:filtro">
+									<tr 	ng-click="setInstalacionSeleccionada(Instalacion.id);"
+										ng-class="{Seleccionado: InstalacionSeleccionada === Instalacion.id}"
+										ng-repeat="Instalacion in UbicacionSeleccionada.Instalaciones | filter:filtro">
 										<td>{{Instalacion.Nombre}}</td>
 									</tr>
 									</table>
@@ -220,7 +224,7 @@
 					</div>
 				</div>
 	  		</div>
-		 	<div class="panel-body">
+		 	<div class="form-group">
 				<form class="tab-form-demo">
 					<uib-tabset active="activeForm4">
 						<uib-tab index="0" heading="Supervisor">
@@ -287,12 +291,12 @@
 					</div>
 				</div>
 	  		</div>
-		 	<div class="panel-body">
+		 	<div class="form-group">
 				<form class="tab-form-demo">
 					<uib-tabset active="activeForm5">
 						<uib-tab index="0" heading="Departamento">
 							<ng-form name="EliminarDepartamento">
-								<div class="panel-body">
+								<div class="form-group">
 									<table class="table table-bordered table-list">
 									<tr ng-repeat="Departamento in Departamentos">
 										<td>{{ Departamento.Nombre }}</td>	
@@ -306,7 +310,7 @@
 						</uib-tab>
 						<uib-tab index="1" heading="Ubicacion">
 							<ng-form name="EliminarUbicacion">
-								<div class="panel-body">
+								<div class="form-group">
 									<table class="table table-bordered table-list">
 									<tbody ng-hide="Departamentos.length < 0">
 									<p>Seleccionar Departamento</p>
@@ -324,7 +328,7 @@
 						</uib-tab>
 						<uib-tab index="2" heading="Instalacion">
 							<ng-form name="EliminarInstalacion">
-								<div class="panel-body">
+								<div class="form-group">
 								<p>Seleccionar Departamento</p>
 								<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
 								<p>Seleccionar Ubicacion</p>
@@ -354,7 +358,7 @@
 					</div>
 				</div>
 	  		</div>
-		 	<div class="panel-body">
+		 	<div class="form-group">
 				<form class="tab-form-demo">
 					<uib-tabset active="activeForm6">
 						<uib-tab index="0" heading="Supervisor">

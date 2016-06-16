@@ -355,6 +355,15 @@ module.exports = {
 			return res.json(403, {err: 'Permiso denegado.'});
 		
 		}
+	},
+
+	TiposOperador: function (req, res, next) {
+		var Tipos = Usuario.attributes.tipoOperador.enum;
+
+		if ( req.Rol == '1' ) {
+			res.json(200, { Tipos });	
+		}
 	}
+
 
 }
