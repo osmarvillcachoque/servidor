@@ -41,7 +41,7 @@ module.exports.routes = {
 		'UsuarioController.updateUsuario'
 	],
 
-	'GET r|^/Estadistica':[
+	'POST r|^/Estadistica':[
 		'IncidenciaController.estadistica'
 	],
 
