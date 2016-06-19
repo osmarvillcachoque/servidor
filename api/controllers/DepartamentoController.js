@@ -51,7 +51,7 @@ module.exports = {
 			Departamento.count().exec(function(err, count){
 				Departamento.create({
 								id: count + 1,
-								Nombre: req.body.NombreDepartamento,
+								Nombre: req.body.Nombre,
 								Ubicaciones: []
 							       }
 				).exec(function (err, Departamento) {
@@ -80,30 +80,22 @@ module.exports = {
 
 			if ( req.Rol == '1' ) {
 
-				Departamento.findOne(req.params.id).then(function(Departamento) {	
-
-					if ( Departamento ) {	
-
-						Departamento.update(
-									{ id: Number(req.params.id) }, 		
-									{
-										Nombre: req.body.Nombre
-									}
-						).exec(function (err, updated){
-
-							if (err) {
-								return err;
+				Departamento.update(
+							{ id: Number(req.params.id) }, 		
+							{
+								Nombre: req.body.Nombre
 							}
+				).exec(function (err, updated){
 
-							if (updated) {
-								res.json(200, { msg: 'El departamento ha sido actualizado satisfactoriamente.' });
-							}
-
-						});
-
+					if (err) {
+						res.json(404, { msg: 'Error al actualizar Departamento.' });
 					}
 
-				}).catch(function(error){ next(error); });	
+					if (updated) {
+						res.json(200, { msg: 'El departamento ha sido actualizado satisfactoriamente.' });
+					}
+
+				});
 
 			}
 

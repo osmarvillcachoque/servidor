@@ -46,7 +46,7 @@ module.exports = {
 			Ubicacion.count().exec(function(err, count){
 				Ubicacion.create({
 								id:  			count +1,
-								Nombre: 		req.body.NombreUbicacion,
+								Nombre: 		req.body.Nombre,
 								Departamento: 	req.body.Departamento,
 								Instalaciones: 	[]
 							       }
@@ -71,45 +71,30 @@ module.exports = {
 
 	update: function (req, res) {
 
-		Ubicacion.findOne(req.params.id).then(function(Ubicacion) {	
+		if ( req.Rol == '1' ) {
 
-		if ( Ubicacion ) {	
+			Ubicacion.update(
+						{ id: Number(req.params.id) }, 		
+						{
+							Nombre: req.body.Nombre,
+							Departamento: req.body.Departamento
+						}
+			).exec(function (err, updated){
 
-			if ( req.Rol == '1' ) {
-
-				var DepartamentoID = Number(Ubicacion.Departamento.id);
-				
-				if( DepartamentoID != req.body.Departamento ){
-
-					DepartamentoID = req.body.Departamento;
+				if (err) {
+					res.json(404, { msg: 'Error al actualizar Ubicacion.' });
 				}
 
-				Ubicacion.update(
-							{ id: Number(req.params.id) }, 		
-							{
-								Nombre: req.body.Nombre,
-								Departamento: DepartamentoID
-							}
-				).exec(function (err, updated){
+				if (updated) {
+					res.json(200, { msg: 'La ubicación ha sido actualizada satisfactoriamente.' });	
+				}
 
-					if (err) {
-						return err;
-					}
-
-					if (updated) {
-						res.json(200, { msg: 'La ubicación ha sido actualizada satisfactoriamente.' });	
-					}
-
-				});
-
-			}
-			else {
-				return res.json(403, {err: 'Permiso denegado.'});
-			}
+			});
 
 		}
-
-		}).catch(function(error){ next(error); });
+		else {
+			return res.json(403, {err: 'Permiso denegado.'});
+		}
 
 	},
 

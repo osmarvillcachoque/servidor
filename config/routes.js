@@ -25,6 +25,10 @@ module.exports.routes = {
  		'DepartamentoController.find'
 	],
 
+	'GET r|^/Usuarios': [
+		'UsuarioController.findUsuarios'
+	],
+
 	'GET r|^/Supervisores': [
 		'UsuarioController.findSupervisores'
 	],

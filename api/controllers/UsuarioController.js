@@ -1,4 +1,43 @@
 module.exports = {
+	findUsuarios: function(req, res, next) {
+		if ( req.Rol =='1' ) {
+
+			Usuario.find().populateAll().then(function(Usuarios) {
+
+				if (Usuarios) {
+					var UsuariosJSON = [];
+					Usuarios.forEach(function(Usuario) {
+						UsuarioJSON = {
+							"ID":Usuario.id,
+							"NickName": Usuario.NickName,
+							"Nombre":Usuario.Nombre,
+							"Apellidos":Usuario.Apellidos,
+							"Email": Usuario.Email,
+							"Rol": Usuario.Rol.id
+						};
+						if ( Usuario.Rol.id == '2' ) {
+							UsuarioJSON.tipoOperador = Usuario.tipoOperador;
+						}
+						UsuariosJSON.push(UsuarioJSON);
+					});
+
+					res.json(200, { Usuarios: UsuariosJSON });
+				}
+				else { 
+					return null;
+					res.json(404, {err: 'No se han encontrado Incidencias.'});
+				}
+				
+
+			}).catch(function(error) { next(error); });
+
+		}
+		else {
+
+			return res.json(403, {err: 'Permiso denegado.'});
+		
+		}
+	},
 
 	findSupervisores: function(req, res, next) {
 		if ( req.Rol =='1' ) {
@@ -144,8 +183,8 @@ module.exports = {
 
 					NickName: 		req.body.NickName,
 					Password: 		req.body.Password,
-					tipoOperador: 	req.body.tipoOperador,
 					Rol: 			req.body.Rol,
+					tipoOperador: 	req.body.tipoOperador,
 					Nombre: 		req.body.Nombre,
 					Apellidos: 		req.body.Apellidos,
 					Email: 		req.body.Email
@@ -221,118 +260,68 @@ module.exports = {
 
 	},
 
-	updateUsuario: function (req, res) {
+	update: function (req, res, next) {
 
-		if ( req.Rol == '1' ) {
+		Usuario.findOne(req.params.id).populateAll().then(function(usuario){
+			if(usuario){
+				if ( req.Rol == '1' ) {
+					console.log(req.params);
+					console.log(req.body);
+					if ( req.body.tipoOperador == null ) {
+						Usuario.update(
+									{ id: Number(req.params.id) },
+									{ 
+										NickName: 		req.body.NickName,
+										Nombre: 		req.body.Nombre,
+										Apellidos: 		req.body.Apellidos,
+										Email: 		req.body.Email
+									 }
 
-			if ( req.body.Rol == '1' && req.body.tipoOperador == null && req.body.Usuario == null ) {
-				//SUPERVISOR ACTUALIZA SUS DATOS
-				console.log("Super actualiza sus datos");
-				Usuario.update(
-							{ id: req.Usuario.id },
-							{ 
-								NickName: 		req.body.NickName,
-								Password: 		req.body.Password,
-								Rol: 			req.body.Rol,
-								Nombre: 		req.body.Nombre,
-								Apellidos: 		req.body.Apellidos,
-								Email: 		req.body.Email
-							 }
+						).exec(function (err, updated) {
 
-				).exec(function(err,updated) {
-
-					if (err) {
-						return err;
-					}
-					else {
-						res.json(200, {msg: 'Sus datos han sido actualizados satisfactoriamente.'});
-					}
-
-				});
-
-			}
-			else if ( req.body.Rol == '2' && req.body.tipoOperador != null ) {
-				//SUPERVISOR ACTUALIZA DATOS DE UN OPERADOR
-				console.log("Super actualiza el dato de un Operador");
-				Usuario.update(
-							{ id: req.body.Usuario },
-							{ 
-								NickName: 		req.body.NickName,
-								Password: 		req.body.Password,
-								tipoOperador: 	req.body.tipoOperador,
-								Rol: 			req.body.Rol,
-								Nombre: 		req.body.Nombre,
-								Apellidos: 		req.body.Apellidos,
-								Email: 		req.body.Email
-
+							if (err) {
+								res.json(404, { msg: 'Error al actualizar Usuairo.' });
 							}
-				).exec(function(err, updated) {
-					if (err) {
-						return err;
-					}
-					else {
-						res.json(200, {msg: 'Los datos del Usuario han sido actualizados satisfactoriamente.'});
-					}
-				});
 
-			}
-			else if ( req.body.Rol == '3' && req.body.tipoOperador == null ) {
-				//SUPERVISOR ACTUALIZA DATOS DE UN COLABORADOR
-				console.log("Super actualiza el dato de un Colaborador");
-				Usuario.update(
-							{ id: req.body.Usuario },
-							{ 
-								NickName: 		req.body.NickName,
-								Password: 		req.body.Password,
-								Rol: 			req.body.Rol,
-								Nombre: 		req.body.Nombre,
-								Apellidos: 		req.body.Apellidos,
-								Email: 		req.body.Email
-
+							if (updated) {
+								res.json(200, { msg: 'Usuario actualizado satisfactoriamente.' });	
 							}
-				).exec(function(err, updated) {
-					if (err) {
-						return err;
+
+						});
+
 					}
-					else {
-						res.json(200, {msg: 'Los datos del Usuario han sido actualizados satisfactoriamente.'});
+					if ( req.body.tipoOperador != null ) {
+						console.log("Super actualiza el dato de un Operador");
+						Usuario.update(
+									{ id: Number(req.params.id) },
+									{ 
+										NickName: 		req.body.NickName,
+										Nombre: 		req.body.Nombre,
+										Apellidos: 		req.body.Apellidos,
+										tipoOperador: 	req.body.tipoOperador,
+										Email: 		req.body.Email
+
+									}
+						).exec(function(err, updated) {
+							if (err) {
+							res.json(404, { msg: 'Error al actualizar el Usuario.' });
+							}
+
+							if (updated) {
+								res.json(200, { msg: 'Usuario actualizado satisfactoriamente.' });	
+							}
+						});
+
 					}
-				});
 
-			}
-
-		}
-		else if ( req.Rol == '2' || req.Rol == '3' ) {
-			//OPERADOR O COLABORADOR ACTUALIZA SUS PROPIOS DATOS
-			console.log("el rol "+req.Rol+" actualiza sus datos");
-			Usuario.update(
-						{ id: req.Usuario.id },
-						{ 
-							NickName: 	req.body.NickName,
-							Password: 	req.body.Password,
-							Nombre: 	req.body.Nombre,
-							Apellidos: 	req.body.Apellidos,
-							Email: 	req.body.Email
-						 }
-
-			).exec(function(err,updated) {
-
-				if (err) {
-					return err;
 				}
 				else {
-					res.json(200, {msg: 'Sus datos han sido actualizados satisfactoriamente.'});
+
+					return res.json(403, {err: 'Permiso denegado.'});
+				
 				}
-
-			});
-
-		}
-		else {
-
-			return res.json(403, {err: 'Permiso denegado.'});
-		
-		}
-
+			}
+		}).catch(function(error) { next(error); });
 
 	},
 
