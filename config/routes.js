@@ -41,10 +41,6 @@ module.exports.routes = {
 		'UsuarioController.findColaboradores'
 	],
 
-	'POST r|^/ActualizarDatos':[
-		'UsuarioController.updateUsuario'
-	],
-
 	'POST r|^/Estadistica':[
 		'IncidenciaController.estadistica'
 	],

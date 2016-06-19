@@ -6,13 +6,13 @@
 
 	 	<div class="collapse navbar-collapse" id="navbar-collapse-1">
 	                <ul class="nav navbar-nav">
-	                    <li ><a href="/#/">Incidencias</a></li>
-	                    <li><a href="/#/estadisticas">Estadísticas</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrador <b class="caret"></b></a>
+	                   	<li ><a class="menu" href="/#/">Incidencias</a></li>
+	                    	<li ng-if="Rol == '1'"><a  class="menu" href="/#/estadisticas">Estadísticas</a></li>
+				<li ng-if="Rol == '1'" class="dropdown"><a href="#" class="dropdown-toggle menu" data-toggle="dropdown">Administrador <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
-		                            <li><a href="/#/crear" ng-if="Rol == '1'">Crear</a></li>
-		                            <li><a href="/#/editar" ng-if="Rol == '1'">Editar</a></li>
-		                            <li><a href="/#/eliminar" ng-if="Rol == '1'">Eliminar</a></li>
+		                            <li><a class="accion" href="/#/crear" ng-if="Rol == '1'" >Crear</a></li>
+		                            <li><a class="accion" href="/#/editar" ng-if="Rol == '1'" >Editar</a></li>
+		                            <li><a class="accion" href="/#/eliminar" ng-if="Rol == '1'" >Eliminar</a></li>
 		                         </ul>
 	                    	</li>
 	                   </ul> 	

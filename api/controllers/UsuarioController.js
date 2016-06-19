@@ -326,9 +326,10 @@ module.exports = {
 	},
 
 	delete: function (req, res) {
-
+		console.log("delete");
 		if ( req.Rol == '1' ) {
-
+			console.log("DELETE");
+			console.log(req.params.id);
 			Usuario.destroy({ id:Number(req.params.id) }).exec(function(deleted) {
 				if (deleted) {
 					return res.negotiate(deleted);

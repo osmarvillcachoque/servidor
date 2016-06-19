@@ -7,6 +7,14 @@ angular.module("AppIncidencias")
 				return $http.get('/Departamento');
 			},
 
+			getUsuarios: function() {
+				return $http.get('/Usuarios');
+			},
+
+			getSupervisores: function() {
+				return $http.get('/Supervisores');
+			},
+
 			getOperadores: function() {
 				return $http.get('/Operadores');
 			},
@@ -25,6 +33,10 @@ angular.module("AppIncidencias")
 
 			getTiposIncidencia: function() {
 				return $http.get('/TiposIncidencia');
+			},
+
+			getTiposOperador: function() {
+				return $http.get('/TiposOperador');
 			},
 
 			getIncidencia: function(IncidenciaID) {
@@ -89,6 +101,53 @@ angular.module("AppIncidencias")
 						    		FechaFin: $scope.Fechas.Fin, 
 					    			Instalacion: $scope.Instalacion.Seleccionada.id
 					    		});
+			},
+			/*ADMIN*/
+			EditarDepartamento: function($scope, DepartamentoID) {
+				return $http.post('/Departamento/' + DepartamentoID, { 
+								Nombre: $scope.Departamento.Nombre, 
+					    		});
+			},
+			EditarUbicacion: function($scope, UbicacionID) {
+				return $http.post('/Ubicacion/' + UbicacionID, { 
+								Nombre: $scope.Ubicacion.Nombre, 
+								Departamento: $scope.DepartamentoSeleccionado.id
+					    		});
+			},	
+			EditarInstalacion: function($scope, InstalacionID) {
+				return $http.post('/Instalacion/' + InstalacionID, { 
+								Nombre: $scope.Instalacion.Nombre, 
+								Ubicacion: $scope.UbicacionSeleccionada.id
+					    		});
+			}, 
+
+			EditarSupervisor: function($scope, UsuarioID) {
+					return $http.post('/Usuario/' + UsuarioID, { 
+								NickName: $scope.Usuario.NickName,
+								Nombre: $scope.Usuario.Nombre, 
+								Apellidos: $scope.Usuario.Apellidos,
+								Email: $scope.Usuario.Email
+					    		});
+				
+			},
+			EditarOperador: function($scope, UsuarioID) {
+					return $http.post('/Usuario/' + UsuarioID, { 
+								NickName: $scope.Usuario.NickName,
+								Nombre: $scope.Usuario.Nombre, 
+								Apellidos: $scope.Usuario.Apellidos,
+								tipoOperador: $scope.tipoOperadorSeleccionado,
+								Email: $scope.Usuario.Email
+					    		});
+				
+			},
+			EditarColaborador: function($scope, UsuarioID) {
+					return $http.post('/Usuario/' + UsuarioID, { 
+								NickName: $scope.Usuario.NickName,
+								Nombre: $scope.Usuario.Nombre, 
+								Apellidos: $scope.Usuario.Apellidos,
+								Email: $scope.Usuario.Email
+					    		});
+				
 			}
 
 		}

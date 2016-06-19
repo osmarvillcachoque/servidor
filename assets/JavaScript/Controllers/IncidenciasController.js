@@ -59,7 +59,11 @@ angular.module("AppIncidencias")
 					controller: 'SupervisorController',
 					size: 'lg',
 					resolve: {
-						IncidenciaID: null
+						IncidenciaID: null,
+						DepartamentoID: null,
+						UbicacionID: null,
+						InstalacionID: null,
+						UsuarioID: null
 					}
 				});
 			}
@@ -87,7 +91,11 @@ angular.module("AppIncidencias")
 						scope: $scope,
 						size: 'lg',
 						resolve: {
-							IncidenciaID: $scope.IncidenciaSeleccionada
+							IncidenciaID: $scope.IncidenciaSeleccionada,
+							DepartamentoID: null,
+							UbicacionID: null,
+							InstalacionID: null,
+							UsuarioID: null
 						}
 					});
 				}
