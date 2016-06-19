@@ -11,24 +11,26 @@ module.exports = {
 
 				Ubicaciones.forEach(function(Ubicacion){
 
-					UbicacionJSON = {
-						"id": 			Ubicacion.id,
-						"Nombre": 		Ubicacion.Nombre,
-						"Departamento": Ubicacion.Departamento.id,
-						"Instalaciones": 	[]
-					};
+					if( Ubicacion.Departamento != null ){
+						UbicacionJSON = {
+							"id": 			Ubicacion.id,
+							"Nombre": 		Ubicacion.Nombre,
+							"Departamento": Ubicacion.Departamento.id,
+							"Instalaciones": 	[]
+						};
 
-					Ubicacion.Instalaciones.forEach(function(instalacion){
+						Ubicacion.Instalaciones.forEach(function(instalacion){
 
-						UbicacionJSON.Instalaciones.push({ 
-								id: 		instalacion.id, 
-								Nombre: 	instalacion.Nombre, 
-								Ubicacion: 	instalacion.Ubicacion
+							UbicacionJSON.Instalaciones.push({ 
+									id: 		instalacion.id, 
+									Nombre: 	instalacion.Nombre, 
+									Ubicacion: 	instalacion.Ubicacion
+							});
+
 						});
 
-					});
-
-					UbicacionesJSON.push(UbicacionJSON);
+						UbicacionesJSON.push(UbicacionJSON);	
+					}
 
 				});
 
