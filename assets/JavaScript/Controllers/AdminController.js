@@ -244,16 +244,20 @@ angular.module("AppIncidencias")
 					for ( var i = 0 ; i < $scope.Supervisores.length ; i++ ) {
 						if ( $scope.Supervisores[i].ID == Supervisor ) {
 							$scope.SupervisorSeleccionado = $scope.Supervisores[i].ID;
+							if( $scope.Nombre != $scope.Supervisores[i].Nombre ){
+								$scope.Restriccion = true;
+							}
+							else {
+								$scope.Restriccion = false;
+							}
 						}
 					}
 				}
-				console.log($scope.SupervisorSeleccionado);
 		};
 		$scope.setOperadorSeleccionado = function(Operador) {
 			for ( var i = 0 ; i < $scope.Operadores.length ; i++ ) {
 				if ( $scope.Operadores[i].ID == Operador ) {
 					$scope.OperadorSeleccionado = $scope.Operadores[i].ID;
-					console.log($scope.OperadorSeleccionado);
 				}
 			}
 		};
@@ -261,7 +265,6 @@ angular.module("AppIncidencias")
 			for ( var i = 0 ; i < $scope.Colaboradores.length ; i++ ) {
 				if ( $scope.Colaboradores[i].ID == Colaborador ) {
 					$scope.ColaboradorSeleccionado = $scope.Colaboradores[i].ID;
-					console.log($scope.ColaboradorSeleccionado);
 				}
 			}
 		};
@@ -313,7 +316,6 @@ angular.module("AppIncidencias")
 			}
 		};
 		$scope.EliminarDepartamento = function () {
-			console.log($scope.DepartamentoSeleccionado);
 			if( $scope.DepartamentoSeleccionado != null && $rootScope.Rol == '1' ) {
 				$http.delete('/Departamento/' + $scope.DepartamentoSeleccionado)
 
@@ -334,7 +336,6 @@ angular.module("AppIncidencias")
 		};
 
 		$scope.CrearUbicacion = function () {
-			console.log($scope.newUbicacion);
 			if ( $rootScope.Rol == '1' ) {
 				$http.post('/Ubicacion', { 
 								Nombre: $scope.newUbicacion.Nombre,
@@ -371,7 +372,6 @@ angular.module("AppIncidencias")
 			}
 		};
 		$scope.EliminarUbicacion = function () {
-			console.log($scope.UbicacionSeleccionada);
 			if( $scope.UbicacionSeleccionada != null && $rootScope.Rol == '1' ) {
 				$http.delete('/Ubicacion/' + $scope.UbicacionSeleccionada)
 
@@ -392,7 +392,6 @@ angular.module("AppIncidencias")
 		};
 
 		$scope.CrearInstalacion = function () {
-			console.log($scope.newInstalacion);
 			if ( $rootScope.Rol == '1' ) {
 				$http.post('/Instalacion', { 
 								Nombre: $scope.newInstalacion.Nombre,
@@ -429,7 +428,6 @@ angular.module("AppIncidencias")
 			}
 		};
 		$scope.EliminarInstalacion = function () {
-			console.log($scope.InstalacionSeleccionada);
 			if( $scope.InstalacionSeleccionada != null && $rootScope.Rol == '1' ) {
 				$http.delete('/Instalacion/' + $scope.InstalacionSeleccionada)
 
@@ -572,8 +570,6 @@ angular.module("AppIncidencias")
 			}
 		};
 		$scope.BorrarSupervisor = function () {
-			console.log("BorrarSupervisor");
-			console.log($scope.SupervisorSeleccionado);
 			if( $scope.SupervisorSeleccionado != null && $rootScope.Rol == '1' ) {
 				//console.log($scope.SupervisorSeleccionado);
 				$http.delete('/Usuario/' + $scope.SupervisorSeleccionado)
@@ -595,8 +591,6 @@ angular.module("AppIncidencias")
 
 		};
 		$scope.BorrarOperador = function () {
-			console.log("BorrarOperador");
-			console.log($scope.OperadorSeleccionado);
 			if( $scope.OperadorSeleccionado != null && $rootScope.Rol == '1' ) {
 				//console.log($scope.OperadorSeleccionado);
 				$http.delete('/Usuario/' + $scope.OperadorSeleccionado)
@@ -617,8 +611,6 @@ angular.module("AppIncidencias")
 			}
 		};
 		$scope.BorrarColaborador = function () {
-			console.log("BorrarColaborador");
-			console.log($scope.ColaboradorSeleccionado);
 			if( $scope.ColaboradorSeleccionado != null && $rootScope.Rol == '1' ) {
 				//console.log($scope.ColaboradorSeleccionado);
 				$http.delete('/Usuario/' + $scope.ColaboradorSeleccionado)
