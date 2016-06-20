@@ -33,11 +33,11 @@
 							<ng-form name="EditarUbicacionForm">
 								<div class="form-group">
 									<p>Seleccionar Departamento</p>
-									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+									<select class="form-control Departamento" ng-model="editarUbicacion.Departamento" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
 									<table class="table table-bordered table-list">
 									<tr 	ng-click="setUbicacionSeleccionada(Ubicacion.id);"
 										ng-class="{Seleccionado: UbicacionSeleccionada === Ubicacion.id}" 
-										ng-repeat="Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+										ng-repeat="Ubicacion in editarUbicacion.Departamento.Ubicaciones track by Ubicacion.id">
 										<td>{{ Ubicacion.Nombre }}</td>	
 									</tr>
 									<td class="modal-footer">
@@ -51,9 +51,9 @@
 							<ng-form name="EditarInstalacionForm">
 								<div class="form-group">
 								<p>Seleccionar Departamento</p>
-								<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+								<select class="form-control Departamento" ng-model="editarInstalacion.Departamento" ng-change="setUbicacionAdminEditar()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
 								<p>Seleccionar Ubicacion</p>
-								<select class="form-control" ng-model="UbicacionSeleccionada" ng-change="setInstalacion()" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+								<select class="form-control" ng-model="editarInstalacion.Ubicacion" ng-options="Ubicacion.Nombre for Ubicacion in editarInstalacion.Departamento.Ubicaciones track by Ubicacion.id">
 								</select>
 								<p>Instalaciones:</p>
 								<input ng-model="filtro" id="search" class="form-control" placeholder="Filtrar Instalaciones">
@@ -61,7 +61,7 @@
 									<table class="table table-bordered table-list">
 										<tr 	ng-click="setInstalacionSeleccionada(Instalacion.id);"
 											ng-class="{Seleccionado: InstalacionSeleccionada === Instalacion.id}"
-											ng-repeat="Instalacion in UbicacionSeleccionada.Instalaciones | filter:filtro">
+											ng-repeat="Instalacion in editarInstalacion.Ubicacion.Instalaciones | filter:filtro">
 											<td>{{Instalacion.Nombre}}</td>
 										</tr>
 									</table>

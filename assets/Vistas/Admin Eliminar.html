@@ -51,7 +51,7 @@
 							<ng-form name="EliminarInstalacionForm">
 								<div class="form-group">
 								<p>Seleccionar Departamento</p>
-								<select class="form-control Departamento" ng-model="deleteInstalacion.Departamento" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+								<select class="form-control Departamento" ng-model="deleteInstalacion.Departamento" ng-change="setUbicacionAdminEliminar()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
 								<p>Seleccionar Ubicacion</p>
 								<select  class="form-control Ubicacion" ng-model="deleteInstalacion.Ubicacion" ng-options="Ubicacion.Nombre for Ubicacion in deleteInstalacion.Departamento.Ubicaciones track by Ubicacion.id">
 								</select>

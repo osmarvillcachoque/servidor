@@ -40,7 +40,7 @@
 								<div class="form-group">
 
 									<p>Asignar Departamento</p>
-									<select class="form-control Departamento" ng-model="newInstalacion.Departamento" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+									<select class="form-control Departamento" ng-model="newInstalacion.Departamento" ng-change="setUbicacionAdminCrear()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
 									<p>Asignar Ubicacion</p>
 									<select  class="form-control Ubicacion" ng-model="newInstalacion.Ubicacion" ng-options="Ubicacion.Nombre for Ubicacion in newInstalacion.Departamento.Ubicaciones track by Ubicacion.id">
 									</select>
