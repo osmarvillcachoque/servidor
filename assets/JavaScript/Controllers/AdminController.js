@@ -73,21 +73,24 @@ angular.module("AppIncidencias")
 				})
 
 		};
-		$scope.getDatos = function() {
+		$scope.getDatosAdminCrear = function() {
 			SupervisorService.getDepartamentos()
 				.success(function(data) {
 				
 					$scope.Departamentos = data.DepartamentosJSON;
-					$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
-					$scope.UbicacionSeleccionada = $scope.DepartamentoSeleccionado.Ubicaciones[0];
+
+					$scope.newUbicacion.Departamento = $scope.Departamentos[0];
+
+					$scope.newInstalacion.Departamento = $scope.Departamentos[0];
+					$scope.newInstalacion.Ubicacion = $scope.Departamentos[$scope.newInstalacion.Departamento.id-1].Ubicaciones[0];
 
 					SupervisorService.getTiposOperador()
 
 						.success(function(data) {
 
 							$scope.tiposOperador = data.Tipos;
-							$scope.tipoOperadorSeleccionado = $scope.tiposOperador[0];
-
+							$scope.newUsuario.tipoOperador = $scope.tiposOperador[0];
+						
 							$scope.DatosCargados = true
 					})
 
@@ -104,11 +107,17 @@ angular.module("AppIncidencias")
 		};
 
 		$scope.setUbicacion = function() {
-			$scope.UbicacionSeleccionada = $scope.Departamentos[$scope.DepartamentoSeleccionado.id - 1].Ubicaciones[0];
+			if ( $scope.DepartamentoSeleccionado != null ) {
+				$scope.UbicacionSeleccionada = $scope.Departamentos[$scope.DepartamentoSeleccionado.id - 1].Ubicaciones[0];
+			}	
+
+			if ( $scope.newInstalacion.Departamento != null ) {
+				$scope.newInstalacion.Ubicacion = $scope.Departamentos[$scope.newInstalacion.Departamento.id - 1].Ubicaciones[0];
+			}
+
 			$scope.setInstalacion();
 
 			$scope.filtro = '';
-
 			$scope.getData = function () {
 			return $filter('filter')($scope.data, $scope.filtro)
 			}
@@ -117,7 +126,9 @@ angular.module("AppIncidencias")
 		};
 
 		$scope.setInstalacion = function() {
-			$scope.InstalacionSeleccionada =$scope.UbicacionSeleccionada.Instalaciones[0];		
+			if (  $scope.UbicacionSeleccionada != null ) {
+				$scope.InstalacionSeleccionada = $scope.UbicacionSeleccionada.Instalaciones[0];
+			}		
 		};
 
 		$scope.setDepartamento = function(InstalacionID) {
@@ -139,7 +150,7 @@ angular.module("AppIncidencias")
 			$uibModalInstance.dismiss('cancel');
 		};
 
-		/*SET*/
+		/*SET ADMIN*/
 		$scope.setDepartamentoSeleccionado = function(Departamento) {
 			for ( var i = 0 ; i < $scope.Departamentos.length ; i++ ) {
 				if ( $scope.Departamentos[i].id == Departamento ) {
@@ -206,7 +217,7 @@ angular.module("AppIncidencias")
 		/*ADMIN*/
 		$scope.newDepartamento={ Nombre: "" };	
 		$scope.newUbicacion={ Nombre: "", Departamento: "" };
-		$scope.newInstalacion={ Nombre: "", Ubicacion: "" };
+		$scope.newInstalacion={ Nombre: "", Ubicacion: "", Departamento: "" };
 		$scope.newUsuario={ NickName: "", Password: "", tipoOperador: "", Nombre: "", Apellidos: "", Email: "" };
 
 		$scope.CrearDepartamento = function () {

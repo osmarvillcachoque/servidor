@@ -1,4 +1,4 @@
-<div ng-if="Rol == '1'" ng-init="getDatos();" ng-show="DatosCargados">
+<div ng-if="Rol == '1'" ng-init="getDatosAdminCrear();" ng-show="DatosCargados">
 	<div id="Crear">
 		<div id="CrearZona" class="panel panel-default panel-table col col-xs-6">
 			<div class="panel-heading">
@@ -40,9 +40,9 @@
 								<div class="form-group">
 
 									<p>Asignar Departamento</p>
-									<select class="form-control Departamento" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+									<select class="form-control Departamento" ng-model="newInstalacion.Departamento" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
 									<p>Asignar Ubicacion</p>
-									<select  class="form-control Ubicacion" ng-model="newInstalacion.Ubicacion" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+									<select  class="form-control Ubicacion" ng-model="newInstalacion.Ubicacion" ng-options="Ubicacion.Nombre for Ubicacion in newInstalacion.Departamento.Ubicaciones track by Ubicacion.id">
 									</select>
 									<p>Nombre Instalación:</p>
 									<input type="text" class="form-control" ng-model="newInstalacion.Nombre"/>
