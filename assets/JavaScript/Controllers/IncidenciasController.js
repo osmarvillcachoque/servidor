@@ -35,7 +35,7 @@ angular.module("AppIncidencias")
 			else if ( $rootScope.Rol == '2' ) {
 				for ( var i = 0 ; i < $scope.Incidencias.length ; i++ ) {
 					if ( $scope.Incidencias[i].id == Incidencia ) {
-						if ( $scope.Incidencias[i].Operador.ID == $rootScope.ID ) {
+						if ( $scope.Incidencias[i].Operador == $rootScope.ID ) {
 							if ( Incidencia != $scope.IncidenciaSeleccionada) {
 								$scope.IncidenciaSeleccionada = Incidencia;
 							}
