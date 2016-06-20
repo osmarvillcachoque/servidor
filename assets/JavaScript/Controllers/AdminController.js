@@ -73,30 +73,80 @@ angular.module("AppIncidencias")
 				})
 
 		};
-		$scope.getDatosAdminCrear = function() {
+		$scope.getDatosParaAdmin = function() {
 			SupervisorService.getDepartamentos()
 				.success(function(data) {
 				
 					$scope.Departamentos = data.DepartamentosJSON;
 
+					/*para admin crear.html*/
 					$scope.newUbicacion.Departamento = $scope.Departamentos[0];
 
 					$scope.newInstalacion.Departamento = $scope.Departamentos[0];
-					$scope.newInstalacion.Ubicacion = $scope.Departamentos[$scope.newInstalacion.Departamento.id-1].Ubicaciones[0];
+					$scope.newInstalacion.Ubicacion = $scope.Departamentos[$scope.newInstalacion.Departamento.id - 1].Ubicaciones[0];
 
-					SupervisorService.getTiposOperador()
+					/*para admin eliminar.html*/
+					$scope.deleteUbicacion.Departamento = $scope.Departamentos[0];
+
+					$scope.deleteInstalacion.Departamento = $scope.Departamentos[0];
+					$scope.deleteInstalacion.Ubicacion = $scope.Departamentos[$scope.deleteInstalacion.Departamento.id - 1].Ubicaciones[0];
+
+					SupervisorService.getSupervisores()
 
 						.success(function(data) {
 
-							$scope.tiposOperador = data.Tipos;
-							$scope.newUsuario.tipoOperador = $scope.tiposOperador[0];
-						
-							$scope.DatosCargados = true
-					})
+							$scope.Supervisores = data.Supervisores;
+							$scope.SupervisorSeleccionado = $scope.Supervisores[0];
 
-					.error(function(error) {
-						console.log(error);
-					})
+							SupervisorService.getTiposOperador()
+
+							.success(function(data) {
+
+								$scope.tiposOperador = data.Tipos;
+								$scope.tipoOperadorSeleccionado = $scope.tiposOperador[0];
+
+								/*para Admin eliminar.html*/
+								$scope.tiposOperador = data.Tipos;
+								$scope.newUsuario.tipoOperador = $scope.tiposOperador[0];
+
+								SupervisorService.getOperadores()
+
+								.success(function(data) {
+
+									$scope.Operadores = data.Operadores;
+									$scope.OperadorSeleccionado = $scope.Operadores[0];
+									
+									SupervisorService.getColaboradores()
+
+									.success(function(data) {
+
+										$scope.Colaboradores = data.Colaboradores;
+										$scope.ColaboradorSeleccionado = $scope.Colaboradores[0];
+										$scope.DatosCargados = true;
+
+									})
+
+									.error(function(error) {
+										console.log(error);
+									})
+									
+
+								})
+
+								.error(function(error) {
+									console.log(error);
+								})
+
+							})
+							.error(function(error) {
+								console.log(error);
+							})	
+
+						})
+
+						.error(function(error) {
+							console.log(error);
+						})
 
 				})
 
@@ -113,6 +163,10 @@ angular.module("AppIncidencias")
 
 			if ( $scope.newInstalacion.Departamento != null ) {
 				$scope.newInstalacion.Ubicacion = $scope.Departamentos[$scope.newInstalacion.Departamento.id - 1].Ubicaciones[0];
+			}
+
+			if ( $scope.deleteInstalacion.Departamento != null ) {
+				$scope.deleteInstalacion.Ubicacion = $scope.Departamentos[$scope.deleteInstalacion.Departamento.id - 1].Ubicaciones[0];
 			}
 
 			$scope.setInstalacion();
@@ -143,7 +197,7 @@ angular.module("AppIncidencias")
 					}						
 				}
 			}
-		}
+		};
 
 
 		$scope.Cancelar = function () {
@@ -190,14 +244,12 @@ angular.module("AppIncidencias")
 					for ( var i = 0 ; i < $scope.Supervisores.length ; i++ ) {
 						if ( $scope.Supervisores[i].ID == Supervisor ) {
 							$scope.SupervisorSeleccionado = $scope.Supervisores[i].ID;
-							console.log($scope.SupervisorSeleccionado);
 						}
 					}
 				}
+				console.log($scope.SupervisorSeleccionado);
 		};
 		$scope.setOperadorSeleccionado = function(Operador) {
-			console.log($scope.Operadores);
-			console.log(Operador);
 			for ( var i = 0 ; i < $scope.Operadores.length ; i++ ) {
 				if ( $scope.Operadores[i].ID == Operador ) {
 					$scope.OperadorSeleccionado = $scope.Operadores[i].ID;
@@ -219,6 +271,9 @@ angular.module("AppIncidencias")
 		$scope.newUbicacion={ Nombre: "", Departamento: "" };
 		$scope.newInstalacion={ Nombre: "", Ubicacion: "", Departamento: "" };
 		$scope.newUsuario={ NickName: "", Password: "", tipoOperador: "", Nombre: "", Apellidos: "", Email: "" };
+
+		$scope.deleteUbicacion = { Departamento: "" };
+		$scope.deleteInstalacion = { Departamento: "", Ubicacion: "" };
 
 		$scope.CrearDepartamento = function () {
 
