@@ -32,7 +32,7 @@ angular.module("AppIncidencias")
 							.success(function(data) {
 
 								$scope.tiposOperador = data.Tipos;
-								$scope.tipoOperadorSeleccionado = $scope.tiposOperador[0];
+								$scope.tipoOperadorSeleccionado = "";
 
 								SupervisorService.getOperadores()
 
@@ -119,14 +119,14 @@ angular.module("AppIncidencias")
 								.success(function(data) {
 
 									$scope.Operadores = data.Operadores;
-									$scope.OperadorSeleccionado = $scope.Operadores[0];
+									$scope.OperadorSeleccionado = "";
 									
 									SupervisorService.getColaboradores()
 
 									.success(function(data) {
 
 										$scope.Colaboradores = data.Colaboradores;
-										$scope.ColaboradorSeleccionado = $scope.Colaboradores[0];
+										$scope.ColaboradorSeleccionado = "";
 										$scope.DatosCargados = true;
 
 									})
@@ -233,7 +233,7 @@ angular.module("AppIncidencias")
 						if ( $scope.Supervisores[i].ID == Supervisor ) {
 							$scope.SupervisorSeleccionado = $scope.Supervisores[i].ID;
 							if( $scope.Nombre != $scope.Supervisores[i].Nombre ){
-								$scope.Restriccion = true;
+								$scope.Restriccion = true; /* Si es true no puede eliminar al supervisor selecccionado porque es el mismo*/
 							}
 							else {
 								$scope.Restriccion = false;

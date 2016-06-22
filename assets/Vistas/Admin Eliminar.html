@@ -20,10 +20,10 @@
 										ng-repeat="Departamento in Departamentos">
 										<td>{{ Departamento.Nombre }}</td>	
 									</tr>
-									<td class="modal-footer">
-									<button class="btn btn-primary BotonEliminar" type="button" ng-click="EliminarDepartamento()">Eliminar Departamento</button>
-									</td>
 									</table>
+								</div>
+								<div class="modal-footer" ng-if="DepartamentoSeleccionado">
+									<button class="btn btn-primary BotonEliminar" type="button" ng-click="EliminarDepartamento()">Eliminar Departamento</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -40,10 +40,10 @@
 										<td>{{ Ubicacion.Nombre }}</td>	
 									</tr>
 									</tbody>
-									<td class="modal-footer">
-									<button class="btn btn-primary BotonEliminar" type="button" ng-click="EliminarUbicacion()">Eliminar Ubicacion</button>
-									</td>
 									</table>
+								</div>
+								<div class="modal-footer" ng-if="UbicacionSeleccionada">
+									<button class="btn btn-primary BotonEliminar" type="button" ng-click="EliminarUbicacion()">Eliminar Ubicacion</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -65,7 +65,9 @@
 									</tr>
 									</table>
 								</div>
-								<button class="btn btn-primary BotonEliminar" type="button" ng-click="EliminarInstalacion()">Eliminar Instalacion</button>
+								</div>
+								<div class="modal-footer" ng-if="InstalacionSeleccionada">
+									<button class="btn btn-primary BotonEliminar" type="button" ng-click="EliminarInstalacion()">Eliminar Instalacion</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -97,6 +99,8 @@
 									</tr>
 									</table>
 									</div>
+								</div>
+								<div class="modal-footer">
 									<button class="btn btn-primary BotonEliminar" type="button" ng-click="BorrarSupervisor()" ng-show="Restriccion">Eliminar Supervisor</button>
 								</div>
 							</ng-form>
@@ -114,6 +118,8 @@
 									</tr>
 									</table>
 									</div>
+								</div>
+								<div class="modal-footer" ng-if="OperadorSeleccionado">
 									<button class="btn btn-primary BotonEliminar" type="button" ng-click="BorrarOperador()">Eliminar Operador</button>
 								</div>
 							</ng-form>
@@ -131,6 +137,9 @@
 									</tr>
 									</table>
 									</div>
+									
+								</div>
+								<div class="modal-footer" ng-if="ColaboradorSeleccionado">
 									<button class="btn btn-primary BotonEliminar" type="button" ng-click="BorrarColaborador()">Eliminar Colaborador</button>
 								</div>
 							</ng-form>
