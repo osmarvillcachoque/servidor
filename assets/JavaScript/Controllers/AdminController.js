@@ -112,9 +112,7 @@ angular.module("AppIncidencias")
 								$scope.tiposOperador = data.Tipos;
 								$scope.tipoOperadorSeleccionado = $scope.tiposOperador[0];
 
-								/*para Admin eliminar.html*/
-								$scope.tiposOperador = data.Tipos;
-								$scope.newUsuario.tipoOperador = $scope.tiposOperador[0];
+								$scope.newOperador.tipoOperador = $scope.tiposOperador[0];
 
 								SupervisorService.getOperadores()
 
@@ -263,7 +261,10 @@ angular.module("AppIncidencias")
 		$scope.newDepartamento={ Nombre: "" };	
 		$scope.newUbicacion={ Nombre: "", Departamento: "" };
 		$scope.newInstalacion={ Nombre: "", Ubicacion: "", Departamento: "" };
-		$scope.newUsuario={ NickName: "", Password: "", tipoOperador: "", Nombre: "", Apellidos: "", Email: "" };
+
+		$scope.newSupervisor={ NickName: "", Password: "", Nombre: "", Apellidos: "", Email: "" };
+		$scope.newOperador={ NickName: "", Password: "", tipoOperador: "", Nombre: "", Apellidos: "", Email: "" };
+		$scope.newColaborador={ NickName: "", Password: "", Nombre: "", Apellidos: "", Email: "" };
 
 		$scope.deleteUbicacion = { Departamento: "" };
 		$scope.deleteInstalacion = { Departamento: "", Ubicacion: "" };
@@ -442,12 +443,12 @@ angular.module("AppIncidencias")
 		$scope.CrearSupervisor = function () {
 			if ( $rootScope.Rol == '1' ) {
 				$http.post('/Usuario', { 
-								NickName: $scope.newUsuario.NickName,
-								Password: $scope.newUsuario.Password,
+								NickName: $scope.newSupervisor.NickName,
+								Password: $scope.newSupervisor.Password,
 								Rol: 1,
-								Nombre: $scope.newUsuario.Nombre,
-								Apellidos: $scope.newUsuario.Apellidos,
-								Email: $scope.newUsuario.Email
+								Nombre: $scope.newSupervisor.Nombre,
+								Apellidos: $scope.newSupervisor.Apellidos,
+								Email: $scope.newSupervisor.Email
 			    		})
 
 					.success(function(data) {
@@ -523,13 +524,13 @@ angular.module("AppIncidencias")
 		$scope.CrearOperador = function () {
 			if ( $rootScope.Rol == '1' ) {
 				$http.post('/Usuario', { 
-								NickName: $scope.newUsuario.NickName,
-								Password: $scope.newUsuario.Password,
+								NickName: $scope.newOperador.NickName,
+								Password: $scope.newOperador.Password,
 								Rol: 2,
-								tipoOperador: $scope.newUsuario.tipoOperador,
-								Nombre: $scope.newUsuario.Nombre,
-								Apellidos: $scope.newUsuario.Apellidos,
-								Email: $scope.newUsuario.Email
+								tipoOperador: $scope.newOperador.tipoOperador,
+								Nombre: $scope.newOperador.Nombre,
+								Apellidos: $scope.newOperador.Apellidos,
+								Email: $scope.newOperador.Email
 			    		})
 
 					.success(function(data) {
@@ -604,12 +605,12 @@ angular.module("AppIncidencias")
 		$scope.CrearColaborador = function () {
 			if ( $rootScope.Rol == '1' ) {
 				$http.post('/Usuario', { 
-								NickName: $scope.newUsuario.NickName,
-								Password: $scope.newUsuario.Password,
+								NickName: $scope.newColaborador.NickName,
+								Password: $scope.newColaborador.Password,
 								Rol: 3,
-								Nombre: $scope.newUsuario.Nombre,
-								Apellidos: $scope.newUsuario.Apellidos,
-								Email: $scope.newUsuario.Email
+								Nombre: $scope.newColaborador.Nombre,
+								Apellidos: $scope.newColaborador.Apellidos,
+								Email: $scope.newColaborador.Email
 			    		})
 
 					.success(function(data) {

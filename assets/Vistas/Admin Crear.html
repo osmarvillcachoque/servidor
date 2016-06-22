@@ -17,8 +17,10 @@
 
 									<p>Nombre Departamento:</p>
 									<input type="text" class="form-control" ng-model="newDepartamento.Nombre" placeholder="Introduzca un nombre" />
-									<button class="btn btn-primary BotonCrear" type="button" ng-click="CrearDepartamento()">Crear Departamento</button>
 								
+								</div>
+								<div class="modal-footer" ng-if="newDepartamento.Nombre">
+									<button class="btn btn-primary BotonCrear" type="button" ng-click="CrearDepartamento()">Crear Departamento</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -30,8 +32,10 @@
 									<select class="form-control" ng-model="newUbicacion.Departamento" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
 									<p>Nombre Ubicacion:</p>
 									<input type="text" class="form-control" ng-model="newUbicacion.Nombre"/>
-									<button class="btn btn-primary BotonCrear" type="button" ng-click="CrearUbicacion()">Crear Ubicacion</button>
 
+								</div>
+								<div class="modal-footer" ng-if="newUbicacion.Nombre">
+									<button class="btn btn-primary BotonCrear" type="button" ng-click="CrearUbicacion()">Crear Ubicacion</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -46,9 +50,10 @@
 									</select>
 									<p>Nombre Instalación:</p>
 									<input type="text" class="form-control" ng-model="newInstalacion.Nombre"/>
+
+								</div>
+								<div class="modal-footer" ng-if="newInstalacion.Nombre">
 									<button class="btn btn-primary BotonCrear" type="button" ng-click="CrearInstalacion()">Crear Instalacion</button>
-
-
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -72,17 +77,19 @@
 								<div class="form-group">
 
 									<p>NickName:</p>
-									<input type="text" class="form-control" ng-model="newUsuario.NickName"/>
+									<input type="text" class="form-control" ng-model="newSupervisor.NickName"/>
 									<p>Password:</p>
-									<input type="password" class="form-control" ng-model="newUsuario.Password"/>
+									<input type="password" class="form-control" ng-model="newSupervisor.Password"/>
 									<p>Nombre:</p>
-									<input type="text" class="form-control" ng-model="newUsuario.Nombre"/>
+									<input type="text" class="form-control" ng-model="newSupervisor.Nombre"/>
 									<p>Apellidos:</p>
-									<input type="text" class="form-control" ng-model="newUsuario.Apellidos"/>
+									<input type="text" class="form-control" ng-model="newSupervisor.Apellidos"/>
 									<p>Email:</p>
-									<input type="text" class="form-control" ng-model="newUsuario.Email"/>
-									<button class="btn btn-primary BotonCrear" type="button" ng-click="CrearSupervisor()">Crear Supervisor</button>
+									<input type="text" class="form-control" ng-model="newSupervisor.Email"/>
 
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-primary BotonCrear" type="button" ng-click="CrearSupervisor()">Crear Supervisor</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -91,19 +98,21 @@
 								<div class="form-group">
 
 									<p>NickName:</p>
-									<input type="text" class="form-control" ng-model="newUsuario.NickName"/>
+									<input type="text" class="form-control" ng-model="newOperador.NickName"/>
 									<p>Password:</p>
-									<input type="password" class="form-control" ng-model="newUsuario.Password"/>
+									<input type="password" class="form-control" ng-model="newOperador.Password"/>
 									<p>Tipo Operador:</p>
-									<select class="tipoOperador" ng-model="newUsuario.tipoOperador" ng-options="tipoOperador for tipoOperador in tiposOperador track by tipoOperador"></select>
+									<select class="tipoOperador" ng-model="newOperador.tipoOperador" ng-options="tipoOperador for tipoOperador in tiposOperador track by tipoOperador"></select>
 									<p>Nombre:</p>
-									<input type="text" class="form-control" ng-model="newUsuario.Nombre"/>
+									<input type="text" class="form-control" ng-model="newOperador.Nombre"/>
 									<p>Apellidos:</p>
-									<input type="text" class="form-control" ng-model="newUsuario.Apellidos"/>
+									<input type="text" class="form-control" ng-model="newOperador.Apellidos"/>
 									<p>Email:</p>
-									<input type="text" class="form-control" ng-model="newUsuario.Email"/>
-									<button class="btn btn-primary BotonCrear" type="button" ng-click="CrearOperador()">Crear Operador</button>
+									<input type="text" class="form-control" ng-model="newOperador.Email"/>
 
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-primary BotonCrear" type="button" ng-click="CrearOperador()">Crear Operador</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -112,17 +121,19 @@
 								<div class="form-group">
 
 									<p>NickName:</p>
-									<input type="text" class="form-control" ng-model="newUsuario.NickName"/>
+									<input type="text" class="form-control" ng-model="newColaborador.NickName"/>
 									<p>Password:</p>
-									<input type="password" class="form-control" ng-model="newUsuario.Password"/>
+									<input type="password" class="form-control" ng-model="newColaborador.Password"/>
 									<p>Nombre:</p>
-									<input type="text" class="form-control" ng-model="newUsuario.Nombre"/>
+									<input type="text" class="form-control" ng-model="newColaborador.Nombre"/>
 									<p>Apellidos:</p>
-									<input type="text" class="form-control" ng-model="newUsuario.Apellidos"/>
+									<input type="text" class="form-control" ng-model="newColaborador.Apellidos"/>
 									<p>Email:</p>
-									<input type="text" class="form-control" ng-model="newUsuario.Email"/>
-									<button class="btn btn-primary BotonCrear" type="button" ng-click="CrearColaborador()">Crear Colaborador</button>
+									<input type="text" class="form-control" ng-model="newColaborador.Email"/>
 
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-primary BotonCrear" type="button" ng-click="CrearColaborador()">Crear Colaborador</button>
 								</div>
 							</ng-form>
 						</uib-tab>
