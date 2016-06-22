@@ -10,9 +10,9 @@ angular.module("AppIncidencias")
 				.success(function(data) {
 
 					$scope.Departamentos = data.DepartamentosJSON;
-					$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
-					$scope.UbicacionSeleccionada = $scope.Departamentos[0].Ubicaciones[0];
-					$scope.InstalacionSeleccionada = $scope.Departamentos[0].Ubicaciones[0].Instalaciones[0];
+					$scope.DepartamentoSeleccionado = "";
+					$scope.UbicacionSeleccionada = "";
+					$scope.InstalacionSeleccionada = "";
 
 					/*para admin editar.html*/
 					$scope.editarUbicacion.Departamento = $scope.Departamentos[0];
@@ -25,7 +25,7 @@ angular.module("AppIncidencias")
 						.success(function(data) {
 
 							$scope.Supervisores = data.Supervisores;
-							$scope.SupervisorSeleccionado = $scope.Supervisores[0];
+							$scope.SupervisorSeleccionado = "";
 
 							SupervisorService.getTiposOperador()
 
@@ -39,14 +39,14 @@ angular.module("AppIncidencias")
 								.success(function(data) {
 
 									$scope.Operadores = data.Operadores;
-									$scope.OperadorSeleccionado = $scope.Operadores[0];
+									$scope.OperadorSeleccionado = "";
 									
 									SupervisorService.getColaboradores()
 
 									.success(function(data) {
 
 										$scope.Colaboradores = data.Colaboradores;
-										$scope.ColaboradorSeleccionado = $scope.Colaboradores[0];
+										$scope.ColaboradorSeleccionado = "";
 										$scope.DatosCargados = true;
 
 									})
@@ -163,32 +163,6 @@ angular.module("AppIncidencias")
 
 		};
 
-		$scope.setUbicacion = function() {
-			//if ( $scope.DepartamentoSeleccionado != null ) {
-				$scope.UbicacionSeleccionada = $scope.Departamentos[$scope.DepartamentoSeleccionado.id - 1].Ubicaciones[0];
-			//}	
-
-			/*if ( $scope.newInstalacion.Departamento != null ) {
-				$scope.newInstalacion.Ubicacion = $scope.Departamentos[$scope.newInstalacion.Departamento.id - 1].Ubicaciones[0];
-			}
-
-			if ( $scope.editarInstalacion.Departamento != null ) {
-				$scope.editarInstalacion.Ubicacion = $scope.Departamentos[$scope.editarInstalacion.Departamento.id - 1].Ubicaciones[0];
-			}
-
-			if ( $scope.deleteInstalacion.Departamento != null ) {
-				$scope.deleteInstalacion.Ubicacion = $scope.Departamentos[$scope.deleteInstalacion.Departamento.id - 1].Ubicaciones[0];
-			}*/
-
-			$scope.setInstalacion();
-
-			/*$scope.filtro = '';
-			$scope.getData = function () {
-			return $filter('filter')($scope.data, $scope.filtro)
-			}*/
-
-
-		};
 		$scope.setUbicacionAdminCrear = function() {
 			$scope.newInstalacion.Ubicacion = $scope.Departamentos[$scope.newInstalacion.Departamento.id - 1].Ubicaciones[0];
 		};
@@ -199,11 +173,6 @@ angular.module("AppIncidencias")
 			$scope.deleteInstalacion.Ubicacion = $scope.Departamentos[$scope.deleteInstalacion.Departamento.id - 1].Ubicaciones[0];
 		};
 
-		$scope.setInstalacion = function() {
-			if (  $scope.UbicacionSeleccionada != null ) {
-				$scope.InstalacionSeleccionada = $scope.UbicacionSeleccionada.Instalaciones[0];
-			}		
-		};
 
 		$scope.setDepartamento = function(InstalacionID) {
 			for ( var i = 0 ; i < $scope.Departamentos.length ; i++ ) {
@@ -322,7 +291,7 @@ angular.module("AppIncidencias")
 					templateUrl: "Vistas/Formularios/Supervisor/Editar Departamento.html",
 					controller: 'SupervisorController',
 					scope: $scope,
-					size: 'lg',
+					size: 'md',
 					resolve: {
 						DepartamentoID: $scope.DepartamentoSeleccionado,
 						UbicacionID: null,
@@ -378,7 +347,7 @@ angular.module("AppIncidencias")
 					templateUrl: "Vistas/Formularios/Supervisor/Editar Ubicacion.html",
 					controller: 'SupervisorController',
 					scope: $scope,
-					size: 'lg',
+					size: 'md',
 					resolve: {
 						DepartamentoID: null,
 						UbicacionID: $scope.UbicacionSeleccionada,
@@ -434,7 +403,7 @@ angular.module("AppIncidencias")
 					templateUrl: "Vistas/Formularios/Supervisor/Editar Instalacion.html",
 					controller: 'SupervisorController',
 					scope: $scope,
-					size: 'lg',
+					size: 'md',
 					resolve: {
 						DepartamentoID: null,
 						UbicacionID: null,
@@ -490,12 +459,12 @@ angular.module("AppIncidencias")
 			}
 		};
 		$scope.EditarSupervisor = function () {
-			if ( $scope.SupervisorSeleccionado != null ) {
+			if ( $scope.SupervisorSeleccionado != null && $rootScope.Rol == '1' ) {
 				$uibModal.open({
 					templateUrl: "Vistas/Formularios/Supervisor/Editar Usuario.html",
 					controller: 'SupervisorController',
 					scope: $scope,
-					size: 'lg',
+					size: 'md',
 					resolve: {
 						DepartamentoID: null,
 						UbicacionID: null,
@@ -506,8 +475,49 @@ angular.module("AppIncidencias")
 				});
 			}
 			else {
-				$window.alert('No se ha seleccionado ninguna incidencia.');
+				$window.alert('No se ha seleccionado a ningun Supervisor.');
 			}
+		};
+		$scope.ActualizarPasswordSupervisor = function () {
+			if ( $scope.SupervisorSeleccionado != null && $rootScope.Rol == '1' ) {
+				$uibModal.open({
+					templateUrl: "Vistas/Formularios/Supervisor/Editar Password.html",
+					controller: 'SupervisorController',
+					scope: $scope,
+					size: 'md',
+					resolve: {
+						DepartamentoID: null,
+						UbicacionID: null,
+						InstalacionID: null,
+						UsuarioID: $scope.SupervisorSeleccionado,
+						IncidenciaID: null
+					}
+				});
+			}
+			else {
+				$window.alert('No se ha seleccionado a ningun Supervisor.');
+			}
+		};
+		$scope.BorrarSupervisor = function () {
+			if( $scope.SupervisorSeleccionado != null && $rootScope.Rol == '1' ) {
+				//console.log($scope.SupervisorSeleccionado);
+				$http.delete('/Usuario/' + $scope.SupervisorSeleccionado)
+
+					.success(function(data) {
+							$route.reload();
+					})
+					.error(function(error) {
+						console.log(error);
+					});	
+
+				$timeout(function() {
+					$route.reload();
+				}, 10 );
+			}
+			else {
+				$window.alert('No se ha seleccionado a ningun Supervisor.');
+			}
+
 		};
 
 		$scope.CrearOperador = function () {
@@ -531,12 +541,12 @@ angular.module("AppIncidencias")
 			}
 		};
 		$scope.EditarOperador = function () {
-			if ( $scope.OperadorSeleccionado != null) {
+			if ( $scope.OperadorSeleccionado != null && $rootScope.Rol == '1' ) {
 				$uibModal.open({
 						templateUrl: "Vistas/Formularios/Supervisor/Editar Usuario.html",
 						controller: 'SupervisorController',
 						scope: $scope,
-						size: 'lg',
+						size: 'md',
 						resolve: {
 							DepartamentoID: null,
 							UbicacionID: null,
@@ -547,7 +557,47 @@ angular.module("AppIncidencias")
 					});
 			}
 			else {
-				$window.alert('No se ha seleccionado ninguna incidencia.');
+				$window.alert('No se ha seleccionado a ningun Operador.');
+			}
+		};
+		$scope.ActualizarPasswordOperador = function () {
+			if ( $scope.OperadorSeleccionado != null && $rootScope.Rol == '1' ) {
+				$uibModal.open({
+					templateUrl: "Vistas/Formularios/Supervisor/Editar Password.html",
+					controller: 'SupervisorController',
+					scope: $scope,
+					size: 'md',
+					resolve: {
+						DepartamentoID: null,
+						UbicacionID: null,
+						InstalacionID: null,
+						UsuarioID: $scope.OperadorSeleccionado,
+						IncidenciaID: null
+					}
+				});
+			}
+			else {
+				$window.alert('No se ha seleccionado a ningun Supervisor.');
+			}
+		};
+		$scope.BorrarOperador = function () {
+			if( $scope.OperadorSeleccionado != null && $rootScope.Rol == '1' ) {
+				//console.log($scope.OperadorSeleccionado);
+				$http.delete('/Usuario/' + $scope.OperadorSeleccionado)
+
+					.success(function(data) {
+							$route.reload();
+					})
+					.error(function(error) {
+						console.log(error);
+					});	
+
+				$timeout(function() {
+					$route.reload();
+				}, 10 );
+			}
+			else {
+				$window.alert('No se ha seleccionado a ningun Operador.');
 			}
 		};
 
@@ -571,12 +621,12 @@ angular.module("AppIncidencias")
 			}
 		};
 		$scope.EditarColaborador = function () {
-			if ( $scope.ColaboradorSeleccionado != null) {
+			if ( $scope.ColaboradorSeleccionado != null && $rootScope.Rol == '1' ) {
 				$uibModal.open({
 					templateUrl: "Vistas/Formularios/Supervisor/Editar Usuario.html",
 					controller: 'SupervisorController',
 					scope: $scope,
-					size: 'lg',
+					size: 'md',
 					resolve: {
 						DepartamentoID: null,
 						UbicacionID: null,
@@ -590,45 +640,24 @@ angular.module("AppIncidencias")
 				$window.alert('No se ha seleccionado a ningun Colaborador.');
 			}
 		};
-		$scope.BorrarSupervisor = function () {
-			if( $scope.SupervisorSeleccionado != null && $rootScope.Rol == '1' ) {
-				//console.log($scope.SupervisorSeleccionado);
-				$http.delete('/Usuario/' + $scope.SupervisorSeleccionado)
-
-					.success(function(data) {
-							$route.reload();
-					})
-					.error(function(error) {
-						console.log(error);
-					});	
-
-				$timeout(function() {
-					$route.reload();
-				}, 10 );
+		$scope.ActualizarPasswordColaborador = function () {
+			if ( $scope.ColaboradorSeleccionado != null && $rootScope.Rol == '1' ) {
+				$uibModal.open({
+					templateUrl: "Vistas/Formularios/Supervisor/Editar Password.html",
+					controller: 'SupervisorController',
+					scope: $scope,
+					size: 'md',
+					resolve: {
+						DepartamentoID: null,
+						UbicacionID: null,
+						InstalacionID: null,
+						UsuarioID: $scope.ColaboradorSeleccionado,
+						IncidenciaID: null
+					}
+				});
 			}
 			else {
-				$window.alert('No se ha seleccionado a ningun Colaborador.');
-			}
-
-		};
-		$scope.BorrarOperador = function () {
-			if( $scope.OperadorSeleccionado != null && $rootScope.Rol == '1' ) {
-				//console.log($scope.OperadorSeleccionado);
-				$http.delete('/Usuario/' + $scope.OperadorSeleccionado)
-
-					.success(function(data) {
-							$route.reload();
-					})
-					.error(function(error) {
-						console.log(error);
-					});	
-
-				$timeout(function() {
-					$route.reload();
-				}, 10 );
-			}
-			else {
-				$window.alert('No se ha seleccionado a ningun Colaborador.');
+				$window.alert('No se ha seleccionado a ningun Supervisor.');
 			}
 		};
 		$scope.BorrarColaborador = function () {

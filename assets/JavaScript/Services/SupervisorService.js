@@ -148,6 +148,11 @@ angular.module("AppIncidencias")
 								Email: $scope.Usuario.Email
 					    		});
 				
+			},
+			ActualizarPassword: function($scope, UsuarioID) {
+					return $http.post('/Usuario/' + UsuarioID, { 
+								Password: $scope.Usuario.Password
+					    		});
 			}
 
 		}

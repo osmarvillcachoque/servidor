@@ -2,16 +2,16 @@
 	<div class="modal-header">
 		<h3 class="modal-title text-center">Editar Instalacion</h3>
 	</div>
-	<div class="form-group">
-			<p>Departamento</p>
-			<select id="Departamento" class="form-control" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
-	</div>
-	<div class="form-group">
-			<p>Ubicación</p>
-			<select id="Ubicacion" class="form-control" ng-model="UbicacionSeleccionada" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
-			</select>
-	</div>
 	<div class="modal-body">
+		<div class="form-group">
+				<p>Departamento</p>
+				<select id="Departamento" class="form-control" ng-model="DepartamentoSeleccionado" ng-change="setUbicacion()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+		</div>
+		<div class="form-group">
+				<p>Ubicación</p>
+				<select id="Ubicacion" class="form-control" ng-model="UbicacionSeleccionada" ng-options="Ubicacion.Nombre for Ubicacion in DepartamentoSeleccionado.Ubicaciones track by Ubicacion.id">
+				</select>
+		</div>
 		<div class="form-group">
 			<p>Nombre</p>
 			<input type="text" class="form-control" ng-model="Instalacion.Nombre"/>
@@ -25,6 +25,5 @@
 </div>
 <script>
 	$('textarea.js-auto-size').textareaAutoSize();
-	$('.modal-body .form-group').css({ 'width': '45%', 'float': 'left' });
-	$('.modal-body .form-group:nth-child(2n+2)').css({ 'float': 'right', 'margin-right': '0px' });
+	$('.modal-body .form-group').css({ 'width': '50%', 'margin-left': '25%' });
 </script>

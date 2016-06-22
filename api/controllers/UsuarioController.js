@@ -267,52 +267,75 @@ module.exports = {
 				if ( req.Rol == '1' ) {
 					console.log(req.params);
 					console.log(req.body);
-					if ( req.body.tipoOperador == null ) {
+					if ( req.body.Password != null ) {
 						Usuario.update(
-									{ id: Number(req.params.id) },
-									{ 
-										NickName: 		req.body.NickName,
-										Nombre: 		req.body.Nombre,
-										Apellidos: 		req.body.Apellidos,
-										Email: 		req.body.Email
-									 }
+										{ id: Number(req.params.id) },
+										{ 
+											Password: 		req.body.Password
+										 }
 
-						).exec(function (err, updated) {
+							).exec(function (err, updated) {
 
-							if (err) {
-								res.json(404, { msg: 'Error al actualizar Usuairo.' });
-							}
+								if (err) {
+									res.json(404, { msg: 'Error al actualizar Usuairo.' });
+								}
 
-							if (updated) {
-								res.json(200, { msg: 'Usuario actualizado satisfactoriamente.' });	
-							}
+								if (updated) {
+									res.json(200, { msg: 'La contrseña ha sido actualizada satisfactoriamente.' });	
+								}
 
-						});
-
+							});
 					}
-					if ( req.body.tipoOperador != null ) {
-						console.log("Super actualiza el dato de un Operador");
-						Usuario.update(
-									{ id: Number(req.params.id) },
-									{ 
-										NickName: 		req.body.NickName,
-										Nombre: 		req.body.Nombre,
-										Apellidos: 		req.body.Apellidos,
-										tipoOperador: 	req.body.tipoOperador,
-										Email: 		req.body.Email
+					else if ( req.body.Password == null ) {
 
-									}
-						).exec(function(err, updated) {
-							if (err) {
-							res.json(404, { msg: 'Error al actualizar el Usuario.' });
-							}
+						if ( req.body.tipoOperador == null ) {
+							Usuario.update(
+										{ id: Number(req.params.id) },
+										{ 
+											NickName: 		req.body.NickName,
+											Nombre: 		req.body.Nombre,
+											Apellidos: 		req.body.Apellidos,
+											Email: 		req.body.Email
+										 }
 
-							if (updated) {
-								res.json(200, { msg: 'Usuario actualizado satisfactoriamente.' });	
-							}
-						});
+							).exec(function (err, updated) {
 
+								if (err) {
+									res.json(404, { msg: 'Error al actualizar Usuairo.' });
+								}
+
+								if (updated) {
+									res.json(200, { msg: 'Usuario actualizado satisfactoriamente.' });	
+								}
+
+							});
+
+						}
+						if ( req.body.tipoOperador != null ) {
+							console.log("Super actualiza el dato de un Operador");
+							Usuario.update(
+										{ id: Number(req.params.id) },
+										{ 
+											NickName: 		req.body.NickName,
+											Nombre: 		req.body.Nombre,
+											Apellidos: 		req.body.Apellidos,
+											tipoOperador: 	req.body.tipoOperador,
+											Email: 		req.body.Email
+
+										}
+							).exec(function(err, updated) {
+								if (err) {
+								res.json(404, { msg: 'Error al actualizar el Usuario.' });
+								}
+
+								if (updated) {
+									res.json(200, { msg: 'Usuario actualizado satisfactoriamente.' });	
+								}
+							});
+
+						}	
 					}
+					
 
 				}
 				else {

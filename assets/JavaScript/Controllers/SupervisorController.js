@@ -315,7 +315,6 @@ angular.module("AppIncidencias")
 				if ( $scope.Usuarios[i].ID == UsuarioID ) {
 					console.log($scope.Usuarios[i].ID == UsuarioID);
 					$scope.Usuario.NickName = $scope.Usuarios[i].NickName;
-					$scope.Usuario.Password = $scope.Usuarios[i].Password;
 					$scope.Usuario.Nombre = $scope.Usuarios[i].Nombre;
 					$scope.Usuario.Apellidos = $scope.Usuarios[i].Apellidos;
 					$scope.Usuario.tipoOperador = $scope.Usuarios[i].tipoOperador;
@@ -382,6 +381,20 @@ angular.module("AppIncidencias")
 		};
 		$scope.EditarColaborador = function () {
 			SupervisorService.EditarColaborador($scope, UsuarioID)
+
+				.success(function(data) {
+					console.log(data);
+					$uibModalInstance.close();
+					$route.reload();
+			          })
+			          .error(function(error) {
+       					$uibModalInstance.close();
+			          	$route.reload();
+			          });
+		};
+
+		$scope.ActualizarPassword = function () {
+			SupervisorService.ActualizarPassword($scope, UsuarioID)
 
 				.success(function(data) {
 					console.log(data);

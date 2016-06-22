@@ -21,11 +21,11 @@
 										ng-repeat="Departamento in Departamentos">
 										<td>{{ Departamento.Nombre }}</td>	
 									</tr>
-									
-									<td class="modal-footer">
-									<button class="btn btn-primary BotonEditar" type="button" ng-click="EditarDepartamento()">Editar Departamento</button>
-									</td>
+		
 									</table>
+								</div>
+								<div class="modal-footer" ng-if="DepartamentoSeleccionado">
+									<button class="btn btn-primary BotonEditar" type="button" ng-click="EditarDepartamento()" >Editar Departamento</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -40,33 +40,36 @@
 										ng-repeat="Ubicacion in editarUbicacion.Departamento.Ubicaciones track by Ubicacion.id">
 										<td>{{ Ubicacion.Nombre }}</td>	
 									</tr>
-									<td class="modal-footer">
-									<button class="btn btn-primary BotonEditar" type="button" ng-click="EditarUbicacion()">Editar Ubicacion</button>
-									</td>
+
 									</table>
+								</div>
+								<div class="modal-footer" ng-if="UbicacionSeleccionada">
+									<button class="btn btn-primary BotonEditar" type="button" ng-click="EditarUbicacion()">Editar Ubicacion</button>
 								</div>
 							</ng-form>
 						</uib-tab>
 						<uib-tab index="2" heading="Instalacion">
 							<ng-form name="EditarInstalacionForm">
 								<div class="form-group">
-								<p>Seleccionar Departamento</p>
-								<select class="form-control Departamento" ng-model="editarInstalacion.Departamento" ng-change="setUbicacionAdminEditar()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
-								<p>Seleccionar Ubicacion</p>
-								<select class="form-control" ng-model="editarInstalacion.Ubicacion" ng-options="Ubicacion.Nombre for Ubicacion in editarInstalacion.Departamento.Ubicaciones track by Ubicacion.id">
-								</select>
-								<p>Instalaciones:</p>
-								<input ng-model="filtro" id="search" class="form-control" placeholder="Filtrar Instalaciones">
-								<div class="listado">
-									<table class="table table-bordered table-list">
-										<tr 	ng-click="setInstalacionSeleccionada(Instalacion.id);"
-											ng-class="{Seleccionado: InstalacionSeleccionada === Instalacion.id}"
-											ng-repeat="Instalacion in editarInstalacion.Ubicacion.Instalaciones | filter:filtro">
-											<td>{{Instalacion.Nombre}}</td>
-										</tr>
-									</table>
+									<p>Seleccionar Departamento</p>
+									<select class="form-control Departamento" ng-model="editarInstalacion.Departamento" ng-change="setUbicacionAdminEditar()" ng-options="Departamento.Nombre for Departamento in Departamentos track by Departamento.id"></select>
+									<p>Seleccionar Ubicacion</p>
+									<select class="form-control" ng-model="editarInstalacion.Ubicacion" ng-options="Ubicacion.Nombre for Ubicacion in editarInstalacion.Departamento.Ubicaciones track by Ubicacion.id">
+									</select>
+									<p>Instalaciones:</p>
+									<input ng-model="filtro" id="search" class="form-control" placeholder="Filtrar Instalaciones">
+									<div class="listado">
+										<table class="table table-bordered table-list">
+											<tr 	ng-click="setInstalacionSeleccionada(Instalacion.id);"
+												ng-class="{Seleccionado: InstalacionSeleccionada === Instalacion.id}"
+												ng-repeat="Instalacion in editarInstalacion.Ubicacion.Instalaciones | filter:filtro">
+												<td>{{Instalacion.Nombre}}</td>
+											</tr>
+										</table>
+									</div>
 								</div>
-								<button class="btn btn-primary BotonEditar" type="button" ng-click="EditarInstalacion()">Editar Instalacion</button>
+								<div class="modal-footer" ng-if="InstalacionSeleccionada">
+									<button class="btn btn-primary BotonEditar" type="button" ng-click="EditarInstalacion()" >Editar Instalacion</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -98,7 +101,10 @@
 									</tr>
 									</table>
 									</div>
-									<button class="btn btn-primary BotonEditar" type="button" ng-click="EditarSupervisor()">Editar Supervisor</button>
+								</div>
+								<div class="modal-footer" ng-if="SupervisorSeleccionado">
+									<button class="btn btn-primary BotonEditar" type="button" ng-click="EditarSupervisor()">Editar</button>
+									<button class="btn btn-primary BotonEditar" type="button" ng-click="ActualizarPasswordSupervisor()">Cambiar Contraseña</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -115,7 +121,10 @@
 									</tr>
 									</table>
 									</div>
-									<button class="btn btn-primary BotonEditar" type="button" ng-click="EditarOperador()">Editar Operador</button>
+								</div>
+								<div class="modal-footer" ng-if="OperadorSeleccionado">
+									<button class="btn btn-primary BotonEditar" type="button" ng-click="EditarOperador()">Editar</button>
+									<button class="btn btn-primary BotonEditar" type="button" ng-click="ActualizarPasswordOperador()">Cambiar Contraseña</button>
 								</div>
 							</ng-form>
 						</uib-tab>
@@ -132,7 +141,10 @@
 									</tr>
 									</table>
 									</div>
-									<button class="btn btn-primary BotonEditar" type="button" ng-click="EditarColaborador()">Editar Colaborador</button>
+								</div>
+								<div class="modal-footer" ng-if="ColaboradorSeleccionado">
+									<button class="btn btn-primary BotonEditar" type="button" ng-click="EditarColaborador()">Editar</button>
+									<button class="btn btn-primary BotonEditar" type="button" ng-click="ActualizarPasswordColaborador()">Cambiar Contraseña</button>
 								</div>
 							</ng-form>
 						</uib-tab>
