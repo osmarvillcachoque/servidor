@@ -662,7 +662,6 @@ module.exports = {
 				if(Incidencias){
 
 					req.IncidenciasCreadas = Incidencias.length;
-					//console.log("next "+req.IncidenciasCreadas);
 					next();
 				}
 					

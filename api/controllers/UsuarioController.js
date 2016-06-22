@@ -265,8 +265,6 @@ module.exports = {
 		Usuario.findOne(req.params.id).populateAll().then(function(usuario){
 			if(usuario){
 				if ( req.Rol == '1' ) {
-					console.log(req.params);
-					console.log(req.body);
 					if ( req.body.Password != null ) {
 						Usuario.update(
 										{ id: Number(req.params.id) },
@@ -312,7 +310,7 @@ module.exports = {
 
 						}
 						if ( req.body.tipoOperador != null ) {
-							console.log("Super actualiza el dato de un Operador");
+							/*Super actualiza el dato de un Operador*/
 							Usuario.update(
 										{ id: Number(req.params.id) },
 										{ 
@@ -351,7 +349,6 @@ module.exports = {
 	delete: function (req, res, next) {
 		if ( req.Rol == '1' ){
 			Usuario.findOne(req.params.id).then(function(Supervisor){
-				console.log(Supervisor.id != req.Usuario.id);
 				if( Supervisor.id != req.Usuario.id ) {
 					Usuario.destroy({ id:Number(req.params.id) }).exec(function(deleted) {
 						if (deleted) {
