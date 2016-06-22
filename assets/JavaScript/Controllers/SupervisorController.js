@@ -170,8 +170,6 @@ angular.module("AppIncidencias")
 				.success(function(data) {
 
 					$scope.Usuarios = data.Usuarios;
-					console.log($scope.Usuarios);
-					//console.log($scope.Usuarios);
 					$scope.setDatosUsuarioSeleccionado(UsuarioID);
 					$scope.DatosUsuarioCargado = true;
 				})
@@ -313,7 +311,6 @@ angular.module("AppIncidencias")
 		$scope.setDatosUsuarioSeleccionado = function(UsuarioID) {
 			for ( var i = 0 ; i < $scope.Usuarios.length ; i++ ) {
 				if ( $scope.Usuarios[i].ID == UsuarioID ) {
-					console.log($scope.Usuarios[i].ID == UsuarioID);
 					$scope.Usuario.NickName = $scope.Usuarios[i].NickName;
 					$scope.Usuario.Nombre = $scope.Usuarios[i].Nombre;
 					$scope.Usuario.Apellidos = $scope.Usuarios[i].Apellidos;

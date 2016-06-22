@@ -348,26 +348,30 @@ module.exports = {
 
 	},
 
-	delete: function (req, res) {
-		console.log("delete");
-		if ( req.Rol == '1' ) {
-			console.log("DELETE");
-			console.log(req.params.id);
-			Usuario.destroy({ id:Number(req.params.id) }).exec(function(deleted) {
-				if (deleted) {
-					return res.negotiate(deleted);
+	delete: function (req, res, next) {
+		if ( req.Rol == '1' ){
+			Usuario.findOne(req.params.id).then(function(Supervisor){
+				console.log(Supervisor.id != req.Usuario.id);
+				if( Supervisor.id != req.Usuario.id ) {
+					Usuario.destroy({ id:Number(req.params.id) }).exec(function(deleted) {
+						if (deleted) {
+							return res.negotiate(deleted);
+						}
+						else{
+							res.json(200,{deleted});
+						}
+					});
 				}
-				else{
-					res.json(200,{deleted});
-				}
-			});
+				
 
+			}).catch(function(error) { next(error); });
 		}
 		else {
 
 			return res.json(403, {err: 'Permiso denegado.'});
 		
 		}
+
 	},
 
 	TiposOperador: function (req, res, next) {

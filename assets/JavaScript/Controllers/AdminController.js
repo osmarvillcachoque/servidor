@@ -195,8 +195,7 @@ angular.module("AppIncidencias")
 		$scope.setDepartamentoSeleccionado = function(Departamento) {
 			for ( var i = 0 ; i < $scope.Departamentos.length ; i++ ) {
 				if ( $scope.Departamentos[i].id == Departamento ) {
-					$scope.DepartamentoSeleccionado = $scope.Departamentos[i].id;	
-					console.log($scope.DepartamentoSeleccionado);
+					$scope.DepartamentoSeleccionado = $scope.Departamentos[i].id;
 				}
 			}
 			
@@ -501,7 +500,6 @@ angular.module("AppIncidencias")
 		};
 		$scope.BorrarSupervisor = function () {
 			if( $scope.SupervisorSeleccionado != null && $rootScope.Rol == '1' ) {
-				//console.log($scope.SupervisorSeleccionado);
 				$http.delete('/Usuario/' + $scope.SupervisorSeleccionado)
 
 					.success(function(data) {
@@ -583,7 +581,6 @@ angular.module("AppIncidencias")
 		};
 		$scope.BorrarOperador = function () {
 			if( $scope.OperadorSeleccionado != null && $rootScope.Rol == '1' ) {
-				//console.log($scope.OperadorSeleccionado);
 				$http.delete('/Usuario/' + $scope.OperadorSeleccionado)
 
 					.success(function(data) {
@@ -663,7 +660,6 @@ angular.module("AppIncidencias")
 		};
 		$scope.BorrarColaborador = function () {
 			if( $scope.ColaboradorSeleccionado != null && $rootScope.Rol == '1' ) {
-				//console.log($scope.ColaboradorSeleccionado);
 				$http.delete('/Usuario/' + $scope.ColaboradorSeleccionado)
 
 					.success(function(data) {

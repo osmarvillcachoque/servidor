@@ -74,7 +74,7 @@ module.exports = {
 	update: function (req, res) {
 
 		if ( req.Rol == '1' ) {
-
+			
 			Ubicacion.update(
 						{ id: Number(req.params.id) }, 		
 						{
