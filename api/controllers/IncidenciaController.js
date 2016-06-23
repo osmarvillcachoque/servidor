@@ -33,7 +33,7 @@ module.exports = {
 								"id": 			Incidencia.id,
 								"Titulo": 		Incidencia.Titulo, 
 								"Descripcion": 	Incidencia.Descripcion, 
-								"Departamento": 	"",
+								"Departamento": "",
 								"Ubicacion": 	"", 
 								"Instalacion": 	Incidencia.Instalacion.Nombre,
 								"Tipo": 		Incidencia.Tipo, 
@@ -41,11 +41,12 @@ module.exports = {
 								"Propietario": 	Propietario,
 								"Estado": 		Incidencia.Estado,
 								"Prioridad": 	Incidencia.Prioridad,
-								"FechaCreacion": 	Incidencia.createdAt,
+								"Comun": 		Incidencia.Comun,
+								"Comentario": 	Incidencia.Comentario,
+								"FechaCreacion": Incidencia.createdAt,
 								"FechaInicio": 	Incidencia.FechaInicio,
 								"FechaPrevista": 	Incidencia.FechaPrevista,
-								"FechaFin": 		Incidencia.FechaFin,
-								"Comun": 		Incidencia.Comun
+								"FechaFin": 	Incidencia.FechaFin
 							}
 
 							FindUbicacion = Ubicacion.findOne(Incidencia.Instalacion.Ubicacion).populateAll()
@@ -132,8 +133,9 @@ module.exports = {
 								"Operador": 	Operador,
 								"Estado": 		Incidencia.Estado,
 								"Prioridad": 	Incidencia.Prioridad,
-								"FechaPrevista": 	Incidencia.FechaPrevista,
-								"Comun": 		Incidencia.Comun
+								"Comun": 		Incidencia.Comun,
+								"Comentario": 	Incidencia.Comentario,
+								"FechaPrevista": 	Incidencia.FechaPrevista
 							}
 
 							FindUbicacion = Ubicacion.findOne(Incidencia.Instalacion.Ubicacion).populateAll()
@@ -194,17 +196,17 @@ module.exports = {
 							}
 
 							IncidenciaJSON = {
-								"id": Incidencia.id,
-								"Titulo": Incidencia.Titulo, 
-								"Descripcion": Incidencia.Descripcion, 
+								"id": 			Incidencia.id,
+								"Titulo": 		Incidencia.Titulo, 
+								"Descripcion": 	Incidencia.Descripcion, 
 								"Departamento": "", 
-								"Ubicacion":"",
-								"Instalacion": Incidencia.Instalacion.Nombre,
-								"Tipo": Incidencia.Tipo, 
-								"Operador": Operador,
-								"Estado": Incidencia.Estado,
-								"FechaCreacion": Incidencia.createdAt,
-								"Comun": Incidencia.Comun
+								"Ubicacion": 	"",
+								"Instalacion": 	Incidencia.Instalacion.Nombre,
+								"Tipo": 		Incidencia.Tipo, 
+								"Operador": 	Operador,
+								"Estado": 		Incidencia.Estado,
+								"Comun": 		Incidencia.Comun,
+								"FechaCreacion": Incidencia.createdAt
 							}
 
 							FindUbicacion = Ubicacion.findOne(Incidencia.Instalacion.Ubicacion).populateAll()
@@ -337,16 +339,17 @@ module.exports = {
 
 						var IncidenciaJSON = {
 							"ID": 				Incidencia.id,
-							"Titulo":      			Incidencia.Titulo, 
+							"Titulo":      		Incidencia.Titulo, 
 							"Descripcion": 		Incidencia.Descripcion, 
 							"Instalacion": 		{ "ID": Incidencia.Instalacion.id, "Nombre": Incidencia.Instalacion.Nombre },
 							"Tipo": 			Incidencia.Tipo, 
 							"Operador": 		Operador,
 							"Estado": 			Incidencia.Estado,
 							"Prioridad": 		Incidencia.Prioridad,
+							"Comentario": 		Incidencia.Comentario,
 							"FechaInicio": 		Incidencia.FechaInicio,
 							"FechaPrevista": 		Incidencia.FechaPrevista,
-							"FechaFin": 			Incidencia.FechaFin,
+							"FechaFin": 		Incidencia.FechaFin,
 							"Comun": 			Incidencia.Comun,
 							"Propietario": 		Propietario
 						}
@@ -366,7 +369,7 @@ module.exports = {
 
 				if (Incidencia) {
 
-					res.json({ "id": Incidencia.id, "Estado": Incidencia.Estado });
+					res.json({ "id": Incidencia.id, "Estado": Incidencia.Estado, "Comentario": Incidencia.Comentario });
 
 				}
 				else { 
@@ -421,6 +424,7 @@ module.exports = {
 								Tipo: 			req.body.Tipo,
 								Estado: 		req.body.Estado,
 								Prioridad: 		req.body.Prioridad,
+								Comentario: 	req.body.Comentario,
 								FechaInicio: 	req.body.FechaInicio,
 								FechaPrevista: 	req.body.FechaPrevista,
 								FechaFin: 		req.body.FechaFin,
@@ -448,6 +452,7 @@ module.exports = {
 	 						{ id: Number(req.params.id), Operador: Number(req.Usuario.id) }, 		
 							{ 	
 								Estado: 	req.body.Estado,
+								Comentario: 	req.body.Comentario,
 								Rol: 		req.Rol
 							}
 				).exec(function (err, updated) {
@@ -546,7 +551,7 @@ module.exports = {
 		var Estados = Incidencia.attributes.Estado.enum;
 
 		if ( req.Rol == '1' || req.Rol == '2' || req.Rol == '3' ) {
-			res.json(200, { Estados });	
+			res.json(200, { Estados });
 		}
 	},
 
