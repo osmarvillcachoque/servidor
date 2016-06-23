@@ -4,12 +4,11 @@ angular.module("AppIncidencias")
 
 		$scope.Incidencias = [];
 		$scope.IncidenciaSeleccionada = null;
-
+		
 		if ( $scope.Incidencias.length == 0 ) {
 			$http.get("/Incidencia")
 				.success(function (data) {
 					$scope.Incidencias = data.IncidenciasJSON;
-					console.log
 				})
 				.error(function (error) {
 					$scope.Error = error;
@@ -50,6 +49,12 @@ angular.module("AppIncidencias")
 				}
 			}
 		}
+
+		$scope.ActivarFiltro = function () {
+			if( $rootScope.Rol == '1' ) {
+				$scope.Activo =  ($scope.Activo == $scope.Activo) ? !$scope.Activo : false;
+			}
+		};
 
 		$scope.CrearIncidencia = function () {
 
