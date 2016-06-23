@@ -29,7 +29,7 @@
 				<tbody ng-hide="Incidencias.length < 0">
 					<tr 	ng-click="setIncidenciaSeleccionada(Incidencia.id);" 
 						ng-class="{Seleccionado: IncidenciaSeleccionada === Incidencia.id}" 
-						ng-repeat="Incidencia in Incidencias">
+						ng-repeat="Incidencia in Incidencias | orderBy:'-FechaInicio'">
 						<td><i ng-if="Incidencia.Comun == 'Sí'" class="glyphicon glyphicon-eye-open"/></td>
 						<td>{{ $index+1 }}</td>
 						<td>{{ Incidencia.Titulo }}</td>
@@ -110,7 +110,7 @@
 				<tbody ng-hide="Incidencias.length < 0">
 					<tr 	ng-click="setIncidenciaSeleccionada(Incidencia.id);" 
 						ng-class="{Seleccionado: IncidenciaSeleccionada === Incidencia.id }" 
-						ng-repeat="Incidencia in Incidencias">
+						ng-repeat="Incidencia in Incidencias | orderBy:'-Comun'">
 						<td><i ng-if="Incidencia.Comun == 'Sí'" class="glyphicon glyphicon-eye-open"/></td>
 						<td>{{ $index+1 }}</td>
 						<td>{{ Incidencia.Titulo }}</td>
@@ -181,7 +181,7 @@
 				<tbody ng-hide="Incidencias.length < 0">
 					<tr 	ng-click="setIncidenciaSeleccionada(Incidencia.id);" 
 						ng-class="{Seleccionado: IncidenciaSeleccionada === Incidencia.id}" 
-						ng-repeat="Incidencia in Incidencias">
+						ng-repeat="Incidencia in Incidencias | orderBy:'-FechaCreacion'">
 						<td><i ng-if="Incidencia.Comun == 'Sí'" class="glyphicon glyphicon-eye-open"/></td>
 						<td>{{ $index+1 }}</td>
 						<td>{{ Incidencia.Titulo }}</td>
