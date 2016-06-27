@@ -63,33 +63,45 @@ angular.module("AppIncidencias")
 																	$scope.TiposIncidencia = data.Tipos;
 																	$scope.TipoSeleccionado = $scope.TiposIncidencia[0];
 
-																	if ( IncidenciaID != null ) {
-																		SupervisorService.getIncidencia(IncidenciaID)
+																	SupervisorService.getTiposGuardia()
+																		.success(function(data) {
 
-																			.success(function(data) {
-																				$scope.Titulo = data.IncidenciaJSON.Titulo;
-																				$scope.Descripcion = data.IncidenciaJSON.Descripcion;
-																				$scope.Instalacion = data.IncidenciaJSON.Instalacion;
-																				$scope.setDepartamento(data.IncidenciaJSON.Instalacion.ID);
-																				$scope.setTipoIncidencia(data.IncidenciaJSON.Tipo);
-																				$scope.setPrioridadIncidencia(data.IncidenciaJSON.Prioridad);
-																				$scope.setEstadoIncidencia(data.IncidenciaJSON.Estado);
-																				$scope.setOperadorIncidencia(data.IncidenciaJSON.Operador);
-																				$scope.Comentario = data.IncidenciaJSON.Comentario;
-																				$scope.FechaInicio = new Date(data.IncidenciaJSON.FechaInicio);
-																				$scope.FechaPrevista = new Date(data.IncidenciaJSON.FechaPrevista);
-																				$scope.FechaFin = new Date(data.IncidenciaJSON.FechaFin);
+																			$scope.TiposGuardia = data.tiposGuardia;
+																			$scope.TipoGuardiaSeleccionado = $scope.TiposGuardia[0];
 
+																			if ( IncidenciaID != null ) {
+																				SupervisorService.getIncidencia(IncidenciaID)
+
+																					.success(function(data) {
+																						$scope.Titulo = data.IncidenciaJSON.Titulo;
+																						$scope.Descripcion = data.IncidenciaJSON.Descripcion;
+																						$scope.Instalacion = data.IncidenciaJSON.Instalacion;
+																						$scope.setDepartamento(data.IncidenciaJSON.Instalacion.ID);
+																						$scope.setTipoIncidencia(data.IncidenciaJSON.Tipo);
+																						$scope.setTipoGuardia(data.IncidenciaJSON.Guardia);
+																						$scope.setPrioridadIncidencia(data.IncidenciaJSON.Prioridad);
+																						$scope.setEstadoIncidencia(data.IncidenciaJSON.Estado);
+																						$scope.setOperadorIncidencia(data.IncidenciaJSON.Operador);
+																						$scope.Comentario = data.IncidenciaJSON.Comentario;
+																						$scope.FechaInicio = new Date(data.IncidenciaJSON.FechaInicio);
+																						$scope.FechaPrevista = new Date(data.IncidenciaJSON.FechaPrevista);
+																						$scope.FechaFin = new Date(data.IncidenciaJSON.FechaFin);
+
+																						$scope.DatosCargados = true;
+
+																					})
+																					.error(function(error) {
+																						console.log(error);
+																					});
+																			}
+																			else {
 																				$scope.DatosCargados = true;
+																			}
 
-																			})
-																			.error(function(error) {
-																				console.log(error);
-																			});
-																	}
-																	else {
-																		$scope.DatosCargados = true;
-																	}	
+																		})
+																		.error(function(error) {
+																			console.log(error);
+																		})	
 
 																})
 																.error(function(error) {
@@ -201,7 +213,7 @@ angular.module("AppIncidencias")
 					}						
 				}
 			}
-		}
+		};
 
 
 		$scope.setTipoIncidencia = function(Tipo) {
@@ -210,7 +222,15 @@ angular.module("AppIncidencias")
 					$scope.TipoSeleccionado = $scope.TiposIncidencia[i];
 				}
 			}
-		}
+		};
+
+		$scope.setTipoGuardia = function(Guardia) {
+			for ( var i = 0 ; i < $scope.TiposGuardia.length ; i++ ) {
+				if ( $scope.TiposGuardia[i] == Guardia ) {
+					$scope.TipoGuardiaSeleccionado = $scope.TiposGuardia[i];
+				}
+			}
+		};
 
 		$scope.setPrioridadIncidencia = function(Prioridad) {
 			for ( var i = 0 ; i < $scope.PrioridadesIncidencia.length ; i++ ) {
@@ -218,7 +238,7 @@ angular.module("AppIncidencias")
 					$scope.PrioridadSeleccionada = $scope.PrioridadesIncidencia[i];
 				}
 			}
-		}
+		};
 
 		$scope.setEstadoIncidencia = function(Estado) {
 			for ( var i = 0 ; i < $scope.EstadosIncidencia.length ; i++ ) {

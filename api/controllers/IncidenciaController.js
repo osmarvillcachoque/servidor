@@ -41,6 +41,7 @@ module.exports = {
 								"Propietario": 	Propietario,
 								"Estado": 		Incidencia.Estado,
 								"Prioridad": 	Incidencia.Prioridad,
+								"Guardia": 		Incidencia.Guardia,
 								"Comun": 		Incidencia.Comun,
 								"Comentario": 	Incidencia.Comentario,
 								"FechaCreacion": Incidencia.createdAt,
@@ -263,6 +264,7 @@ module.exports = {
 							Tipo: req.body.Tipo,
 							Estado: req.body.Estado,
 							Prioridad: req.body.Prioridad,
+							Guardia: req.body.Guardia,
 							Comun: req.body.Comun,
 							FechaInicio: req.body.FechaInicio,
 							FechaPrevista: req.body.FechaPrevista,
@@ -346,6 +348,7 @@ module.exports = {
 							"Operador": 		Operador,
 							"Estado": 			Incidencia.Estado,
 							"Prioridad": 		Incidencia.Prioridad,
+							"Guardia": 			Incidencia.Guardia,
 							"Comentario": 		Incidencia.Comentario,
 							"FechaInicio": 		Incidencia.FechaInicio,
 							"FechaPrevista": 		Incidencia.FechaPrevista,
@@ -424,6 +427,7 @@ module.exports = {
 								Tipo: 			req.body.Tipo,
 								Estado: 		req.body.Estado,
 								Prioridad: 		req.body.Prioridad,
+								Guardia: 		req.body.Guardia,
 								Comentario: 	req.body.Comentario,
 								FechaInicio: 	req.body.FechaInicio,
 								FechaPrevista: 	req.body.FechaPrevista,
@@ -538,6 +542,15 @@ module.exports = {
 
 	},
 
+	TiposGuardia: function (req, res) {
+		var tiposGuardia = Incidencia.attributes.Guardia.enum;	
+
+		if ( req.Rol == '1' ) {
+			res.json(200, { tiposGuardia });	
+		}
+
+	},
+
 	tiposIncidencia: function (req, res) {
 		var Tipos = Incidencia.attributes.Tipo.enum;	
 
@@ -591,13 +604,21 @@ module.exports = {
 			Incidencia.find().then(function(Incidencias){
 
 				if(Incidencias){
-	
+					
+					var guardia = 0; var noGuardia = 0;
 					var tipo1 = 0; var tipo2 = 0;
 					var estado1 = 0; var estado2 = 0; var estado3 = 0; var estado4 = 0;
 					var comunSi = 0; var comunNo = 0;
 					var IncidenciaSinAsignar = 0;
 
 					Incidencias.forEach(function(incidencia){
+
+						if(incidencia.Guardia == 'No' ){
+							noGuardia++;
+						}
+						else {
+							guardia++;
+						}
 
 						if(incidencia.Tipo == 'Sistemas'){
 							tipo1++;
@@ -631,6 +652,8 @@ module.exports = {
 					var informe = {
 
 						Total: 			req.count,
+						Guardia: 			guardia,
+						NoGuardia: 		noGuardia,
 						SinAsignar: 		IncidenciaSinAsignar,
 						DeSistemas: 		tipo1,
 						DeMantenimiento: 	tipo2,

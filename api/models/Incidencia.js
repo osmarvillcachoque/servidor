@@ -34,6 +34,12 @@ module.exports = {
 			defaultsTo: 	'Baja'
 		},
 
+		Guardia: {
+			type: 		'string',
+			enum: 	['No','Sí'],
+			defaultsTo: 	'No'
+		},
+
 		Comun: {
 			type: 		'string',
 			enum: 	['Sí', 'No'],

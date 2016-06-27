@@ -31,6 +31,10 @@ angular.module("AppIncidencias")
 				return $http.get('/PrioridadesIncidencia');
 			},
 
+			getTiposGuardia: function() {
+				return $http.get('/TiposGuardia');
+			},
+
 			getTiposIncidencia: function() {
 				return $http.get('/TiposIncidencia');
 			},
@@ -52,6 +56,7 @@ angular.module("AppIncidencias")
 					    			Instalacion: $scope.InstalacionSeleccionada, 
 					    			Tipo: $scope.TipoSeleccionado, 
 					    			Prioridad: $scope.PrioridadSeleccionada, 
+					    			Guardia: $scope.TipoGuardiaSeleccionado,
 					    			Estado: $scope.EstadoSeleccionado, 
 					    			Operador: $scope.OperadorSeleccionado.ID, 
 					    			Comentario: $scope.Comentario,
@@ -68,6 +73,7 @@ angular.module("AppIncidencias")
 					    			Instalacion: $scope.InstalacionSeleccionada.id, 
 					    			Tipo: $scope.TipoSeleccionado, 
 					    			Prioridad: $scope.PrioridadSeleccionada, 
+					    			Guardia: $scope.TipoGuardiaSeleccionado,
 					    			Estado: $scope.EstadoSeleccionado, 
 					    			Operador: $scope.OperadorSeleccionado.ID, 
 					    			Comentario: $scope.Comentario,

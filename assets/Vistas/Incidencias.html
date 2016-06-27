@@ -14,6 +14,7 @@
 					<tr>
 						<th class="col-md-1"></th>
 						<th class="col-md-1">#</th>
+						<th class="col-md-1">Guardia</th>
 						<th class="col-md-1">Título</th>
 						<th class="col-md-1">Descripción</th>
 						<th class="col-md-1">Departamento</th>
@@ -33,6 +34,7 @@
 						ng-repeat="Incidencia in Incidencias | filter:search">
 						<td><i ng-if="Incidencia.Comun == 'Sí'" class="glyphicon glyphicon-eye-open"/></td>
 						<td>{{ $index+1 }}</td>
+						<td>{{ Incidencia.Guardia }}</td>
 						<td>{{ Incidencia.Titulo }}</td>
 						<td>{{ Incidencia.Descripcion }}</td>
 						<td>{{ Incidencia.Departamento }}</td>

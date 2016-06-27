@@ -4,6 +4,10 @@ module.exports.routes = {
 		'UsuarioController.currentUser'
 	],
 
+	'GET r|^/TiposGuardia': [
+		'IncidenciaController.TiposGuardia'
+	],
+
 	'GET r|^/TiposIncidencia': [
 		'IncidenciaController.tiposIncidencia'
 	],

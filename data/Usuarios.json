@@ -8,68 +8,20 @@
 				"NickName":	"Supervisor",
 				"Password": 	"12345",
 				"Rol":			1,
-    				"Nombre":		"Kike Supervisor",
+    				"Nombre":		"Enrique",
 				"Apellidos":		"Intercontinental",
-				"Email":		"Intercontinental1@gmail.com"
+				"Email":		"Intercontinental@gmail.com"
 			},
 			{
 				"id":			2,
-				"NickName":	"Operador1",
+				"NickName":	"STI",
 				"Password": 	"12345",
-				"tipoOperador":	"Mantenimiento",
-				"Rol":			2,
-    				"Nombre":		"Chema Operador1",
-				"Apellidos":		"De Mantenimiento",
-				"Email":		"Intercontinental2@gmail.com"
-			},
-			{
-				"id":			3,
-				"NickName":	"Operador2",
-				"Password": 	"12345",
-				"tipoOperador":	"Mantenimiento",
-				"Rol":			2,
-    				"Nombre":		"otroChema Operador2",
-				"Apellidos":		"De Mantenimiento",
-				"Email":		"Intercontinental3@gmail.com"
-			},
-			{
-				"id":			4,
-				"NickName":	"Operador3",
-				"Password": 	"12345",
-				"tipoOperador":	"Sistemas",
-				"Rol":			2,
-    				"Nombre":		"Juanjo Operador3",
-				"Apellidos":		"De Sistemas",
-				"Email":		"Intercontinental4@gmail.com"
-			},
-			{
-				"id":			5,
-				"NickName":	"Operador4",
-				"Password": 	"12345",
-				"tipoOperador":	"Sistemas",
-				"Rol":			2,
-    				"Nombre":		"otroJuanjo Operador4",
-				"Apellidos":		"De Sistemas",
-				"Email":		"Intercontinental5@gmail.com"
-			},
-			{
-				"id":			6,
-				"NickName":	"Colaborador1",
-				"Password": 	"12345",
-				"Rol":			3,
-    				"Nombre":		"Colaborador1",
+				"Rol":			1,
+    				"Nombre":		"STI",
 				"Apellidos":		"Intercontinental",
-				"Email":		"Intercontinental6@gmail.com"
-			},
-			{
-				"id":			7,
-				"NickName":	"Colaborador2",
-				"Password": 	"12345",
-				"Rol":			3,
-    				"Nombre":		"Colaborador2",
-				"Apellidos":		"Intercontinental",
-				"Email":		"Intercontinental7@gmail.com"
-			}		
+				"Email":		"soporte@intercontinentalmarmenor.com"
+			}
+	
 		]
 	}
 ]
