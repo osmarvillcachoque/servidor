@@ -1,4 +1,5 @@
 module.exports = {
+
 	findUsuarios: function(req, res, next) {
 		if ( req.Rol =='1' ) {
 

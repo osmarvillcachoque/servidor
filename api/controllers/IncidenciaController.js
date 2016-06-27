@@ -702,19 +702,50 @@ module.exports = {
 
 		if( req.Rol == '1' && req.body.Operador != null ){
 
-			Incidencia.find().where({
+			Incidencia.find().populateAll().where({
 
 					createdAt: 	{ '>=': req.body.FechaInicio	},
 					createdAt: 	{ '<=': req.body.FechaFin	},
 					Operador: 		  req.body.Operador
 
 				}).then(function(Incidencias){
+					var IncidenciasJSON = [];
 
 					var total = 0;
 					var sistemas = 0; var mantenimiento = 0;
 					var estado1 = 0; var estado2 = 0; var estado3 = 0; var estado4 = 0;
 
 					Incidencias.forEach(function(incidencia){
+
+						var Operador = "Sin Asignar";
+
+						if ( incidencia.Operador != null ) {
+							Operador = incidencia.Operador.Nombre + " " + incidencia.Operador.Apellidos;
+						}
+
+						var Propietario = "Usuario no encontrado";
+
+						if ( incidencia.Propietario != null ) {
+							Propietario = incidencia.Propietario.Nombre + " " + incidencia.Propietario.Apellidos;
+						}
+
+						IncidenciaJSON = {
+							"id": 	incidencia.id,
+							"Guardia": 	incidencia.Guardia,
+							"Titulo": 	incidencia.Titulo,
+							"Descripcion": 	incidencia.Descripcion,
+							"Instalacion": 	incidencia.Instalacion.Nombre,
+							"Tipo": 	incidencia.Tipo,
+							"Creador": Propietario,
+							"Operador": Operador,
+							"Estado": incidencia.Estado,
+							"Prioridad": incidencia.Prioridad,
+							"Fecha de Creacion": incidencia.createdAt, 
+							"Fecha de Inicio": incidencia.FechaInicio, 
+							"Fecha Prevista": incidencia.FechaPrevista, 
+							"Fecha de Finalización": incidencia.FechaFin
+						};
+						IncidenciasJSON.push(IncidenciaJSON);
 
 						if(incidencia.Estado == 'Sin Iniciar'){
 							estado1++;
@@ -742,7 +773,7 @@ module.exports = {
 
 					}
 
-					res.json(200, { Estadisticas: estadisticaByOperador });
+					res.json(200, { Estadisticas: estadisticaByOperador, Incidencias: IncidenciasJSON });
 
 			}).catch(function(error){ next(error); });
 
@@ -759,15 +790,50 @@ module.exports = {
 
 		if( req.Rol == '1' && req.body.Colaborador != null ){
 
-			Incidencia.find().where({
+			Incidencia.find().populateAll().where({
 
 					createdAt: 	{ '>=': req.body.FechaInicio	},
 					createdAt: 	{ '<=': req.body.FechaFin	},
 					Propietario: 	req.body.Colaborador	
 
 				}).then(function(Incidencias){
+					var IncidenciasJSON = [];
 
 					var total = Incidencias.length;
+
+					Incidencias.forEach(function(incidencia){
+
+						var Operador = "Sin Asignar";
+
+						if ( incidencia.Operador != null ) {
+							Operador = incidencia.Operador.Nombre + " " + incidencia.Operador.Apellidos;
+						}
+
+						var Propietario = "Usuario no encontrado";
+
+						if ( incidencia.Propietario != null ) {
+							Propietario = incidencia.Propietario.Nombre + " " + incidencia.Propietario.Apellidos;
+						}
+
+						IncidenciaJSON = {
+							"id": 	incidencia.id,
+							"Guardia": 	incidencia.Guardia,
+							"Titulo": 	incidencia.Titulo,
+							"Descripcion": 	incidencia.Descripcion,
+							"Instalacion": 	incidencia.Instalacion.Nombre,
+							"Tipo": 	incidencia.Tipo,
+							"Creador": Propietario,
+							"Operador": Operador,
+							"Estado": incidencia.Estado,
+							"Prioridad": incidencia.Prioridad,
+							"Fecha de Creacion": incidencia.createdAt, 
+							"Fecha de Inicio": incidencia.FechaInicio, 
+							"Fecha Prevista": incidencia.FechaPrevista, 
+							"Fecha de Finalización": incidencia.FechaFin
+						};
+						IncidenciasJSON.push(IncidenciaJSON);
+
+					});
 
 					var estadisticaByColaborador = {
 
@@ -776,7 +842,7 @@ module.exports = {
 
 					}
 
-					res.json(200, { Estadisticas: estadisticaByColaborador });
+					res.json(200, { Estadisticas: estadisticaByColaborador, Incidencias: IncidenciasJSON });
 
 			}).catch(function(error){ next(error); });
 
@@ -793,13 +859,14 @@ module.exports = {
 
 		if( req.Rol == '1' ){
 		
-			Incidencia.find().where({
+			Incidencia.find().populateAll().where({
 
 					createdAt: 	{ '>=': req.body.FechaInicio	},
 					createdAt: 	{ '<=': req.body.FechaFin	},
 					Instalacion: 	  req.body.Instalacion	
 
 				}).then(function(Incidencias){
+					var IncidenciasJSON = [];
 					
 					var total = 0;
 					var sistemas = 0; var mantenimiento = 0;
@@ -807,6 +874,36 @@ module.exports = {
 					var IncidenciaSinAsignar = 0;
 
 					Incidencias.forEach(function(incidencia){
+
+						var Operador = "Sin Asignar";
+
+						if ( incidencia.Operador != null ) {
+							Operador = incidencia.Operador.Nombre + " " + incidencia.Operador.Apellidos;
+						}
+
+						var Propietario = "Usuario no encontrado";
+
+						if ( incidencia.Propietario != null ) {
+							Propietario = incidencia.Propietario.Nombre + " " + incidencia.Propietario.Apellidos;
+						}
+
+						IncidenciaJSON = {
+							"id": 	incidencia.id,
+							"Guardia": 	incidencia.Guardia,
+							"Titulo": 	incidencia.Titulo,
+							"Descripcion": 	incidencia.Descripcion,
+							"Instalacion": 	incidencia.Instalacion.Nombre,
+							"Tipo": 	incidencia.Tipo,
+							"Creador": Propietario,
+							"Operador": Operador,
+							"Estado": incidencia.Estado,
+							"Prioridad": incidencia.Prioridad,
+							"Fecha de Creacion": incidencia.createdAt, 
+							"Fecha de Inicio": incidencia.FechaInicio, 
+							"Fecha Prevista": incidencia.FechaPrevista, 
+							"Fecha de Finalización": incidencia.FechaFin
+						};
+						IncidenciasJSON.push(IncidenciaJSON);
 
 						if(incidencia.Tipo == 'Sistemas'){
 							sistemas++;
@@ -845,7 +942,7 @@ module.exports = {
 
 					}
 
-					res.json(200, { Estadisticas: estadisticaByInstalacion });
+					res.json(200, { Estadisticas: estadisticaByInstalacion, Incidencias: IncidenciasJSON });
 
 			}).catch(function(error){ next(error); });
 

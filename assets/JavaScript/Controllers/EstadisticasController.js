@@ -195,7 +195,7 @@ angular.module("AppIncidencias")
 
 		  				.success(function(data) {
 		  					$scope.Estadisticas = data.Estadisticas;
-
+		  					
 	  						$scope.Graficos.TipoEstado.Secciones[0] = "Sin Iniciar";
 		  					$scope.Graficos.TipoEstado.Secciones[1] = "En Proceso";
 		  					$scope.Graficos.TipoEstado.Secciones[2] = "Pendiente";
@@ -249,7 +249,7 @@ angular.module("AppIncidencias")
 		  			SupervisorService.EstadisticasInstalacion($scope)
 
 		  				.success(function(data) {
-
+		  					console.log(data);
 		  					$scope.Estadisticas = data.Estadisticas;
 
 							$scope.Graficos.TipoIncidencia.Secciones[0] = "De Sistemas";
