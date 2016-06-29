@@ -73,11 +73,12 @@ angular.module("AppIncidencias")
 																				SupervisorService.getIncidencia(IncidenciaID)
 
 																					.success(function(data) {
+																						$scope.setTipoIncidencia(data.IncidenciaJSON.Tipo);
+																						$scope.Empleado = data.IncidenciaJSON.Empleado;
 																						$scope.Titulo = data.IncidenciaJSON.Titulo;
 																						$scope.Descripcion = data.IncidenciaJSON.Descripcion;
 																						$scope.Instalacion = data.IncidenciaJSON.Instalacion;
 																						$scope.setDepartamento(data.IncidenciaJSON.Instalacion.ID);
-																						$scope.setTipoIncidencia(data.IncidenciaJSON.Tipo);
 																						$scope.setTipoGuardia(data.IncidenciaJSON.Guardia);
 																						$scope.setPrioridadIncidencia(data.IncidenciaJSON.Prioridad);
 																						$scope.setEstadoIncidencia(data.IncidenciaJSON.Estado);

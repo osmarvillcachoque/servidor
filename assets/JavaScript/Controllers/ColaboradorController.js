@@ -24,12 +24,13 @@ angular.module("AppIncidencias")
 								ColaboradorService.getIncidencia(IncidenciaID)
 
 									.success(function(data) {
+										$scope.setTipoIncidencia(data.Tipo);
+										$scope.Empleado = data.Empleado;
 										$scope.Titulo = data.Titulo;
 										$scope.Descripcion = data.Descripcion;
 										$scope.Instalacion = data.Instalacion;
 										$scope.DepartamentoSeleccionado = $scope.Departamentos[0];
 										$scope.setDepartamento(data.Instalacion.id);
-										$scope.setTipoIncidencia(data.Tipo);
 
 										$scope.DatosCargados = true;
 									})
